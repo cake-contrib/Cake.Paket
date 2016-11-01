@@ -1,0 +1,1 @@
+.\build.ps1 -Cake ".\packages\build\Cake\Cake.exe" -Modules ".\Source\Cake.Paket.Module\bin\Debug"
