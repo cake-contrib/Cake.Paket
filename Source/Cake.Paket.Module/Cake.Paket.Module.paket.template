@@ -1,0 +1,19 @@
+type file
+id Cake.Paket.Module
+title Cake.Paket.Module
+version 1.0.0-alpha1
+authors Larz White
+owners Larz White
+description Paket module for cake.
+summary Cake module that extends Cake with ability to use paket.
+licenseUrl https://github.com/larzw/Cake.Paket/blob/master/LICENSE
+projectUrl https://github.com/larzw/Cake.Paket
+iconUrl https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png
+requireLicenseAcceptance false
+copyright Copyright (c) 2016 Larz White
+releaseNotes Initial alpha Release.
+tags Cake Script Build paket
+dependencies
+	Cake = 0.16.0
+files
+	bin/Release/Cake.Paket.Module.dll

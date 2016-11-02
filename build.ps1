@@ -47,9 +47,12 @@ Write-Host "Preparing to run build script..."
 Write-Verbose -Message "Using paket for dependency management..."
 
 # Set enviornment variables
-$ENV:CAKE_PATHS_TOOLS =  $Tools
-$ENV:CAKE_PATHS_ADDINS = $Addins
-$ENV:CAKE_PATHS_MODULES = $Modules
+$ToolsFullPath = Resolve-Pat $Tools
+$AddinsFullPath = Resolve-Pat $Addins
+$ModulesFullPath = Resolve-Pat $Modules
+$ENV:CAKE_PATHS_TOOLS =  $ToolsFullPath
+$ENV:CAKE_PATHS_ADDINS = $AddinsFullPath
+$ENV:CAKE_PATHS_MODULES = $ModulesFullPath
 
 # Make sure the .paket directory exits
 $PaketFullPath = Resolve-Path $Paket

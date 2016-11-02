@@ -75,5 +75,5 @@ TestResult.xml
 # Cake.FxCop
 Reports/
 
-# nupkg
-nugets/
+# Nuget package folder
+NuGet/
