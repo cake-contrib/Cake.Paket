@@ -5,6 +5,7 @@ FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake (0.16)
+    xunit.runner.console (2.1)
 
 GROUP Build/Tools/Addins
 FRAMEWORK: >= NET45
@@ -20,3 +21,21 @@ NUGET
   remote: https://www.nuget.org/api/v2
     Cake.Core (0.16)
     StyleCop.Analyzers (1.0)
+
+GROUP Cake.Paket.UnitTests
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.nuget.org/api/v2
+    FluentAssertions (4.16)
+    xunit (2.1)
+      xunit.assert (2.1)
+      xunit.core (2.1)
+    xunit.abstractions (2.0)
+    xunit.assert (2.1)
+    xunit.core (2.1)
+      xunit.extensibility.core (2.1)
+      xunit.extensibility.execution (2.1)
+    xunit.extensibility.core (2.1)
+      xunit.abstractions (2.0)
+    xunit.extensibility.execution (2.1)
+      xunit.extensibility.core (2.1)

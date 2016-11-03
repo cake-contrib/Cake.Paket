@@ -1,6 +1,6 @@
 ﻿using Cake.Core.Annotations;
 using Cake.Core.Composition;
-using Cake.Core.Packaging;
+using Cake.Core.Scripting;
 
 [assembly: CakeModule(typeof(Cake.Paket.Module.PaketModule))]
 
@@ -10,8 +10,7 @@ namespace Cake.Paket.Module
     {
         public void Register(ICakeContainerRegistrar registrar)
         {
-            registrar.RegisterType<PaketContentResolver>().As<IPaketContentResolver>().Singleton();
-            registrar.RegisterType<PaketPackageInstaller>().As<IPackageInstaller>().Singleton();
+            registrar.RegisterType<PaketScriptProcessor>().As<IScriptProcessor>().Singleton();
         }
     }
 }

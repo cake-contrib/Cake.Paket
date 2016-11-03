@@ -4,10 +4,17 @@ group Cake.Paket
 	nuget Cake.Core = 0.16.0
 	nuget StyleCop.Analyzers
 
+group Cake.Paket.UnitTests
+	framework: >= net45
+	source https://nuget.org/api/v2
+	nuget xunit
+	nuget FluentAssertions
+
 group Build/Tools
 	framework: >= net45
 	source https://nuget.org/api/v2
 	nuget Cake = 0.16.0
+	nuget xunit.runner.console
 
 group Build/Tools/Addins
 	framework: >= net45

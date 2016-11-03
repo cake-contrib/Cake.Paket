@@ -42,10 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IPaketContentResolver.cs" />
-    <Compile Include="PaketContentResolver.cs" />
     <Compile Include="PaketModule.cs" />
-    <Compile Include="PaketPackageInstaller.cs" />
+    <Compile Include="PaketScriptProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
