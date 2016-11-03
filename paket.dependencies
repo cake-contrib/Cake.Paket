@@ -1,11 +1,15 @@
-group Solution
+group Cake.Paket
 	framework: >= net45
 	source https://nuget.org/api/v2
 	nuget Cake.Core = 0.16.0
 	nuget StyleCop.Analyzers
 
-group Build
+group Build/Tools
 	framework: >= net45
 	source https://nuget.org/api/v2
 	nuget Cake = 0.16.0
+
+group Build/Tools/Addins
+	framework: >= net45
+	source https://nuget.org/api/v2
 	nuget Cake.Figlet

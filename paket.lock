@@ -1,15 +1,20 @@
 
 
-GROUP Build
+GROUP Build/Tools
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake (0.16)
+
+GROUP Build/Tools/Addins
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.nuget.org/api/v2
     Cake.Core (0.16.2)
     Cake.Figlet (0.3.1)
       Cake.Core (>= 0.14)
 
-GROUP Solution
+GROUP Cake.Paket
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
