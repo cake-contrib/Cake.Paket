@@ -70,7 +70,7 @@ Thumbs.db
 TestResult.xml
 
 # Paket
-.paket/paket.exe
+**/.paket/paket.exe
 
 # Cake.FxCop
 Reports/
