@@ -26,3 +26,8 @@ group Build/Tools/Addins
 	source https://nuget.org/api/v2
 	nuget Cake.Figlet
 	nuget Cake.Coveralls
+
+group Build/Tools/Modules
+	framework: >= net45
+	source https://www.myget.org/F/mathphysics/api/v2
+	nuget Cake.Paket.Module

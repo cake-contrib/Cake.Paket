@@ -1,0 +1,29 @@
+image: Visual Studio 2015
+
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: 6MvLG18tMc0654Hpv1jt00lP2xwaCmjQQ0b0xbW//EjbjKF8Su+XxCuds/GqSrTU
+
+shallow_clone: true
+ 
+build: off
+test: off
+deploy: off
+
+branches:
+  only:
+    - master
+    - develop
+    - /^testing.*/
+
+skip_commits:
+  message: /^(docs).*/
+
+build_script:
+- ps: .\build.ps1
+
+artifacts:
+  - path: .\Reports\inspectCode.xml
+    name: inspectCode
+  - path: .\Reports\dupFinder.xml
+    name: dupFinder
