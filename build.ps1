@@ -89,14 +89,6 @@ if($WhatIf.IsPresent) {
 
 Write-Verbose -Message "Using paket for dependency management..."
 
-# Set enviornment variables
-$ToolsFullPath = Resolve-Path $Tools
-$AddinsFullPath = Resolve-Path $Addins
-$ModulesFullPath = Resolve-Path $Modules
-$ENV:CAKE_PATHS_TOOLS =  $ToolsFullPath
-$ENV:CAKE_PATHS_ADDINS = $AddinsFullPath
-$ENV:CAKE_PATHS_MODULES = $ModulesFullPath
-
 # Make sure the .paket directory exits
 $PaketFullPath = Resolve-Path $Paket
 if(!(Test-Path $PaketFullPath)) {
@@ -127,6 +119,14 @@ Write-Verbose -Message "Found paket.exe in PATH at $PAKET_EXE"
 # Install the dependencies
 Write-Verbose -Message "Running paket.exe restore"
 Invoke-Expression "$PAKET_EXE restore"
+
+# Set enviornment variables
+$ToolsFullPath = Resolve-Path $Tools
+$AddinsFullPath = Resolve-Path $Addins
+$ModulesFullPath = Resolve-Path $Modules
+$ENV:CAKE_PATHS_TOOLS =  $ToolsFullPath
+$ENV:CAKE_PATHS_ADDINS = $AddinsFullPath
+$ENV:CAKE_PATHS_MODULES = $ModulesFullPath
 
 # Make sure that Cake has been installed.
 $CakeFullPath = Resolve-Path $Cake
