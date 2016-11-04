@@ -6,11 +6,13 @@ private readonly string cakePaketAddin = "./Source/Cake.Paket.Addin/bin/" + conf
 private readonly string cakePaketModule = "./Source/Cake.Paket.Module/bin/" + configuration;
 private readonly string cakePaketUnitTests = "./Source/Cake.Paket.UnitTests/bin/" + configuration + "/*.UnitTests.dll";
 
-private readonly string reports = "./Reports";
+private const string reports = "./Reports";
 private readonly string coverage = reports + "/coverage.xml";
-private readonly string resharperSettings = "./Source/Cake.Paket.sln.DotSettings";
+private const string resharperSettings = "./Source/Cake.Paket.sln.DotSettings";
 private readonly string inspectCode = reports + "/inspectCode.xml";
 private readonly string dupFinder = reports + "/dupFinder.xml";
+
+private const string nuGet = "./NuGet";
 
 Setup(tool =>
 {
@@ -20,7 +22,7 @@ Setup(tool =>
 
 Task("Clean").Does(() =>
 {
-    CleanDirectories(new[] {cakePaketAddin, cakePaketModule, reports});
+    CleanDirectories(new[] {cakePaketAddin, cakePaketModule, reports, nuGet});
 });
 
 Task("Build").IsDependentOn("Clean").Does(() =>
@@ -57,6 +59,13 @@ Task("Run-DupFinder").IsDependentOn("Build").Does(() =>
     DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinder });
 });
 
-Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder");
+Task("Paket-Pack").IsDependentOn("Build").Does(() =>
+{
+    EnsureDirectoryExists(nuGet);
+
+    Paket(new PaketSettings { Commands = "pack output NuGet version 1.1.0-alpha", ToolPath = new FilePath("./.paket/paket.exe") });
+});
+
+Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder").IsDependentOn("Paket-Pack");
 
 RunTarget("Default");
