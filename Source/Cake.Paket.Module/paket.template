@@ -7,7 +7,7 @@ description Paket module for cake.
 summary Cake module that extends Cake with ability to use paket.
 licenseUrl https://github.com/larzw/Cake.Paket/blob/master/LICENSE
 projectUrl https://github.com/larzw/Cake.Paket
-iconUrl https://raw.githubusercontent.com/cake-build/graphics/master/png/cake-medium.png
+iconUrl https://github.com/larzw/Cake.Paket/blob/master/Documentation/Images/CakePaketLogo.png
 requireLicenseAcceptance false
 copyright Copyright (c) 2016 Larz White
 releaseNotes Initial alpha Release.

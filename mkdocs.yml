@@ -1,0 +1,7 @@
+site_name: Cake.Paket
+repo_url: https://github.com/larzw/Cake.Paket
+docs_dir: Documentation
+pages:
+    - 'Introduction': 'index.md'
+    - 'Quick Start': 'QuickStart.md'
+    - 'Contributing': 'Contributing.md'
