@@ -127,6 +127,7 @@ $ModulesFullPath = Resolve-Path $Modules
 $ENV:CAKE_PATHS_TOOLS =  $ToolsFullPath
 $ENV:CAKE_PATHS_ADDINS = $AddinsFullPath
 $ENV:CAKE_PATHS_MODULES = $ModulesFullPath
+$ENV:PAKET_EXE = $PAKET_EXE
 
 # Make sure that Cake has been installed.
 $CakeFullPath = Resolve-Path $Cake

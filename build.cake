@@ -32,6 +32,10 @@ Task("Build").IsDependentOn("Clean").Does(() =>
     {
         MSBuild(cakePaket, settings => settings.SetConfiguration(configuration));
     }
+    else
+    {
+      XBuild(cakePaket, settings => settings.SetConfiguration(configuration));
+    }
 });
 
 Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
