@@ -1,5 +1,6 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
+var version = Argument("version", "0.0.0-alpha");
 
 private const string cakePaket = "./Source/Cake.Paket.sln";
 private readonly string cakePaketAddin = "./Source/Cake.Paket.Addin/bin/" + configuration;
@@ -63,7 +64,20 @@ Task("Paket-Pack").IsDependentOn("Build").Does(() =>
 {
     EnsureDirectoryExists(nuGet);
 
-    Paket(new PaketSettings { Commands = "pack output NuGet version 1.1.0-alpha", ToolPath = new FilePath("./.paket/paket.exe") });
+    if(AppVeyor.IsRunningOnAppVeyor && HasEnvironmentVariable("APPVEYOR_BUILD_VERSION"))
+    {
+        version = EnvironmentVariable("APPVEYOR_BUILD_VERSION");
+    }
+    else
+    {
+        Warning("\nUsing default versioning for nupkg because the build is not on AppVeyor and/or the environment variable does not exits.\n");
+    }
+
+    Information("\nThe nupkg version is: " + version + "\n");
+
+    var commands = "pack output " + nuGet + " version " + version;
+
+    Paket(new PaketSettings { Commands = commands, ToolPath = new FilePath("./.paket/paket.exe") });
 });
 
 Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder").IsDependentOn("Paket-Pack");
