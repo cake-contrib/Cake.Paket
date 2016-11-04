@@ -5,6 +5,9 @@ FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake (0.16)
+    coveralls.net (0.7)
+    JetBrains.ReSharper.CommandLineTools (2016.2.20160913.100041)
+    OpenCover (4.6.519)
     xunit.runner.console (2.1)
 
 GROUP Build/Tools/Addins
@@ -12,6 +15,7 @@ FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake.Core (0.16.2)
+    Cake.Coveralls (0.2)
     Cake.Figlet (0.3.1)
       Cake.Core (>= 0.14)
 
@@ -26,6 +30,9 @@ GROUP Cake.Paket.UnitTests
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
+    Cake.Core (0.15.2)
+    Cake.Testing (0.15.2)
+      Cake.Core (>= 0.15.2)
     FluentAssertions (4.16)
     xunit (2.1)
       xunit.assert (2.1)

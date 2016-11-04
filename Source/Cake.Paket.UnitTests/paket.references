@@ -2,5 +2,7 @@ group Cake.Paket
     StyleCop.Analyzers
 
 group Cake.Paket.UnitTests
-	nuget xunit
-	nuget FluentAssertions
+	xunit
+	FluentAssertions
+	Cake.Core
+	Cake.Testing

@@ -72,7 +72,7 @@ TestResult.xml
 # Paket
 **/.paket/paket.exe
 
-# Cake.FxCop
+# Build reports
 Reports/
 
 # Nuget package folder
