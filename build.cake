@@ -2,22 +2,22 @@ var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
 var version = Argument("version", "0.0.0-alpha");
 
-private const string cakePaket = "./Source/Cake.Paket.sln";
-private readonly string cakePaketAddin = "./Source/Cake.Paket.Addin/bin/" + configuration;
-private readonly string cakePaketModule = "./Source/Cake.Paket.Module/bin/" + configuration;
-private readonly string cakePaketUnitTests = "./Source/Cake.Paket.UnitTests/bin/" + configuration + "/*.UnitTests.dll";
+var cakePaket = "./Source/Cake.Paket.sln";
+var cakePaketAddin = "./Source/Cake.Paket.Addin/bin/" + configuration;
+var cakePaketModule = "./Source/Cake.Paket.Module/bin/" + configuration;
+var cakePaketUnitTests = "./Source/Cake.Paket.UnitTests/bin/" + configuration + "/*.UnitTests.dll";
 
-private const string reports = "./Reports";
-private readonly string coverage = reports + "/coverage.xml";
-private const string resharperSettings = "./Source/Cake.Paket.sln.DotSettings";
-private readonly string inspectCode = reports + "/inspectCode.xml";
-private readonly string dupFinder = reports + "/dupFinder.xml";
+var reports = "./Reports";
+var coverage = reports + "/coverage.xml";
+var resharperSettings = "./Source/Cake.Paket.sln.DotSettings";
+var inspectCode = reports + "/inspectCode.xml";
+var dupFinder = reports + "/dupFinder.xml";
 
-private const string nuGet = "./NuGet";
+var nuGet = "./NuGet";
 
 Setup(tool =>
 {
-    Information(Figlet("Cake.Paket"));
+    //Information(Figlet("Cake.Paket"));
     Information("\tCopyright (c) 2016 Larz White - MIT License");
 });
 
@@ -36,17 +36,19 @@ Task("Build").IsDependentOn("Clean").Does(() =>
     {
       XBuild(cakePaket, settings => settings.SetConfiguration(configuration));
     }
+
 });
 
 Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
 {
     EnsureDirectoryExists(reports);
 
-    OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath(coverage), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
+    XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false});
+    //OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath(coverage), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
 
     if(AppVeyor.IsRunningOnAppVeyor && HasEnvironmentVariable("COVERALLS_REPO_TOKEN"))
     {      
-        CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
+        //CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
     }
     else
     {
@@ -56,12 +58,12 @@ Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
 
 Task("Run-InspectCode").IsDependentOn("Build").Does(() =>
 {
-    InspectCode(cakePaket, new InspectCodeSettings{ SolutionWideAnalysis = true, Profile = resharperSettings, OutputFile = inspectCode });
+    //InspectCode(cakePaket, new InspectCodeSettings{ SolutionWideAnalysis = true, Profile = resharperSettings, OutputFile = inspectCode });
 });
 
 Task("Run-DupFinder").IsDependentOn("Build").Does(() =>
 {
-    DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinder });
+    //DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinder });
 });
 
 Task("Paket-Pack").IsDependentOn("Build").Does(() =>
@@ -81,9 +83,9 @@ Task("Paket-Pack").IsDependentOn("Build").Does(() =>
 
     var commands = "pack output " + nuGet + " version " + version;
 
-    Paket(new PaketSettings { Commands = commands, ToolPath = new FilePath("./.paket/paket.exe") });
+    //Paket(new PaketSettings { Commands = commands, ToolPath = new FilePath("./.paket/paket.exe") });
 });
 
 Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder").IsDependentOn("Paket-Pack");
 
-RunTarget("Default");
+RunTarget(target);

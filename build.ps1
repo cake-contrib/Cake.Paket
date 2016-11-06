@@ -57,10 +57,10 @@ Param(
     [switch]$Mono,
     [ValidatePattern('.paket$')]
     [string]$Paket = ".\.paket",
-    [string]$Cake = ".\packages\Build\Tools\Cake",
-    [string]$Tools = ".\packages\Build\Tools",
-    [string]$Addins = ".\packages\Build\Tools\Addins",
-    [string]$Modules = ".\packages\Build\Tools\Modules",
+    [string]$Cake = ".\packages\build\tools\Cake",
+    [string]$Tools = ".\packages\build\tools",
+    [string]$Addins = ".\packages\build\tools\addins",
+    [string]$Modules = ".\packages\build\tools\modules",
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
     [string[]]$ScriptArgs
 )
@@ -90,17 +90,17 @@ if($WhatIf.IsPresent) {
 Write-Verbose -Message "Using paket for dependency management..."
 
 # Make sure the .paket directory exits
-$PaketFullPath = Resolve-Path $Paket
-if(!(Test-Path $PaketFullPath)) {
-    Throw "Could not find .paket directory at $PaketFullPath"
+$PaketDir = Resolve-Path $Paket
+if(!(Test-Path $PaketDir)) {
+    Throw "Could not find .paket directory at $PaketDir"
 }
-Write-Verbose -Message "Found .paket in PATH at $PaketFullPath"
+Write-Verbose -Message "Found .paket in PATH at $PaketDir"
 
 # If paket.exe does not exits then download it using paket.bootstrapper.exe
-$PAKET_EXE = Join-Path $PaketFullPath "paket.exe"
+$PAKET_EXE = Join-Path $PaketDir "paket.exe"
 if (!(Test-Path $PAKET_EXE)) {   
     # If paket.bootstrapper.exe exits then run it.
-    $PAKET_BOOTSTRAPPER_EXE = Join-Path $PaketFullPath "paket.bootstrapper.exe"
+    $PAKET_BOOTSTRAPPER_EXE = Join-Path $PaketDir "paket.bootstrapper.exe"
     if (!(Test-Path $PAKET_BOOTSTRAPPER_EXE)) {
         Throw "Could not find paket.bootstrapper.exe at $PAKET_BOOTSTRAPPER_EXE"
     }
@@ -121,17 +121,17 @@ Write-Verbose -Message "Running paket.exe restore"
 Invoke-Expression "$PAKET_EXE restore"
 
 # Set enviornment variables
-$ToolsFullPath = Resolve-Path $Tools
-$AddinsFullPath = Resolve-Path $Addins
-$ModulesFullPath = Resolve-Path $Modules
-$ENV:CAKE_PATHS_TOOLS =  $ToolsFullPath
-$ENV:CAKE_PATHS_ADDINS = $AddinsFullPath
-$ENV:CAKE_PATHS_MODULES = $ModulesFullPath
+$ToolsDir = Resolve-Path $Tools
+$AddinsDir = Resolve-Path $Addins
+$ModulesDir = Resolve-Path $Modules
+$ENV:CAKE_PATHS_TOOLS =  $ToolsDir
+$ENV:CAKE_PATHS_ADDINS = $AddinsDir
+$ENV:CAKE_PATHS_MODULES = $ModulesDir
 $ENV:PAKET_EXE = $PAKET_EXE
 
 # Make sure that Cake has been installed.
-$CakeFullPath = Resolve-Path $Cake
-$CAKE_EXE = Join-Path $CakeFullPath "Cake.exe" 
+$CakeDir = Resolve-Path $Cake
+$CAKE_EXE = Join-Path $CakeDir "Cake.exe" 
 if (!(Test-Path $CAKE_EXE)) {
     Throw "Could not find Cake.exe at $CAKE_EXE"
 }

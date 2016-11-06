@@ -1,6 +1,6 @@
 
 
-GROUP Build/Tools
+GROUP build/tools
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
@@ -10,7 +10,7 @@ NUGET
     OpenCover (4.6.519)
     xunit.runner.console (2.1)
 
-GROUP Build/Tools/Addins
+GROUP build/tools/addins
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
@@ -21,20 +21,14 @@ NUGET
   remote: https://www.myget.org/F/mathphysics/api/v2
     Cake.Paket.Addin (1.0.0-alpha3)
 
-GROUP Build/Tools/Modules
-FRAMEWORK: >= NET45
-NUGET
-  remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Module (1.0.0-alpha3)
-
-GROUP Cake.Paket
+GROUP cake.paket
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake.Core (0.16)
     StyleCop.Analyzers (1.0)
 
-GROUP Cake.Paket.UnitTests
+GROUP cake.paket.unittests
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2

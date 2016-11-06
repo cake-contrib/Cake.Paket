@@ -10,7 +10,8 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 
 |Tool|Information|Badge|
 |:--:|:--:|:--:|
-|AppVeyor|Windows Build|[![AppVeyor branch](https://img.shields.io/appveyor/ci/larzw/cake-paket/master.svg)](https://ci.appveyor.com/project/larzw/cake-paket/branch/master)|
+|AppVeyor|Windows Build|[![AppVeyor branch](https://img.shields.io/appveyor/ci/larzw/Cake-Paket/master.svg)](https://ci.appveyor.com/project/larzw/cake-paket/branch/master)|
+|Travis CI|Linux, OS X|[![Travis branch](https://img.shields.io/travis/larzw/Cake.Paket/master.svg)](https://travis-ci.org/larzw/Cake.Paket)|
 |Issues|Open Issues|[![GitHub issues](https://img.shields.io/github/issues/larzw/Cake.Paket.svg)](https://github.com/larzw/Cake.Paket/issues)|
 |Read the Docs|Documentation|[![Documentation Status](https://readthedocs.org/projects/cakepaket/badge/?version=latest)](http://cakepaket.readthedocs.io/en/latest/?badge=latest)|
 |Coverall|Code Coverage|[![Coveralls branch](https://img.shields.io/coveralls/larzw/Cake.Paket/master.svg)](https://coveralls.io/github/larzw/Cake.Paket?branch=master)|
