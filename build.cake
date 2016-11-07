@@ -1,6 +1,6 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
-var version = Argument("version", "0.0.0-alpha");
+var version = Argument("version", "0.0.0-alpha0");
 
 var cakePaket = "./Source/Cake.Paket.sln";
 var cakePaketAddin = "./Source/Cake.Paket.Addin/bin/" + configuration;
@@ -47,7 +47,7 @@ Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
     //OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath(coverage), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
 
     if(AppVeyor.IsRunningOnAppVeyor && HasEnvironmentVariable("COVERALLS_REPO_TOKEN"))
-    {      
+    {
         //CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
     }
     else
