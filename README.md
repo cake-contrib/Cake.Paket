@@ -26,7 +26,7 @@ See the [Quick Start](http://cakepaket.readthedocs.io/en/latest/QuickStart/) gui
 
 # Example Project
 
-[Cake.Pake.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake.
+[Cake.Paket.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake.
 
 # Documentation
 
