@@ -30,7 +30,7 @@ group tools/addins
 group tools/addins
 	framework: >= net45
 	source https://www.myget.org/F/mathphysics/api/v2
-	nuget Cake.Paket.Addin
+	nuget Cake.Paket
 
 group tools/modules
 	framework: >= net45

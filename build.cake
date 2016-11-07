@@ -46,7 +46,7 @@ Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
     XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false});
     //OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath(coverage), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
 
-    if(HasEnvironmentVariable("COVERALLS_REPO_TOKEN") && AppVeyor.IsRunningOnAppVeyor)
+    if(HasEnvironmentVariable("COVERALLS_REPO_TOKEN") && IsRunningOnWindows())
     {
         //CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
     }
@@ -70,7 +70,7 @@ Task("Paket-Pack").IsDependentOn("Build").Does(() =>
 {
     EnsureDirectoryExists(nuGet);
 
-    if(HasEnvironmentVariable("APPVEYOR_BUILD_VERSION") && AppVeyor.IsRunningOnAppVeyor)
+    if(HasEnvironmentVariable("APPVEYOR_BUILD_VERSION") && IsRunningOnWindows())
     {
         version = EnvironmentVariable("APPVEYOR_BUILD_VERSION");
     }

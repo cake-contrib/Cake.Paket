@@ -1,6 +1,6 @@
 type file
-id Cake.Paket.Addin
-title Cake.Paket.Addin
+id Cake.Paket
+title Cake.Paket
 authors Larz White
 owners Larz White
 description Paket addin for Cake.

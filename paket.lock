@@ -47,10 +47,10 @@ NUGET
     Cake.Figlet (0.3.1)
       Cake.Core (>= 0.14)
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Addin (0.1.0-alpha93)
+    Cake.Paket (0.1.0-alpha97)
 
 GROUP tools/modules
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Module (0.1.0-alpha93)
+    Cake.Paket.Module (0.1.0-alpha97)
