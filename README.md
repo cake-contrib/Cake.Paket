@@ -16,7 +16,7 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 |Read the Docs|Documentation|[![Documentation Status](https://readthedocs.org/projects/cakepaket/badge/?version=latest)](http://cakepaket.readthedocs.io/en/latest/?badge=latest)|
 |Coverall|Code Coverage|[![Coveralls branch](https://img.shields.io/coveralls/larzw/Cake.Paket/master.svg)](https://coveralls.io/github/larzw/Cake.Paket?branch=master)|
 |NuGet|package|[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)]()
-|Gitter|Questions|[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?maxAge=2592000)](https://gitter.im/larzw/Lobby)|
+|Gitter|**@larzw** me for questions|[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?maxAge=2592000)](https://gitter.im/cake-contrib/Lobby)|
 
 # Quick Start
 
@@ -31,4 +31,4 @@ See the [Documentation](http://cakepaket.readthedocs.io/en/latest/) for addition
 All types of contributions are welcome! Please see the [Contributing](http://cakepaket.readthedocs.io/en/latest/Contributing/) guidlines.
 
 # Questions
-Feel free to open an [issue](https://github.com/larzw/Cake.Paket/issues) or contact me via [Gitter](https://gitter.im/larzw/Lobby)
+Feel free to open an [issue](https://github.com/larzw/Cake.Paket/issues) or **@larzw** me via [Gitter](https://gitter.im/cake-contrib/Lobby)
