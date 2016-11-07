@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Documentation/Images/CakePaketLogo.png" />
+  <a href="https://github.com/larzw/Cake.Paket"><img src="https://raw.githubusercontent.com/larzw/Cake.Paket/master/Documentation/Images/CakePaketLogo.png" /></a>
 </p>
 
 # Cake.Paket
@@ -9,7 +9,7 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 # Master Branch
 
 |Tool|Information|Badge|
-|:--:|:--:|:--:|
+|:--|:--|:--|
 |AppVeyor|Windows Build|[![AppVeyor branch](https://img.shields.io/appveyor/ci/larzw/Cake-Paket/master.svg)](https://ci.appveyor.com/project/larzw/cake-paket/branch/master)|
 |Travis CI|Linux, OS X|[![Travis branch](https://img.shields.io/travis/larzw/Cake.Paket/master.svg)](https://travis-ci.org/larzw/Cake.Paket)|
 |Read the Docs|Documentation|[![Documentation Status](https://readthedocs.org/projects/cakepaket/badge/?version=latest)](http://cakepaket.readthedocs.io/en/latest/?badge=latest)|
@@ -34,7 +34,7 @@ See the [Documentation](http://cakepaket.readthedocs.io/en/latest/) for addition
 
 # Contributing
 
-All types of contributions are welcome! Please see the [Contributing](.github/CONTRIBUTING.md) guidlines.
+All types of contributions are welcome! Please see the [Contributing](https://github.com/larzw/Cake.Paket/blob/master/.github/CONTRIBUTING.md) guidlines.
 
 # Questions
 

@@ -1,5 +1,5 @@
 image: Visual Studio 2015
-version: '0.1.0-alpha{build}'
+version: '0.4.0-alpha{build}'
 
 environment:
   COVERALLS_REPO_TOKEN:

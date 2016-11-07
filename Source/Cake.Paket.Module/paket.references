@@ -1,3 +1,6 @@
-group Cake.Paket
+group cake.paket
 	Cake.Core
 	StyleCop.Analyzers
+
+group cake.paket.module
+    NuGet.Core

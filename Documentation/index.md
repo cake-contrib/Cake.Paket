@@ -16,7 +16,7 @@ The master branch status can be found on [README.md](https://github.com/larzw/Ca
 
 # Contributing
 
-All types of contributions are welcome! Please see the [Contributing](https://github.com/larzw/Cake.Paket/.github/CONTRIBUTING.md/) guidlines.
+All types of contributions are welcome! Please see the [Contributing](https://github.com/larzw/Cake.Paket/blob/master/.github/CONTRIBUTING.md) guidlines.
 
 # Questions
 

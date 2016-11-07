@@ -1,6 +1,14 @@
+#tool paket:?package=xunit.runner.console
+#tool paket:?package=OpenCover
+#tool paket:?package=coveralls.net
+#tool paket:?package=JetBrains.ReSharper.CommandLineTools
+#addin paket:?package=Cake.Figlet
+#addin paket:?package=Cake.Coveralls
+#addin paket:?package=Cake.Paket
+
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Debug");
-var version = Argument("version", "0.0.0-alpha0");
+var buildVersion = Argument("buildVersion", "0.0.0-alpha0");
 
 var cakePaket = "./Source/Cake.Paket.sln";
 var cakePaketAddin = "./Source/Cake.Paket.Addin/bin/" + configuration;
@@ -17,8 +25,10 @@ var nuGet = "./NuGet";
 
 Setup(tool =>
 {
-    //Information(Figlet("Cake.Paket"));
-    Information("\tCopyright (c) 2016 Larz White - MIT License");
+    Information(Figlet("Cake.Paket"));
+    Information("\t\tMIT License");
+    Information("\tCopyright (c) .NET Foundation and Contributors");
+    Information("\tCopyright (c) 2016 Larz White");
 });
 
 Task("Clean").Does(() =>
@@ -43,27 +53,36 @@ Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
 {
     EnsureDirectoryExists(reports);
 
-    XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false});
-    //OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath(coverage), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
-
     if(HasEnvironmentVariable("COVERALLS_REPO_TOKEN") && IsRunningOnWindows())
     {
-        //CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
+        OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath(coverage), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
+        CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
     }
     else
     {
-        Warning("\nNot pushing OpenCover results to Coveralls because the build is not on AppVeyor and/or the environment variable (repo token) does not exits.\n");
+        XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false});
+        Warning("\nNot pushing OpenCover results to Coveralls because the build is not on windows and/or the environment variable (repo token) does not exits.\n");
     }
 });
 
 Task("Run-InspectCode").IsDependentOn("Build").Does(() =>
 {
-    //InspectCode(cakePaket, new InspectCodeSettings{ SolutionWideAnalysis = true, Profile = resharperSettings, OutputFile = inspectCode });
+    if(IsRunningOnWindows())
+    {
+        EnsureDirectoryExists(reports);
+
+        InspectCode(cakePaket, new InspectCodeSettings{ SolutionWideAnalysis = true, Profile = resharperSettings, OutputFile = inspectCode });
+    }
 });
 
 Task("Run-DupFinder").IsDependentOn("Build").Does(() =>
 {
-    //DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinder });
+    if(IsRunningOnWindows())
+    {
+        EnsureDirectoryExists(reports);
+
+        DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinder });
+    }
 });
 
 Task("Paket-Pack").IsDependentOn("Build").Does(() =>
@@ -72,16 +91,16 @@ Task("Paket-Pack").IsDependentOn("Build").Does(() =>
 
     if(HasEnvironmentVariable("APPVEYOR_BUILD_VERSION") && IsRunningOnWindows())
     {
-        version = EnvironmentVariable("APPVEYOR_BUILD_VERSION");
+        buildVersion = EnvironmentVariable("APPVEYOR_BUILD_VERSION");
     }
     else
     {
-        Warning("\nUsing default versioning for nupkg because the build is not on AppVeyor and/or the environment variable does not exits.\n");
+        Warning("\nUsing default versioning for nupkg because the build is not on windows and/or the environment variable does not exits.\n");
     }
 
-    Information("\nThe nupkg version is: " + version + "\n");
+    Information("\nThe nupkg version is: " + buildVersion + "\n");
 
-    var commands = "pack output " + nuGet + " version " + version;
+    var commands = "pack output " + nuGet + " version " + buildVersion;
 
     Paket(new PaketSettings { Commands = commands, ToolPath = new FilePath("./.paket/paket.exe") });
 });

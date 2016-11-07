@@ -1,7 +1,7 @@
-group Cake.Paket
+group cake.paket
     StyleCop.Analyzers
 
-group Cake.Paket.UnitTests
+group cake.paket.unittests
 	xunit
 	FluentAssertions
 	Cake.Core
