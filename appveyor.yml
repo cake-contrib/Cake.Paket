@@ -9,7 +9,6 @@ shallow_clone: true
 
 build: off
 test: off
-deploy: off
 
 branches:
   only:
@@ -26,4 +25,11 @@ build_script:
 
 artifacts:
   - path: .\Reports
-  - path: .\NuGet
+  - path: .\NuGet\*.nupkg
+
+deploy:
+    provider: NuGet
+    server: https://www.myget.org/F/mathphysics/api/v2/package
+    api_key:
+        secure: AkVuHBLFZISuM+BYCrFiUEroGNmUViLXBoty1WD5+UbD+oo3/n0W6ojRshtLY3sD
+    artifact: /.*\.nupkg/

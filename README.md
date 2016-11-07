@@ -12,10 +12,12 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 |:--:|:--:|:--:|
 |AppVeyor|Windows Build|[![AppVeyor branch](https://img.shields.io/appveyor/ci/larzw/Cake-Paket/master.svg)](https://ci.appveyor.com/project/larzw/cake-paket/branch/master)|
 |Travis CI|Linux, OS X|[![Travis branch](https://img.shields.io/travis/larzw/Cake.Paket/master.svg)](https://travis-ci.org/larzw/Cake.Paket)|
-|Issues|Open Issues|[![GitHub issues](https://img.shields.io/github/issues/larzw/Cake.Paket.svg)](https://github.com/larzw/Cake.Paket/issues)|
 |Read the Docs|Documentation|[![Documentation Status](https://readthedocs.org/projects/cakepaket/badge/?version=latest)](http://cakepaket.readthedocs.io/en/latest/?badge=latest)|
 |Coverall|Code Coverage|[![Coveralls branch](https://img.shields.io/coveralls/larzw/Cake.Paket/master.svg)](https://coveralls.io/github/larzw/Cake.Paket?branch=master)|
-|NuGet|package|[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)]()
+|NuGet|Stable *Cake.Paket.Addin* package|[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)]()
+|NuGet|Stable *Cake.Paket.Module* package|[![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg)]()
+|MyGet|Pre-Release *Cake.Paket.Addin* package|[![MyGet Pre Release](https://img.shields.io/myget/mathphysics/vpre/Cake.Paket.Addin.svg)](https://www.myget.org/feed/mathphysics/package/nuget/Cake.Paket.Addin)
+|MyGet|Pre-Release *Cake.Paket.Module* package|[![MyGet Pre Release](https://img.shields.io/myget/mathphysics/vpre/Cake.Paket.Module.svg)](https://www.myget.org/feed/mathphysics/package/nuget/Cake.Paket.Module)
 |Gitter|**@larzw** me for questions|[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?maxAge=2592000)](https://gitter.im/cake-contrib/Lobby)|
 
 # Quick Start

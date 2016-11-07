@@ -31,3 +31,8 @@ group build/tools/addins
 	framework: >= net45
 	source https://www.myget.org/F/mathphysics/api/v2
 	nuget Cake.Paket.Addin
+
+group build/tools/modules
+	framework: >= net45
+	source https://www.myget.org/F/mathphysics/api/v2
+	nuget Cake.Paket.Module

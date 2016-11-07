@@ -19,7 +19,13 @@ NUGET
     Cake.Figlet (0.3.1)
       Cake.Core (>= 0.14)
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Addin (1.0.0-alpha3)
+    Cake.Paket.Addin (0.1.0-alpha86)
+
+GROUP build/tools/modules
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.myget.org/F/mathphysics/api/v2
+    Cake.Paket.Module (0.1.0-alpha86)
 
 GROUP cake.paket
 FRAMEWORK: >= NET45
