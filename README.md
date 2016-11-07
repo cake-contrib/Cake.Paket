@@ -34,7 +34,7 @@ See the [Documentation](http://cakepaket.readthedocs.io/en/latest/) for addition
 
 # Contributing
 
-All types of contributions are welcome! Please see the [Contributing](http://cakepaket.readthedocs.io/en/latest/Contributing/) guidlines.
+All types of contributions are welcome! Please see the [Contributing](.github/CONTRIBUTING.md) guidlines.
 
 # Questions
 

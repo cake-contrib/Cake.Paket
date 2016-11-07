@@ -4,4 +4,3 @@ docs_dir: Documentation
 pages:
     - 'Introduction': 'index.md'
     - 'Quick Start': 'QuickStart.md'
-    - 'Contributing': 'Contributing.md'
