@@ -1,12 +1,12 @@
-﻿using Cake.Core;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Cake.Core;
 using Cake.Core.Configuration;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Scripting;
 using Cake.Core.Scripting.Analysis;
 using Cake.Core.Tooling;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Cake.Paket.Module
 {

@@ -1,9 +1,9 @@
-﻿using Cake.Core;
+﻿using System;
+using System.Collections.Generic;
+using Cake.Core;
 using Cake.Core.Diagnostics;
 using Cake.Core.IO;
 using Cake.Core.Tooling;
-using System;
-using System.Collections.Generic;
 
 namespace Cake.Paket.Addin
 {
