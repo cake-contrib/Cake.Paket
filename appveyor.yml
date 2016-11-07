@@ -16,6 +16,7 @@ branches:
     - master
     - develop
     - /^testing.*/
+    - /^appveyor.*/
 
 skip_commits:
   message: /^(docs).*/
