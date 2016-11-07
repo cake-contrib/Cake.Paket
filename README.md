@@ -24,6 +24,10 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 
 See the [Quick Start](http://cakepaket.readthedocs.io/en/latest/QuickStart/) guide.
 
+# Example Project
+
+[Cake.Pake.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake.
+
 # Documentation
 
 See the [Documentation](http://cakepaket.readthedocs.io/en/latest/) for additional help.
@@ -33,4 +37,5 @@ See the [Documentation](http://cakepaket.readthedocs.io/en/latest/) for addition
 All types of contributions are welcome! Please see the [Contributing](http://cakepaket.readthedocs.io/en/latest/Contributing/) guidlines.
 
 # Questions
+
 Feel free to open an [issue](https://github.com/larzw/Cake.Paket/issues) or **@larzw** me via [Gitter](https://gitter.im/cake-contrib/Lobby)

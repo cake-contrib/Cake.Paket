@@ -17,9 +17,6 @@ branches:
     - /^testing.*/
     - /^appveyor.*/
 
-skip_commits:
-  message: /^(docs).*/
-
 build_script:
 - ps: .\build.ps1
 
