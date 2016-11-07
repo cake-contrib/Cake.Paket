@@ -1,32 +1,5 @@
 
 
-GROUP build/tools
-FRAMEWORK: >= NET45
-NUGET
-  remote: https://www.nuget.org/api/v2
-    Cake (0.16)
-    coveralls.net (0.7)
-    JetBrains.ReSharper.CommandLineTools (2016.2.20160913.100041)
-    OpenCover (4.6.519)
-    xunit.runner.console (2.1)
-
-GROUP build/tools/addins
-FRAMEWORK: >= NET45
-NUGET
-  remote: https://www.nuget.org/api/v2
-    Cake.Core (0.16.2)
-    Cake.Coveralls (0.2)
-    Cake.Figlet (0.3.1)
-      Cake.Core (>= 0.14)
-  remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Addin (0.1.0-alpha86)
-
-GROUP build/tools/modules
-FRAMEWORK: >= NET45
-NUGET
-  remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Module (0.1.0-alpha86)
-
 GROUP cake.paket
 FRAMEWORK: >= NET45
 NUGET
@@ -54,3 +27,30 @@ NUGET
       xunit.abstractions (2.0)
     xunit.extensibility.execution (2.1)
       xunit.extensibility.core (2.1)
+
+GROUP tools
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.nuget.org/api/v2
+    Cake (0.16)
+    coveralls.net (0.7)
+    JetBrains.ReSharper.CommandLineTools (2016.2.20160913.100041)
+    OpenCover (4.6.519)
+    xunit.runner.console (2.1)
+
+GROUP tools/addins
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.nuget.org/api/v2
+    Cake.Core (0.16.2)
+    Cake.Coveralls (0.2)
+    Cake.Figlet (0.3.1)
+      Cake.Core (>= 0.14)
+  remote: https://www.myget.org/F/mathphysics/api/v2
+    Cake.Paket.Addin (0.1.0-alpha93)
+
+GROUP tools/modules
+FRAMEWORK: >= NET45
+NUGET
+  remote: https://www.myget.org/F/mathphysics/api/v2
+    Cake.Paket.Module (0.1.0-alpha93)

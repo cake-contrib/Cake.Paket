@@ -12,7 +12,7 @@ group cake.paket.unittests
 	nuget Cake.Core = 0.15.2
 	nuget Cake.Testing = 0.15.2
 
-group build/tools
+group tools
 	framework: >= net45
 	source https://nuget.org/api/v2
 	nuget Cake = 0.16.0
@@ -21,18 +21,18 @@ group build/tools
 	nuget xunit.runner.console
 	nuget JetBrains.ReSharper.CommandLineTools
 
-group build/tools/addins
+group tools/addins
 	framework: >= net45
 	source https://nuget.org/api/v2
 	nuget Cake.Figlet
 	nuget Cake.Coveralls
 
-group build/tools/addins
+group tools/addins
 	framework: >= net45
 	source https://www.myget.org/F/mathphysics/api/v2
 	nuget Cake.Paket.Addin
 
-group build/tools/modules
+group tools/modules
 	framework: >= net45
 	source https://www.myget.org/F/mathphysics/api/v2
 	nuget Cake.Paket.Module

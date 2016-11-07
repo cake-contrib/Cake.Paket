@@ -15,10 +15,10 @@ VERBOSITY="verbose"
 DRYRUN=
 SHOW_VERSION=false
 PAKET="./.paket"
-CAKE="./packages/build/tools/Cake"
-TOOLS="./packages/build/tools"
-ADDINS="./packages/build/tools/addins"
-MODULES="./packages/build/tools/modules"
+CAKE="./packages/tools/Cake"
+TOOLS="./packages/tools"
+ADDINS="./packages/tools/addins"
+MODULES="./packages/tools/modules"
 SCRIPT_ARGUMENTS=()
 
 # Parse arguments.

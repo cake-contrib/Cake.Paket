@@ -9,7 +9,7 @@
 .SYNOPSIS
 This is a Powershell script to bootstrap a Cake build.
 .DESCRIPTION
-This Powershell script will download paket.exe if missing, 
+This Powershell script will download paket.exe if missing,
 install all your dependencies (including Cake) via paket.exe restore
 and execute your Cake build script with the parameters you provide.
 .PARAMETER Script
@@ -57,10 +57,10 @@ Param(
     [switch]$Mono,
     [ValidatePattern('.paket$')]
     [string]$Paket = ".\.paket",
-    [string]$Cake = ".\packages\build\tools\Cake",
-    [string]$Tools = ".\packages\build\tools",
-    [string]$Addins = ".\packages\build\tools\addins",
-    [string]$Modules = ".\packages\build\tools\modules",
+    [string]$Cake = ".\packages\tools\Cake",
+    [string]$Tools = ".\packages\tools",
+    [string]$Addins = ".\packages\tools\addins",
+    [string]$Modules = ".\packages\tools\modules",
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
     [string[]]$ScriptArgs
 )
@@ -98,7 +98,7 @@ Write-Verbose -Message "Found .paket in PATH at $PaketDir"
 
 # If paket.exe does not exits then download it using paket.bootstrapper.exe
 $PAKET_EXE = Join-Path $PaketDir "paket.exe"
-if (!(Test-Path $PAKET_EXE)) {   
+if (!(Test-Path $PAKET_EXE)) {
     # If paket.bootstrapper.exe exits then run it.
     $PAKET_BOOTSTRAPPER_EXE = Join-Path $PaketDir "paket.bootstrapper.exe"
     if (!(Test-Path $PAKET_BOOTSTRAPPER_EXE)) {
@@ -109,7 +109,7 @@ if (!(Test-Path $PAKET_EXE)) {
     # Download paket.exe
     Write-Verbose -Message "Running paket.bootstrapper.exe to download paket.exe"
     Invoke-Expression $PAKET_BOOTSTRAPPER_EXE
-        
+
     if (!(Test-Path $PAKET_EXE)) {
         Throw "Could not find paket.exe at $PAKET_EXE"
     }
@@ -131,7 +131,7 @@ $ENV:PAKET_EXE = $PAKET_EXE
 
 # Make sure that Cake has been installed.
 $CakeDir = Resolve-Path $Cake
-$CAKE_EXE = Join-Path $CakeDir "Cake.exe" 
+$CAKE_EXE = Join-Path $CakeDir "Cake.exe"
 if (!(Test-Path $CAKE_EXE)) {
     Throw "Could not find Cake.exe at $CAKE_EXE"
 }
