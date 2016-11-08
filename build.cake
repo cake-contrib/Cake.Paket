@@ -27,7 +27,6 @@ Setup(tool =>
 {
     Information(Figlet("Cake.Paket"));
     Information("\t\tMIT License");
-    Information("\tCopyright (c) .NET Foundation and Contributors");
     Information("\tCopyright (c) 2016 Larz White");
 });
 
@@ -100,9 +99,7 @@ Task("Paket-Pack").IsDependentOn("Build").Does(() =>
 
     Information("\nThe nupkg version is: " + buildVersion + "\n");
 
-    var commands = "pack output " + nuGet + " version " + buildVersion;
-
-    Paket(new PaketSettings { Commands = commands, ToolPath = new FilePath("./.paket/paket.exe") });
+    PaketPack(nuGet, new PaketPackSettings { Version = buildVersion });
 });
 
 Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder").IsDependentOn("Paket-Pack");

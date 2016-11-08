@@ -2,15 +2,21 @@
 using FluentAssertions;
 using Xunit;
 
-namespace Cake.Paket.UnitTests.Cake.Paket.Addin
+namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 {
-    public sealed class PaketRunnerTests
+    /// <summary>
+    /// PaketRunner unit tests
+    /// </summary>
+    public sealed class PaketPackerTests
     {
+        /// <summary>
+        /// Should throw if settings are null.
+        /// </summary>
         [Fact]
         public void ShouldThrowIfSettingsAreNull()
         {
             // Given
-            var fixture = new PaketRunnerFixture { Settings = null };
+            var fixture = new PaketPackerFixture { Settings = null };
 
             // When
             Action result = () => fixture.Run();

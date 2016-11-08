@@ -120,14 +120,16 @@ Write-Verbose -Message "Found paket.exe in PATH at $PAKET_EXE"
 Write-Verbose -Message "Running paket.exe restore"
 Invoke-Expression "$PAKET_EXE restore"
 
-# Set enviornment variables
+# tools, addins, and modules directory
 $ToolsDir = Resolve-Path $Tools
 $AddinsDir = Resolve-Path $Addins
 $ModulesDir = Resolve-Path $Modules
+
+# Set enviornment variables
 $ENV:CAKE_PATHS_TOOLS =  $ToolsDir
 $ENV:CAKE_PATHS_ADDINS = $AddinsDir
 $ENV:CAKE_PATHS_MODULES = $ModulesDir
-$ENV:PAKET_EXE = $PAKET_EXE
+$ENV:PAKET = $Paket
 
 # Make sure that Cake has been installed.
 $CakeDir = Resolve-Path $Cake

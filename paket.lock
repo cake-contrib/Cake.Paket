@@ -7,14 +7,6 @@ NUGET
     Cake.Core (0.16)
     StyleCop.Analyzers (1.0)
 
-GROUP cake.paket.module
-FRAMEWORK: >= NET45
-NUGET
-  remote: https://www.nuget.org/api/v2
-    Microsoft.Web.Xdt (2.1.1)
-    NuGet.Core (2.12)
-      Microsoft.Web.Xdt (>= 2.1)
-
 GROUP cake.paket.unittests
 FRAMEWORK: >= NET45
 NUGET
@@ -22,7 +14,7 @@ NUGET
     Cake.Core (0.15.2)
     Cake.Testing (0.15.2)
       Cake.Core (>= 0.15.2)
-    FluentAssertions (4.16)
+    FluentAssertions (4.17)
     xunit (2.1)
       xunit.assert (2.1)
       xunit.core (2.1)
@@ -50,15 +42,15 @@ GROUP tools/addins
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.16.2)
-    Cake.Coveralls (0.2)
+    Cake.Core (0.17)
+    Cake.Coveralls (0.2.1)
     Cake.Figlet (0.3.1)
       Cake.Core (>= 0.14)
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket (0.4.0-alpha107)
+    Cake.Paket (0.6.0-alpha114)
 
 GROUP tools/modules
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Module (0.4.0-alpha107)
+    Cake.Paket.Module (0.6.0-alpha114)

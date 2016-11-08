@@ -1,3 +1,2 @@
 group cake.paket
 	Cake.Core
-	StyleCop.Analyzers

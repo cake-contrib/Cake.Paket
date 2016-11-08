@@ -21,15 +21,6 @@ namespace Cake.Paket.Module
                 throw new ArgumentNullException(nameof(registrar));
             }
 
-#if NETCORE
-            // NuGet V3
-            registrar.RegisterType<V3.NuGetV3ContentResolver>().As<INuGetContentResolver>().Singleton();
-#else
-            // NuGet V2
-            registrar.RegisterType<V2.NuGetV2ContentResolver>().As<INuGetContentResolver>().Singleton();
-#endif
-
-            // URI resource support.
             registrar.RegisterType<PaketPackageInstaller>().As<IPackageInstaller>().Singleton();
         }
     }

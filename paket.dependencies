@@ -4,11 +4,6 @@ group cake.paket
     nuget Cake.Core = 0.16.0
     nuget StyleCop.Analyzers
 
-group cake.paket.module
-    framework: >= net45
-    source https://nuget.org/api/v2
-    nuget NuGet.Core
-
 group cake.paket.unittests
     framework: >= net45
     source https://nuget.org/api/v2

@@ -80,14 +80,16 @@ fi
 # Restore the dependencies.
 mono "$PAKET_EXE" restore
 
-# Set enviornment variables.
+# tools, addins, and modules directory
 TOOLS_DIR=$(twoAbsolutePath $TOOLS)
 ADDINS_DIR=$(twoAbsolutePath $ADDINS)
 MODULES_DIR=$(twoAbsolutePath $MODULES)
+
+# Set enviornment variables.
 export CAKE_PATHS_TOOLS=$TOOLS_DIR
 export CAKE_PATHS_ADDINS=$ADDINS_DIR
 export CAKE_PATHS_MODULES=$MODULES_DIR
-export PAKET_EXE=$PAKET_EXE
+export PAKET=$PAKET
 
 # Make sure that Cake has been installed.
 CAKE_DIR=$(twoAbsolutePath $CAKE)

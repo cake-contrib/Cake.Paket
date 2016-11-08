@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Paket.Addin", "Cake.Pa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Paket.UnitTests", "Cake.Paket.UnitTests\Cake.Paket.UnitTests.csproj", "{2390A26D-7600-4CBA-864D-E32948F26A40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.NuGet", "Cake.NuGet\Cake.NuGet.csproj", "{60F77614-D12F-4535-99C7-15CD03F8704B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2390A26D-7600-4CBA-864D-E32948F26A40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2390A26D-7600-4CBA-864D-E32948F26A40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2390A26D-7600-4CBA-864D-E32948F26A40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60F77614-D12F-4535-99C7-15CD03F8704B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60F77614-D12F-4535-99C7-15CD03F8704B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60F77614-D12F-4535-99C7-15CD03F8704B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60F77614-D12F-4535-99C7-15CD03F8704B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
