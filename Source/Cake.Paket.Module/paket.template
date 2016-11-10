@@ -10,7 +10,7 @@ projectUrl https://github.com/larzw/Cake.Paket
 iconUrl https://raw.githubusercontent.com/larzw/Cake.Paket/master/Documentation/Images/CakePaketLogo.png
 requireLicenseAcceptance false
 copyright Copyright (c) 2016 Larz White
-releaseNotes Initial alpha Release.
+releaseNotes Initial beta Release.
 tags Cake Script Build paket
 files
 	bin/Release/Cake.Paket.Module.dll ==> lib/net45
