@@ -61,10 +61,82 @@ namespace Cake.Paket.Addin.Pack
             }
 
             // Version
-            builder.Append("version");
             if (!string.IsNullOrWhiteSpace(settings.Version))
             {
+                builder.Append("version");
                 builder.AppendQuoted(settings.Version);
+            }
+
+            // BuildConfig
+            if (!string.IsNullOrWhiteSpace(settings.BuildConfig))
+            {
+                builder.Append("buildConfig");
+                builder.AppendQuoted(settings.BuildConfig);
+            }
+
+            // BuildPlatform
+            if (!string.IsNullOrWhiteSpace(settings.BuildPlatform))
+            {
+                builder.Append("buildplatform");
+                builder.AppendQuoted(settings.BuildPlatform);
+            }
+
+            // Exclude
+            if (!string.IsNullOrWhiteSpace(settings.Exclude))
+            {
+                builder.Append("exclude");
+                builder.AppendQuoted(settings.Exclude);
+            }
+
+            // specific-version
+            if (!string.IsNullOrWhiteSpace(settings.SpecificVersion))
+            {
+                builder.Append("specific-version");
+                builder.AppendQuoted(settings.SpecificVersion);
+            }
+
+            // ReleaseNotes
+            if (!string.IsNullOrWhiteSpace(settings.ReleaseNotes))
+            {
+                builder.Append("releaseNotes");
+                builder.AppendQuoted(settings.ReleaseNotes);
+            }
+
+            // LockDependencies
+            if (settings.LockDependencies)
+            {
+                builder.Append("lock-dependencies");
+            }
+
+            // minimum-from-lock-file
+            if (settings.MinimumFromLockFile)
+            {
+                builder.Append("minimum-from-lock-file");
+            }
+
+            // pin-project-references
+            if (settings.PinProjectReferences)
+            {
+                builder.Append("pin-project-references");
+            }
+
+            // symbols
+            if (settings.Symbols)
+            {
+                builder.Append("symbols");
+            }
+
+            // include-referenced-projects
+            if (settings.IncludeReferencedProjects)
+            {
+                builder.Append("include-referenced-projects");
+            }
+
+            // ProjectUrl
+            if (!string.IsNullOrWhiteSpace(settings.ProjectUrl))
+            {
+                builder.Append("project-url");
+                builder.AppendQuoted(settings.ProjectUrl);
             }
 
             return builder;

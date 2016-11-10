@@ -10,7 +10,7 @@
 This is a Powershell script to bootstrap a Cake build.
 .DESCRIPTION
 This Powershell script will download paket.exe if missing,
-install all your dependencies (including Cake) via paket.exe restore
+install all your dependencies via paket.exe restore
 and execute your Cake build script with the parameters you provide.
 .PARAMETER Script
 The build script to execute.
@@ -59,8 +59,8 @@ Param(
     [string]$Paket = ".\.paket",
     [string]$Cake = ".\packages\tools\Cake",
     [string]$Tools = ".\packages\tools",
-    [string]$Addins = ".\packages\tools\addins",
-    [string]$Modules = ".\packages\tools\modules",
+    [string]$Addins = ".\packages\addins",
+    [string]$Modules = ".\packages\modules",
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
     [string[]]$ScriptArgs
 )
@@ -96,6 +96,9 @@ if(!(Test-Path $PaketDir)) {
 }
 Write-Verbose -Message "Found .paket in PATH at $PaketDir"
 
+# Set paket directory enviornment variable
+$ENV:PAKET = $PaketDir
+
 # If paket.exe does not exits then download it using paket.bootstrapper.exe
 $PAKET_EXE = Join-Path $PaketDir "paket.exe"
 if (!(Test-Path $PAKET_EXE)) {
@@ -120,16 +123,32 @@ Write-Verbose -Message "Found paket.exe in PATH at $PAKET_EXE"
 Write-Verbose -Message "Running paket.exe restore"
 Invoke-Expression "$PAKET_EXE restore"
 
-# tools, addins, and modules directory
-$ToolsDir = Resolve-Path $Tools
-$AddinsDir = Resolve-Path $Addins
-$ModulesDir = Resolve-Path $Modules
+# tools
+if (Test-Path $Tools) {
+    $ToolsDir = Resolve-Path $Tools
+    $ENV:CAKE_PATHS_TOOLS =  $ToolsDir
+}
+else {
+    Write-Verbose -Message "Could not find tools directory at $Tools"
+}
 
-# Set enviornment variables
-$ENV:CAKE_PATHS_TOOLS =  $ToolsDir
-$ENV:CAKE_PATHS_ADDINS = $AddinsDir
-$ENV:CAKE_PATHS_MODULES = $ModulesDir
-$ENV:PAKET = $Paket
+# addins
+if (Test-Path $Addins) {
+    $AddinsDir = Resolve-Path $Addins
+    $ENV:CAKE_PATHS_ADDINS = $AddinsDir
+}
+else {
+    Write-Verbose -Message "Could not find addins directory at $Addins"
+}
+
+# modules
+if (Test-Path $Modules) {
+    $ModulesDir = Resolve-Path $Modules
+    $ENV:CAKE_PATHS_MODULES = $ModulesDir
+}
+else {
+    Write-Verbose -Message "Could not find modules directory at $Modules"
+}
 
 # Make sure that Cake has been installed.
 $CakeDir = Resolve-Path $Cake

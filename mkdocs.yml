@@ -3,4 +3,6 @@ repo_url: https://github.com/larzw/Cake.Paket
 docs_dir: Documentation
 pages:
     - 'Introduction': 'index.md'
-    - 'Quick Start': 'QuickStart.md'
+    - 'Cake.Paket.Module': 'Cake.Paket.Module.md'
+    - 'Cake.Paket': 'Cake.Paket.md'
+    - 'Cake Bootstrapper': 'CakeBootstrapper.md'

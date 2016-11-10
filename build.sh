@@ -17,8 +17,8 @@ SHOW_VERSION=false
 PAKET="./.paket"
 CAKE="./packages/tools/Cake"
 TOOLS="./packages/tools"
-ADDINS="./packages/tools/addins"
-MODULES="./packages/tools/modules"
+ADDINS="./packages/addins"
+MODULES="./packages/modules"
 SCRIPT_ARGUMENTS=()
 
 # Parse arguments.
@@ -57,6 +57,9 @@ if [ ! -d "$PAKET_DIR" ]; then
     exit 1
 fi
 
+# Set paket directory enviornment variable.
+export PAKET=$PAKET_DIR
+
 # If paket.exe does not exits then download it using paket.bootstrapper.exe.
 PAKET_EXE=$PAKET_DIR/paket.exe
 if [ ! -f "$PAKET_EXE" ]; then
@@ -80,16 +83,29 @@ fi
 # Restore the dependencies.
 mono "$PAKET_EXE" restore
 
-# tools, addins, and modules directory
-TOOLS_DIR=$(twoAbsolutePath $TOOLS)
-ADDINS_DIR=$(twoAbsolutePath $ADDINS)
-MODULES_DIR=$(twoAbsolutePath $MODULES)
+# tools
+if [ -d "$TOOLS" ]; then
+    TOOLS_DIR=$(twoAbsolutePath $TOOLS)
+    export CAKE_PATHS_TOOLS=$TOOLS_DIR
+else
+    echo "Could not find tools directory at '$TOOLS'."
+fi
 
-# Set enviornment variables.
-export CAKE_PATHS_TOOLS=$TOOLS_DIR
-export CAKE_PATHS_ADDINS=$ADDINS_DIR
-export CAKE_PATHS_MODULES=$MODULES_DIR
-export PAKET=$PAKET
+# addins
+if [ -d "$ADDINS" ]; then
+    ADDINS_DIR=$(twoAbsolutePath $ADDINS)
+    export CAKE_PATHS_ADDINS=$ADDINS_DIR
+else
+    echo "Could not find addins directory at '$ADDINS'."
+fi
+
+# modules
+if [ -d "$MODULES" ]; then
+    MODULES_DIR=$(twoAbsolutePath $MODULES)
+    export CAKE_PATHS_MODULES=$MODULES_DIR
+else
+    echo "Could not find modules directory at '$MODULES'."
+fi
 
 # Make sure that Cake has been installed.
 CAKE_DIR=$(twoAbsolutePath $CAKE)

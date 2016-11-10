@@ -47,9 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cake.Paket.Addin\Pack\FakeArguments.cs" />
     <Compile Include="Cake.Paket.Addin\Pack\PaketPackerFixture.cs" />
     <Compile Include="Cake.Paket.Addin\Pack\PaketPackerTests.cs" />
+    <Compile Include="Cake.Paket.Module\PaketPackageInstallerFixture.cs" />
+    <Compile Include="Cake.Paket.Module\PaketPackageInstallerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -64,9 +65,10 @@
     <AdditionalFiles Include="..\stylecop.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Cake.Paket.Module\" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Cake.NuGet\Cake.NuGet.csproj">
+      <Project>{60f77614-d12f-4535-99c7-15cd03f8704b}</Project>
+      <Name>Cake.NuGet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cake.Paket.Addin\Cake.Paket.Addin.csproj">
       <Project>{c2116574-387c-4ead-a288-569cc34ee6c0}</Project>
       <Name>Cake.Paket.Addin</Name>
@@ -119,6 +121,17 @@
         </Reference>
         <Reference Include="FluentAssertions">
           <HintPath>..\..\packages\cake.paket.unittests\FluentAssertions\lib\net45\FluentAssertions.dll</HintPath>
+          <Private>True</Private>
+          <Paket>True</Paket>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Choose>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3')">
+      <ItemGroup>
+        <Reference Include="NSubstitute">
+          <HintPath>..\..\packages\cake.paket.unittests\NSubstitute\lib\net45\NSubstitute.dll</HintPath>
           <Private>True</Private>
           <Paket>True</Paket>
         </Reference>

@@ -2,6 +2,8 @@
 #tool paket:?package=OpenCover
 #tool paket:?package=coveralls.net
 #tool paket:?package=JetBrains.ReSharper.CommandLineTools
+#tool paket:?package=ReSharperReports
+#addin paket:?package=Cake.ReSharperReports
 #addin paket:?package=Cake.Figlet
 #addin paket:?package=Cake.Coveralls
 #addin paket:?package=Cake.Paket
@@ -18,16 +20,24 @@ var cakePaketUnitTests = "./Source/Cake.Paket.UnitTests/bin/" + configuration + 
 var reports = "./Reports";
 var coverage = reports + "/coverage.xml";
 var resharperSettings = "./Source/Cake.Paket.sln.DotSettings";
-var inspectCode = reports + "/inspectCode.xml";
-var dupFinder = reports + "/dupFinder.xml";
+var inspectCodeXml = reports + "/inspectCode.xml";
+var inspectCodeHtml = reports + "/inspectCode.html";
+var dupFinderXml = reports + "/dupFinder.xml";
+var dupFinderHtml = reports + "/dupFinder.html";
 
 var nuGet = "./NuGet";
+var myGetUrl = "https://www.myget.org/F/mathphysics/api/v2/package";
 
-Setup(tool =>
+Setup(context =>
 {
     Information(Figlet("Cake.Paket"));
     Information("\t\tMIT License");
     Information("\tCopyright (c) 2016 Larz White");
+});
+
+Teardown(context =>
+{
+    DeleteFiles(reports + "/*.xml");
 });
 
 Task("Clean").Does(() =>
@@ -45,7 +55,6 @@ Task("Build").IsDependentOn("Clean").Does(() =>
     {
       XBuild(cakePaket, settings => settings.SetConfiguration(configuration));
     }
-
 });
 
 Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
@@ -69,8 +78,8 @@ Task("Run-InspectCode").IsDependentOn("Build").Does(() =>
     if(IsRunningOnWindows())
     {
         EnsureDirectoryExists(reports);
-
-        InspectCode(cakePaket, new InspectCodeSettings{ SolutionWideAnalysis = true, Profile = resharperSettings, OutputFile = inspectCode });
+        InspectCode(cakePaket, new InspectCodeSettings{ SolutionWideAnalysis = true, Profile = resharperSettings, OutputFile = inspectCodeXml });
+        ReSharperReports(inspectCodeXml, inspectCodeHtml);
     }
 });
 
@@ -79,8 +88,8 @@ Task("Run-DupFinder").IsDependentOn("Build").Does(() =>
     if(IsRunningOnWindows())
     {
         EnsureDirectoryExists(reports);
-
-        DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinder });
+        DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinderXml });
+        ReSharperReports(dupFinderXml, dupFinderHtml);
     }
 });
 
@@ -91,17 +100,26 @@ Task("Paket-Pack").IsDependentOn("Build").Does(() =>
     if(HasEnvironmentVariable("APPVEYOR_BUILD_VERSION") && IsRunningOnWindows())
     {
         buildVersion = EnvironmentVariable("APPVEYOR_BUILD_VERSION");
+        Information("\nThe nupkg version is: " + buildVersion + "\n");
+        PaketPack(nuGet, new PaketPackSettings { Version = buildVersion });
     }
     else
     {
         Warning("\nUsing default versioning for nupkg because the build is not on windows and/or the environment variable does not exits.\n");
     }
-
-    Information("\nThe nupkg version is: " + buildVersion + "\n");
-
-    PaketPack(nuGet, new PaketPackSettings { Version = buildVersion });
 });
 
-Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder").IsDependentOn("Paket-Pack");
+Task("Paket-Push").IsDependentOn("Paket-Pack").Does(() =>
+{
+    if(HasEnvironmentVariable("MYGET_API_TOKEN") && IsRunningOnWindows())
+    {
+        PaketPush(GetFiles(nuGet + "/*.nupkg"), new PaketPushSettings { Url = myGetUrl, ApiKey = EnvironmentVariable("MYGET_API_TOKEN") });
+    }
+    else
+    {
+        Warning("\nNot pushing nupkg because the build is not on windows and/or the environment variable does not exits.\n");
+    }
+});
 
+Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder").IsDependentOn("Paket-Push");
 RunTarget(target);

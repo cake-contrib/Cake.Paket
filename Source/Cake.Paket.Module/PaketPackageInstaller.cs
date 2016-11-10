@@ -110,6 +110,7 @@ namespace Cake.Paket.Module
 
         private static DirectoryPath GetFromGroup(DirectoryPath path, PackageReference package)
         {
+            const string mainGroup = "main";
             const string key = "group";
             const string packages = "packages";
 
@@ -133,6 +134,11 @@ namespace Cake.Paket.Module
                 newFolders.Add(packages);
 
                 var packageDirectory = DirectoryPath.FromString(string.Join("/", newFolders));
+                if (group.Equals(mainGroup))
+                {
+                    return packageDirectory;
+                }
+
                 var groupDirectory = DirectoryPath.FromString(group);
                 return packageDirectory.Combine(groupDirectory);
             }

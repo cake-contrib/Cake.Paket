@@ -94,11 +94,11 @@ namespace Cake.Paket.Addin.Tooling
             }
 
             // Try to get from arguments passed into Cake.exe --paket "..."
-            var paketExeArgument = Arguments.GetArgument("paket");
-            if (!string.IsNullOrWhiteSpace(paketExeArgument))
+            if (Arguments.HasArgument("paket"))
             {
+                var paketExeArgument = Arguments.GetArgument("paket");
                 wasResolved = true;
-                return new DirectoryPath(paketExeEnviornmentVariable);
+                return new DirectoryPath(paketExeArgument);
             }
 
             // See if .paket exits in the same directory as the cake script.
@@ -144,7 +144,7 @@ namespace Cake.Paket.Addin.Tooling
             }
 
             wasResolved = false;
-            return new FilePath(string.Empty);
+            return null;
         }
 
         private FilePath Try2ResolvePath2PaketBootStrapperExe(out bool wasResolved)
@@ -178,7 +178,7 @@ namespace Cake.Paket.Addin.Tooling
             }
 
             wasResolved = false;
-            return new FilePath(string.Empty);
+            return null;
         }
 
         private bool RunPaketBootStrapperExe(FilePath paketBootStrapperExe)
@@ -217,7 +217,7 @@ namespace Cake.Paket.Addin.Tooling
             }
 
             wasResolved = false;
-            return new FilePath(string.Empty);
+            return null;
         }
 
         private FilePath ResolvePath2PaketExe()

@@ -2,8 +2,6 @@
   <a href="https://github.com/larzw/Cake.Paket"><img src="https://raw.githubusercontent.com/larzw/Cake.Paket/master/Documentation/Images/CakePaketLogo.png" /></a>
 </p>
 
-# Under Construction!
-
 # Cake.Paket
 
 Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakebuild.net/) via a Cake addin and module.
@@ -22,170 +20,64 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 |MyGet|Pre-Release *Cake.Paket.Module* module package|[![MyGet Pre Release](https://img.shields.io/myget/mathphysics/vpre/Cake.Paket.Module.svg)](https://www.myget.org/feed/mathphysics/package/nuget/Cake.Paket.Module)
 |Gitter|**@larzw** me for questions|[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?maxAge=2592000)](https://gitter.im/cake-contrib/Lobby)|
 
-# Quick Start
+# Features
 
-Here is an example Cake script showing Cake.Paket and Cake.Paket.Module in action.
+Allows the use of paket preprocessor directives and commands
 
 ```cake
-//=================================================================================================
-// Use paket to manage dependencies.
-// If you don't specify a group in the uri e.g.
-//   #addin paket:?package=Cake.Figlet&group=build
-//     or
-//   #tool paket:?package=xunit.runner.console&group=build/helper/tool
-// Then paket will look in the default tools and/or addins directory.
-//=================================================================================================
-#tool paket:?package=xunit.runner.console
+// tools
+#tool paket:?package=NUnit.ConsoleRunner&group=main
 #tool paket:?package=OpenCover
-#tool paket:?package=coveralls.net
-#tool paket:?package=JetBrains.ReSharper.CommandLineTools
-#addin paket:?package=Cake.Figlet&group=build
-#addin paket:?package=Cake.Coveralls
+
+// addins
+#addin paket:?package=Cake.Figlet&group=build/setup
 #addin paket:?package=Cake.Paket
 
-var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Debug");
-var buildVersion = Argument("buildVersion", "0.0.0-alpha0");
+...
 
-var cakePaket = "./Source/Cake.Paket.sln";
-var cakePaketAddin = "./Source/Cake.Paket.Addin/bin/" + configuration;
-var cakePaketModule = "./Source/Cake.Paket.Module/bin/" + configuration;
-var cakePaketUnitTests = "./Source/Cake.Paket.UnitTests/bin/" + configuration + "/*.UnitTests.dll";
-
-var reports = "./Reports";
-var coverage = reports + "/coverage.xml";
-var resharperSettings = "./Source/Cake.Paket.sln.DotSettings";
-var inspectCode = reports + "/inspectCode.xml";
-var dupFinder = reports + "/dupFinder.xml";
-
-var nuGet = "./NuGet";
-
-Setup(tool =>
+// Creates a nuget package
+Task("Paket-Pack").Does(() =>
 {
-    Information(Figlet("Cake.Paket"));
-    Information("\t\tMIT License");
-    Information("\tCopyright (c) 2016 Larz White");
+    PaketPack("foo");
 });
 
-Task("Clean").Does(() =>
-{
-    CleanDirectories(new[] {cakePaketAddin, cakePaketModule, reports, nuGet});
-});
-
-Task("Build").IsDependentOn("Clean").Does(() =>
-{
-    if(IsRunningOnWindows())
-    {
-        MSBuild(cakePaket, settings => settings.SetConfiguration(configuration));
-    }
-    else
-    {
-      XBuild(cakePaket, settings => settings.SetConfiguration(configuration));
-    }
-
-});
-
-Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
-{
-    EnsureDirectoryExists(reports);
-
-    if(HasEnvironmentVariable("COVERALLS_REPO_TOKEN") && IsRunningOnWindows())
-    {
-        OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath(coverage), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
-        CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
-    }
-    else
-    {
-        XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false});
-        Warning("\nNot pushing OpenCover results to Coveralls because the build is not on windows and/or the environment variable (repo token) does not exits.\n");
-    }
-});
-
-Task("Run-InspectCode").IsDependentOn("Build").Does(() =>
-{
-    if(IsRunningOnWindows())
-    {
-        EnsureDirectoryExists(reports);
-
-        InspectCode(cakePaket, new InspectCodeSettings{ SolutionWideAnalysis = true, Profile = resharperSettings, OutputFile = inspectCode });
-    }
-});
-
-Task("Run-DupFinder").IsDependentOn("Build").Does(() =>
-{
-    if(IsRunningOnWindows())
-    {
-        EnsureDirectoryExists(reports);
-
-        DupFinder(cakePaket, new DupFinderSettings { ShowStats = true, ShowText = true, OutputFile = dupFinder });
-    }
-});
-
-Task("Paket-Pack").IsDependentOn("Build").Does(() =>
-{
-    EnsureDirectoryExists(nuGet);
-
-    if(HasEnvironmentVariable("APPVEYOR_BUILD_VERSION") && IsRunningOnWindows())
-    {
-        buildVersion = EnvironmentVariable("APPVEYOR_BUILD_VERSION");
-    }
-    else
-    {
-        Warning("\nUsing default versioning for nupkg because the build is not on windows and/or the environment variable does not exits.\n");
-    }
-
-    Information("\nThe nupkg version is: " + buildVersion + "\n");
-
-    //=======================================================================
-    // Use Cake.Paket addin to run PaketPack (which creates a NuGet package).
-    //=======================================================================
-    PaketPack(nuGet, new PaketPackSettings { Version = buildVersion });
-});
-
-Task("Default").IsDependentOn("Run-Unit-Tests").IsDependentOn("Run-InspectCode").IsDependentOn("Run-DupFinder").IsDependentOn("Paket-Pack");
-
-RunTarget(target);
-
+...
 ```
 
-In your cake bootstrapper script you'll need to resotre the packages via paket. You also need to set an enviornment variable or pass an argument into Cake.exe (which tells cake where the *.paket* directory is) if your cake script is not in the same directory as the .paket directory.
+instead of using NuGet
 
-```powershell
-# restore packages
-.\.paket\paket.exe restore
+```cake
+// tools
+#tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
+#tool nuget:?package=OpenCover
 
-# Set enviornment variable
-$ENV:PAKET = ".\.paket"
+// addins
+#addin nuget:?package=Cake.Figlet&version=0.3.1
 
-# Run Cake.exe normally
-Cake.exe ....
+...
+
+// Creates a nuget pacakge
+Task("NuGet-Pack").Does(() =>
+{
+    NuGetPack("bar.nuspec", new NuGetPackSettings{OutputDirectory = foo});
+});
+
+...
 ```
 
-OR
+# Quick Start
 
-```powershell
-# restore packages
-.\.paket\paket.exe restore
-
-# Run Cake.exe normally (but add the --paket argument)
-Cake.exe --paket ".\.paket" ...
+1. Get the modified [cake bootstrapper script](CakeBootstrapper.md).
+2. Create a *modules* dependency group and add *Cake.Paket.Module* to your *paket.dependency* file
 ```
-
-OR
-
-```powershell
-# restore packages
-.\.paket\paket.exe restore
-
-# Run Cake.exe normally (if the .paket directory is in the same place as build.cake)
-Cake.exe ...
+    group modules
+        nuget Cake.Paket.Module
 ```
-
-See the [Quick Start](http://cakepaket.readthedocs.io/en/latest/QuickStart/) guide.
+3. If you need to use paket commands such as *pack* and *push* then add `#addin paket:?package=Cake.Paket` to your cake script.
 
 # Example Project
 
-[Cake.Paket.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake.
+[Cake.Paket.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake. Additionally, the project for the paket addin and module is another good resource, see [build.cake](https://github.com/larzw/Cake.Paket/blob/master/build.cake).
 
 # Documentation
 
@@ -203,7 +95,6 @@ Feel free to open an [issue](https://github.com/larzw/Cake.Paket/issues) or **@l
 
 - Copyright (c) .NET Foundation and Contributors - Cake icon
 - Copyright (c) 2015 Alexander Groß, Steffen Forkmann - Paket icon
-
 - Paket icon used with the consent of Paket Team
     - [Asked for permission](https://gitter.im/fsprojects/Paket?at=5824803cdf5ae966453ce2a6)
     - [Permission given](https://gitter.im/fsprojects/Paket?at=58248c0b31c5cbef43dca66e)
