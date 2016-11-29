@@ -17,7 +17,7 @@ Allows the use of paket preprocessor directives and commands
 ```cake
 // tools
 #tool paket:?package=NUnit.ConsoleRunner&group=main
-#tool paket:?package=OpenCover
+#tool paket:?package=JetBrains.ReSharper.CommandLineTools
 
 // addins
 #addin paket:?package=Cake.Figlet&group=build/setup
@@ -28,7 +28,13 @@ Allows the use of paket preprocessor directives and commands
 // Creates a nuget package
 Task("Paket-Pack").Does(() =>
 {
-    PaketPack("foo");
+    PaketPack("./NuGet");
+});
+
+// Push a nuget package
+Task("Paket-Push").IsDependentOn("Paket-Pack").Does(() =>
+{
+    PaketPush("./NuGet/foo.nupkg", new PaketPushSettings { ApiKey = "00000000-0000-0000-0000-000000000000" });
 });
 
 ...
@@ -39,7 +45,7 @@ instead of using NuGet
 ```cake
 // tools
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
-#tool nuget:?package=OpenCover
+#tool nuget:?package=JetBrains.ReSharper.CommandLineTools
 
 // addins
 #addin nuget:?package=Cake.Figlet&version=0.3.1
@@ -49,7 +55,13 @@ instead of using NuGet
 // Creates a nuget pacakge
 Task("NuGet-Pack").Does(() =>
 {
-    NuGetPack("bar.nuspec", new NuGetPackSettings{OutputDirectory = foo});
+    NuGetPack("bar.nuspec", new NuGetPackSettings{OutputDirectory = "./NuGet"});
+});
+
+// Push a nuget pacakge
+Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
+{
+    NuGetPush("./NuGet/foo.nupkg", new NuGetPushSettings{ ApiKey = "00000000-0000-0000-0000-000000000000" });
 });
 
 ...
@@ -57,13 +69,23 @@ Task("NuGet-Pack").Does(() =>
 
 # Quick Start
 
-1. Get the modified [cake bootstrapper script](CakeBootstrapper.md).
-2. Create a *modules* dependency group and add *Cake.Paket.Module* to your *paket.dependency* file
+* Get the modified [cake bootstrapper script](https://github.com/larzw/Cake.Paket/blob/master/Documentation/CakeBootstrapper.md), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
+```bash
+    group tools
+        source https://nuget.org/api/v2
+        nuget Cake
 ```
+
+* Create a *modules* dependency group and add *Cake.Paket.Module* to your *paket.dependencies* file
+```bash
     group modules
+        source https://nuget.org/api/v2
         nuget Cake.Paket.Module
 ```
-3. If you need to use paket commands such as *pack* and *push* then add `#addin paket:?package=Cake.Paket` to your cake script.
+
+* Now you can use use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar`.
+
+* If you need to use paket commands such as *pack* and *push* then add `#addin paket:?package=Cake.Paket` to your cake script.
 
 # Example Project
 

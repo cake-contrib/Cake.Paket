@@ -1,6 +1,6 @@
 # Cake.Paket.Module
 
-In order to use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar`, you will need include *Cake.Paket.Module* and ensure cake can find the module.
+In order to use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar`, you need to include *Cake.Paket.Module* and ensure cake can find the module.
 
 # Basic Usage
 
@@ -18,18 +18,18 @@ Although the following directory structure is not required, we'll use it for our
 
 The packages directroy is defined by [dependency groups](https://fsprojects.github.io/Paket/groups.html) in the [paket.dependencies](https://fsprojects.github.io/Paket/dependencies-file.html) file. Let's assume it looks like
 
-```
+```bash
 # tools
 group tools
     source https://nuget.org/api/v2
     nuget NUnit.ConsoleRunner=3.4.0
-    nuget OpenCover
+    nuget JetBrains.ReSharper.CommandLineTools
     nuget Cake # Get Cake.exe
 
 # addins
 group addins
     source https://nuget.org/api/v2
-    nuget Cake.Figlet=0.3.1
+    nuget Cake.Figlet
 
 # modules
 group modules
@@ -69,7 +69,7 @@ Our cake script can now use paket
 // Use paket instead of nuget in the preprocessor directive.
 // You need to specify the paket group in the URI.
 #tool paket:?package=NUnit.ConsoleRunner&group=tools
-#tool paket:?package=OpenCover&group=tools
+#tool paket:?package=JetBrains.ReSharper.CommandLineTools&group=tools
 #addin paket:?package=Cake.Figlet&group=addins
 
 ...
@@ -111,7 +111,7 @@ and our cake script can be simplified to
 // Use paket instead of nuget in the preprocessor directive.
 // You dont't need to specify the paket group in the URI.
 #tool paket:?package=NUnit.ConsoleRunner
-#tool paket:?package=OpenCover
+#tool paket:?package=JetBrains.ReSharper.CommandLineTools
 #addin paket:?package=Cake.Figlet
 
 ...
@@ -130,21 +130,25 @@ You can group the *paket.dependencies* file however you want! For example,
 
 Let's consider the complex dependency file
 
-```
+```bash
 # This is the same as using: group main
 source https://nuget.org/api/v2
 nuget NUnit.ConsoleRunner=3.4.0
 
+group build/setup
+    source https://nuget.org/api/v2
+    nuget Cake.Figlet
+
 # tools
 group tools
     source https://nuget.org/api/v2
-    nuget OpenCover
+    nuget JetBrains.ReSharper.CommandLineTools
     nuget Cake
 
 # addins
 group addins
     source https://nuget.org/api/v2
-    nuget Cake.Figlet=0.3.1
+    nuget Cake.Paket
 
 # modules
 group modules
@@ -156,9 +160,9 @@ and the cake script becomes
 
 ```csharp
 #tool paket:?package=NUnit.ConsoleRunner&group=main
-#tool paket:?package=OpenCover
-#addin paket:?package=Cake.Figlet
-
+#tool paket:?package=JetBrains.ReSharper.CommandLineTools
+#addin paket:?package=Cake.Figlet&group=build/setup
+#addin paket:?package=Cake.Paket
 ...
 ```
 
