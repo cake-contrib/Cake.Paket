@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="Cake.Paket.Addin\Pack\PaketPackerFixture.cs" />
     <Compile Include="Cake.Paket.Addin\Pack\PaketPackerTests.cs" />
+    <Compile Include="Cake.Paket.Addin\Push\PaketPusherFixture.cs" />
+    <Compile Include="Cake.Paket.Addin\Push\PaketPusherTests.cs" />
     <Compile Include="Cake.Paket.Module\PaketPackageInstallerFixture.cs" />
     <Compile Include="Cake.Paket.Module\PaketPackageInstallerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

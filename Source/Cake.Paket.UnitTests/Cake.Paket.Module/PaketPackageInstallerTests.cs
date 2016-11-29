@@ -5,8 +5,14 @@ using Xunit;
 
 namespace Cake.Paket.UnitTests.Cake.Paket.Module
 {
+    /// <summary>
+    /// PaketPackageInstaller unit tests
+    /// </summary>
     public sealed class PaketPackageInstallerTests
     {
+        /// <summary>
+        /// Should throw if environment is null.
+        /// </summary>
         [Fact]
         public void ShouldThrowIfEnvironmentIsNull()
         {
@@ -20,6 +26,9 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("environment");
         }
 
+        /// <summary>
+        /// Should throw if content resolver is null.
+        /// </summary>
         [Fact]
         public void ShouldThrowIfContentResolverIsNull()
         {
@@ -33,6 +42,9 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("contentResolver");
         }
 
+        /// <summary>
+        /// Should throw if log is null.
+        /// </summary>
         [Fact]
         public void ShouldThrowIfLogIsNull()
         {
@@ -46,6 +58,9 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("log");
         }
 
+        /// <summary>
+        /// Should throw if Uri is null for CanInstall.
+        /// </summary>
         [Fact]
         public void ShouldThrowIfUriIsNullForCanInstall()
         {
@@ -59,6 +74,9 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("package");
         }
 
+        /// <summary>
+        /// Should be able to install if schema is correct.
+        /// </summary>
         [Fact]
         public void ShouldBeAbleToInstallIfSchemeIsCorrect()
         {
@@ -72,6 +90,9 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.Should().BeTrue();
         }
 
+        /// <summary>
+        /// Should not be able to install if schema is incorrect.
+        /// </summary>
         [Fact]
         public void ShouldNotBeAbleToInstallIfSchemeIsIncorrect()
         {
@@ -85,6 +106,9 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.Should().BeFalse();
         }
 
+        /// <summary>
+        /// Should throw is url is null for Install.
+        /// </summary>
         [Fact]
         public void ShouldThrowIfUriIsNullForInstall()
         {
@@ -98,6 +122,9 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("package");
         }
 
+        /// <summary>
+        /// Should throw if install path is null.
+        /// </summary>
         [Fact]
         public void ShouldThrowIfInstallPathIsNull()
         {

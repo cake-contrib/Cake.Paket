@@ -52,7 +52,7 @@ namespace Cake.Paket.Addin.Pack
             var builder = new ProcessArgumentBuilder();
             builder.Append("pack");
 
-            // Output directory
+            // output
             builder.Append("output");
             var outputDirectory = output.MakeAbsolute(Environment).FullPath;
             if (!string.IsNullOrWhiteSpace(outputDirectory))
@@ -60,28 +60,35 @@ namespace Cake.Paket.Addin.Pack
                 builder.AppendQuoted(output.MakeAbsolute(Environment).FullPath);
             }
 
-            // Version
-            if (!string.IsNullOrWhiteSpace(settings.Version))
-            {
-                builder.Append("version");
-                builder.AppendQuoted(settings.Version);
-            }
-
-            // BuildConfig
+            // buildconfig
             if (!string.IsNullOrWhiteSpace(settings.BuildConfig))
             {
-                builder.Append("buildConfig");
+                builder.Append("buildconfig");
                 builder.AppendQuoted(settings.BuildConfig);
             }
 
-            // BuildPlatform
+            // buildplatform
             if (!string.IsNullOrWhiteSpace(settings.BuildPlatform))
             {
                 builder.Append("buildplatform");
                 builder.AppendQuoted(settings.BuildPlatform);
             }
 
-            // Exclude
+            // templatefile
+            if (!string.IsNullOrWhiteSpace(settings.TemplateFile))
+            {
+                builder.Append("templatefile");
+                builder.AppendQuoted(settings.TemplateFile);
+            }
+
+            // version
+            if (!string.IsNullOrWhiteSpace(settings.Version))
+            {
+                builder.Append("version");
+                builder.AppendQuoted(settings.Version);
+            }
+
+            // exclude
             if (!string.IsNullOrWhiteSpace(settings.Exclude))
             {
                 builder.Append("exclude");
@@ -102,7 +109,7 @@ namespace Cake.Paket.Addin.Pack
                 builder.AppendQuoted(settings.ReleaseNotes);
             }
 
-            // LockDependencies
+            // lock-dependencies
             if (settings.LockDependencies)
             {
                 builder.Append("lock-dependencies");
@@ -132,7 +139,7 @@ namespace Cake.Paket.Addin.Pack
                 builder.Append("include-referenced-projects");
             }
 
-            // ProjectUrl
+            // project-url
             if (!string.IsNullOrWhiteSpace(settings.ProjectUrl))
             {
                 builder.Append("project-url");

@@ -7,7 +7,7 @@ using Xunit;
 namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 {
     /// <summary>
-    /// PaketRunner unit tests
+    /// PaketPacker unit tests
     /// </summary>
     public sealed class PaketPackerTests
     {
@@ -148,7 +148,39 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         }
 
         /// <summary>
-        /// Should set Version.
+        /// Should set buildconfig.
+        /// </summary>
+        [Fact]
+        public void ShouldSetBuildConfig()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { BuildConfig = "config" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" buildconfig ""config""");
+        }
+
+        /// <summary>
+        /// Should set buildplatform.
+        /// </summary>
+        [Fact]
+        public void ShouldSetBuildPlatform()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { BuildPlatform = "net45" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" buildplatform ""net45""");
+        }
+
+        /// <summary>
+        /// Should set version.
         /// </summary>
         [Fact]
         public void ShouldSetVersion()
@@ -161,6 +193,166 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 
             // Then
             result.Args.Should().Be(@"pack output ""/Working/NuGet"" version ""1.0.0""");
+        }
+
+        /// <summary>
+        /// Should set templatefile.
+        /// </summary>
+        [Fact]
+        public void ShouldSetTemplateFile()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { TemplateFile = "/Working/Template" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" templatefile ""/Working/Template""");
+        }
+
+        /// <summary>
+        /// Should set exclude.
+        /// </summary>
+        [Fact]
+        public void ShouldSetExclude()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { Exclude = "Cake.Foo" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" exclude ""Cake.Foo""");
+        }
+
+        /// <summary>
+        /// Should set specific-version.
+        /// </summary>
+        [Fact]
+        public void ShouldSetSpecificVersion()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { SpecificVersion = "Cake.Foo 0.0.0" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" specific-version ""Cake.Foo 0.0.0""");
+        }
+
+        /// <summary>
+        /// Should set releaseNotes.
+        /// </summary>
+        [Fact]
+        public void ShouldSetReleaseNotes()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { ReleaseNotes = "Initial Release" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" releaseNotes ""Initial Release""");
+        }
+
+        /// <summary>
+        /// Should add lock-dependencies.
+        /// </summary>
+        [Fact]
+        public void ShouldAddLockDependencies()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { LockDependencies = true } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" lock-dependencies");
+        }
+
+        /// <summary>
+        /// Should add minimum-from-lock-file.
+        /// </summary>
+        [Fact]
+        public void ShouldAddMinimumFromLockFile()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { MinimumFromLockFile = true } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" minimum-from-lock-file");
+        }
+
+        /// <summary>
+        /// Should add pin-project-references.
+        /// </summary>
+        [Fact]
+        public void ShouldAddPinProjectReferences()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { PinProjectReferences = true } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" pin-project-references");
+        }
+
+        /// <summary>
+        /// Should add symbols.
+        /// </summary>
+        [Fact]
+        public void ShouldAddSymbols()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { Symbols = true } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" symbols");
+        }
+
+        /// <summary>
+        /// Should add include-referenced-projects.
+        /// </summary>
+        [Fact]
+        public void ShouldAddIncludeReferencedProjects()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { IncludeReferencedProjects = true } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" include-referenced-projects");
+        }
+
+        /// <summary>
+        /// Should set project-url.
+        /// </summary>
+        [Fact]
+        public void ShouldSetProjectUrl()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { ProjectUrl = "www.google.com" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack output ""/Working/NuGet"" project-url ""www.google.com""");
         }
     }
 }

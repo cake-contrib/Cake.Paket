@@ -32,12 +32,7 @@ namespace Cake.Paket.Addin
         [CakeNamespaceImport("Cake.Paket.Addin.Pack")]
         public static void PaketPack(this ICakeContext context, DirectoryPath output, PaketPackSettings settings)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            var resolver = new PaketToolResolver(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, context.Arguments, context.Log);
+            var resolver = GetPaketToolResolver(context);
             var packer = new PaketPacker(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, resolver);
             packer.Pack(output, settings);
         }
@@ -80,18 +75,23 @@ namespace Cake.Paket.Addin
         [CakeNamespaceImport("Cake.Paket.Addin.Push")]
         public static void PaketPush(this ICakeContext context, IEnumerable<FilePath> filePaths, PaketPushSettings settings)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            var resolver = new PaketToolResolver(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, context.Arguments, context.Log);
+            var resolver = GetPaketToolResolver(context);
             var packer = new PaketPusher(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, resolver);
 
             foreach (var filePath in filePaths)
             {
                 packer.Push(filePath, settings);
             }
+        }
+
+        private static PaketToolResolver GetPaketToolResolver(ICakeContext context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            return new PaketToolResolver(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, context.Arguments, context.Log);
         }
     }
 }

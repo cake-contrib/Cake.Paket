@@ -6,8 +6,19 @@ using Cake.Paket.Addin.Tooling;
 
 namespace Cake.Paket.Addin.Push
 {
+    /// <summary>
+    /// The paket pusher.
+    /// </summary>
     internal sealed class PaketPusher : PaketTool<PaketPushSettings>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaketPusher"/> class.
+        /// </summary>
+        /// <param name="fileSystem">The file system.</param>
+        /// <param name="environment">The enviornment.</param>
+        /// <param name="tools">The tool locator.</param>
+        /// <param name="processRunner">The process runner.</param>
+        /// <param name="resolver">The paket tool resolver.</param>
         public PaketPusher(IFileSystem fileSystem, ICakeEnvironment environment, IToolLocator tools, IProcessRunner processRunner, IPaketToolResolver resolver)
             : base(fileSystem, environment, processRunner, tools, resolver)
         {
@@ -19,7 +30,7 @@ namespace Cake.Paket.Addin.Push
         /// <summary>
         /// Pushes NuGet package defined by the file path for the given settings.
         /// </summary>
-        /// <param name="filePath">The NuGet package file path</param>
+        /// <param name="filePath">The NuGet package file path.</param>
         /// <param name="settings">The settings.</param>
         internal void Push(FilePath filePath, PaketPushSettings settings)
         {
