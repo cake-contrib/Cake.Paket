@@ -14,7 +14,7 @@ Assuming the code has been merged into master and all CI builds are fine. To cre
 * Edit the github release notes and include any contributors.
 * Create a NuGet package e.g. `./.paket/paket.exe pack output NuGet version 0.0.0`.
 * Upload NuGet packages to nuget.org.
-* Update the AppVeyor build version and push the change to github.
+* Update the AppVeyor build version and push the change to github with [skip ci] in the commit message.
 
 ## Misc
 
