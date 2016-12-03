@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/larzw/Cake.Paket"><img src="https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/Images/CakePaketLogo.png" /></a>
+  <a href="https://github.com/larzw/Cake.Paket"><img src="https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/images/CakePaketLogo.png" /></a>
 </p>
 
 # Cake.Paket
@@ -12,7 +12,7 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 |:--|:--|:--|
 |AppVeyor|Windows Build|[![AppVeyor branch](https://img.shields.io/appveyor/ci/larzw/Cake-Paket/master.svg)](https://ci.appveyor.com/project/larzw/cake-paket/branch/master)|
 |Travis CI|Linux, OS X|[![Travis branch](https://img.shields.io/travis/larzw/Cake.Paket/master.svg)](https://travis-ci.org/larzw/Cake.Paket)|
-|Read the Docs|Documentation|[![Documentation Status](https://readthedocs.org/projects/cakepaket/badge/?version=latest)](http://cakepaket.readthedocs.io/en/latest/?badge=latest)|
+|DocFX|Documentation|[![Documentation Status](https://img.shields.io/badge/DocFX-latest-green.svg)](https://larzw.github.io/Cake.Paket/site)|
 |Coverall|Code Coverage|[![Coveralls branch](https://img.shields.io/coveralls/larzw/Cake.Paket/master.svg)](https://coveralls.io/github/larzw/Cake.Paket?branch=master)|
 |NuGet|Stable *Cake.Paket* addin package|[![NuGet](https://img.shields.io/nuget/v/Cake.Paket.svg)](https://www.nuget.org/packages/Cake.Paket/)
 |NuGet|Stable *Cake.Paket.Module* module package|[![NuGet](https://img.shields.io/nuget/v/Cake.Paket.Module.svg)](https://www.nuget.org/packages/Cake.Paket.Module/)
@@ -103,7 +103,7 @@ Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
 
 # Documentation
 
-See the [Documentation](http://cakepaket.readthedocs.io/en/latest/) for additional help.
+See the [Documentation](https://larzw.github.io/Cake.Paket/site) for additional help.
 
 # Contributing
 
