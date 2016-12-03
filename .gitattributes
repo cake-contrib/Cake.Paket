@@ -8,6 +8,8 @@
 *.csdef text
 *.xml text
 *.js text
+*.html text
+*.css text
 *.ps1 text
 
 *.DotSettings text eol=lf

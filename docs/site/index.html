@@ -1,0 +1,180 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Cake.Paket </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Cake.Paket ">
+    <meta name="generator" content="docfx 2.8.2.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+              
+              <p align="center">
+  <img src="images/CakePaketLogo.png">
+</p>
+
+<h1 id="cakepaket">Cake.Paket</h1>
+<p>Adds <a href="https://fsprojects.github.io/Paket/">Paket</a> support to <a href="http://cakebuild.net/">Cake</a> via a Cake addin and module.</p>
+<h1 id="master-branch">Master Branch</h1>
+<p>The master branch status can be found on <a href="https://github.com/larzw/Cake.Paket/blob/master/README.md">README.md</a>.</p>
+<h1 id="features">Features</h1>
+<p>Allows the use of paket preprocessor directives and commands</p>
+<pre><code class="lang-cake">// tools
+#tool paket:?package=NUnit.ConsoleRunner&amp;group=main
+#tool paket:?package=JetBrains.ReSharper.CommandLineTools
+
+// addins
+#addin paket:?package=Cake.Figlet&amp;group=build/setup
+#addin paket:?package=Cake.Paket
+
+...
+
+// Creates a nuget package
+Task(&quot;Paket-Pack&quot;).Does(() =&gt;
+{
+    PaketPack(&quot;./NuGet&quot;);
+});
+
+// Push a nuget package
+Task(&quot;Paket-Push&quot;).IsDependentOn(&quot;Paket-Pack&quot;).Does(() =&gt;
+{
+    PaketPush(&quot;./NuGet/foo.nupkg&quot;, new PaketPushSettings { ApiKey = &quot;00000000-0000-0000-0000-000000000000&quot; });
+});
+
+...
+</code></pre><p>instead of using NuGet</p>
+<pre><code class="lang-cake">// tools
+#tool nuget:?package=NUnit.ConsoleRunner&amp;version=3.4.0
+#tool nuget:?package=JetBrains.ReSharper.CommandLineTools
+
+// addins
+#addin nuget:?package=Cake.Figlet&amp;version=0.3.1
+
+...
+
+// Creates a nuget pacakge
+Task(&quot;NuGet-Pack&quot;).Does(() =&gt;
+{
+    NuGetPack(&quot;bar.nuspec&quot;, new NuGetPackSettings{OutputDirectory = &quot;./NuGet&quot;});
+});
+
+// Push a nuget pacakge
+Task(&quot;NuGet-Push&quot;).IsDependentOn(&quot;Paket-Pack&quot;).Does(() =&gt;
+{
+    NuGetPush(&quot;./NuGet/foo.nupkg&quot;, new NuGetPushSettings{ ApiKey = &quot;00000000-0000-0000-0000-000000000000&quot; });
+});
+
+...
+</code></pre><h1 id="quick-start">Quick Start</h1>
+<ul>
+<li><p>Get the modified <a href="https://github.com/larzw/Cake.Paket/blob/master/Documentation/CakeBootstrapper.md">cake bootstrapper script</a>, then create a <em>tools</em> dependency group and add <em>Cake</em> to your <em>paket.dependencies</em> file</p>
+<pre><code class="lang-bash">  group tools
+      source https://nuget.org/api/v2
+      nuget Cake
+</code></pre></li>
+<li><p>Create a <em>modules</em> dependency group and add <em>Cake.Paket.Module</em> to your <em>paket.dependencies</em> file</p>
+<pre><code class="lang-bash">  group modules
+      source https://nuget.org/api/v2
+      nuget Cake.Paket.Module
+</code></pre></li>
+<li><p>Now you can use use paket instead of nuget in the preprocessor directive e.g. <code>#tool paket:?package=Cake.Foo</code> and/or  <code>#addin paket:?package=Cake.Bar</code>.</p>
+</li>
+<li><p>If you need to use paket commands such as <em>pack</em> and <em>push</em> then add <code>#addin paket:?package=Cake.Paket</code> to your cake script.</p>
+</li>
+</ul>
+<h1 id="example-project">Example Project</h1>
+<p><a href="https://github.com/larzw/Cake.Paket.Example">Cake.Paket.Example</a> is an example project which uses Paket with Cake. Additionally, the project for the paket addin and module is another good resource, see <a href="https://github.com/larzw/Cake.Paket/blob/master/build.cake">build.cake</a>.</p>
+<h1 id="contributing">Contributing</h1>
+<p>All types of contributions are welcome! Please see the <a href="https://github.com/larzw/Cake.Paket/blob/master/.github/CONTRIBUTING.md">Contributing</a> guidlines.</p>
+<h1 id="questions">Questions</h1>
+<p>Feel free to open an <a href="https://github.com/larzw/Cake.Paket/issues">issue</a> or <strong>@larzw</strong> me via <a href="https://gitter.im/cake-contrib/Lobby">Gitter</a></p>
+
+            </article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/larzw/Cake.Paket/blob/develop/docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2016 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

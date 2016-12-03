@@ -77,3 +77,11 @@ Reports/
 
 # Nuget package folder
 NuGet/
+
+# DocFX
+docs/**/DROP/
+docs/**/TEMP/
+docs/**/packages/
+docs/**/bin/
+docs/**/obj/
+docs/api
