@@ -4,3 +4,5 @@
   href: manual/Cake.Paket.Module.md
 - name: API
   href: api/
+- name: Source Code
+  href: https://github.com/larzw/Cake.Paket

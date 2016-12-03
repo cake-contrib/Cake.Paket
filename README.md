@@ -79,7 +79,7 @@ Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
 
 # Quick Start
 
-* Get the modified [cake bootstrapper script](https://github.com/larzw/Cake.Paket/blob/master/Documentation/CakeBootstrapper.md), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
+* Get the modified [cake bootstrapper script](https://larzw.github.io/Cake.Paket/site/manual/CakeBootstrapper.html), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
 ```bash
     group tools
         source https://nuget.org/api/v2

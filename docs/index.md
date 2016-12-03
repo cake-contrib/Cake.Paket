@@ -8,7 +8,7 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 
 # Master Branch
 
-The master branch status can be found on [README.md](https://github.com/larzw/Cake.Paket/blob/master/README.md).
+The master branch status can be found on [GitHub](https://github.com/larzw/Cake.Paket).
 
 # Features
 
@@ -69,7 +69,7 @@ Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
 
 # Quick Start
 
-* Get the modified [cake bootstrapper script](https://github.com/larzw/Cake.Paket/blob/master/Documentation/CakeBootstrapper.md), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
+* Get the modified [cake bootstrapper script](https://larzw.github.io/Cake.Paket/site/manual/CakeBootstrapper.html), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
 ```bash
     group tools
         source https://nuget.org/api/v2
