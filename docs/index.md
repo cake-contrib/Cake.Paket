@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Images/CakePaketLogo.png" />
+  <a href="https://github.com/larzw/Cake.Paket"><img src="https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/images/CakePaketLogo.png" height="100em" /></a>
 </p>
 
 # Cake.Paket

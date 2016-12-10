@@ -3,6 +3,7 @@ group cake.paket
 
 group cake.paket.unittests
 	xunit
+    xunit.abstractions
 	FluentAssertions
 	Cake.Core
 	Cake.Testing

@@ -8,7 +8,7 @@
     <title>Maintainers </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Maintainers ">
-    <meta name="generator" content="docfx 2.8.2.0">
+    <meta name="generator" content="docfx 2.9.3.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -71,21 +71,58 @@
 <h2 id="creating-a-release">Creating a Release</h2>
 <p>Assuming the code has been merged into master and all CI builds are fine. To create a release:</p>
 <ul>
-<li>Update the <em>paket.template</em> file for the projects <em>Cake.Paket.Module</em> and <em>Cake.Paket.Addin</em>.<ul>
-<li>Copyright</li>
-<li>Release Notes</li>
+<li>Update the <em>paket.template</em> file for the projects <em>Cake.Paket.Module</em> and <em>Cake.Paket.Addin</em><ul>
+<li>copyright</li>
+<li>releaseNotes</li>
 </ul>
 </li>
-<li>Update copyright info in <em>build.cake</em> (Setup).</li>
-<li>Create a signed git tag.</li>
-<li>Edit the github release notes and include any contributors.</li>
-<li>Create a NuGet package e.g. <code>./.paket/paket.exe pack output NuGet version 0.0.0</code>.</li>
-<li>Upload NuGet packages to nuget.org.</li>
-<li>Update the AppVeyor build version and push the change to github with [skip ci] in the commit message.</li>
+<li>Update the Source/SolutionInfo.cs<ul>
+<li>AssemblyVersion</li>
+<li>AssemblyFileVersion</li>
+<li>AssemblyCopyright</li>
 </ul>
-<h2 id="misc">Misc</h2>
+</li>
+<li>Create a signed git tag<ul>
+<li>git tag -s v1.0.0 -m &#39;version 1.0.0&#39; (then enter your passphrase)</li>
+</ul>
+</li>
+<li>Edit the github release notes and include any contributors.<ul>
+<li>Title = Cake.Paket v1.0.0</li>
+<li>Body = Release notes from <em>paket.template</em>.</li>
+</ul>
+</li>
+<li>Create the NuGet packages<ul>
+<li><code>.\build.ps1 -Target Paket-Pack -ScriptArgs &quot;-buildVersion=&#39;1.0.0&#39;&quot;</code></li>
+</ul>
+</li>
+<li>Upload the NuGet packages to nuget.org.</li>
+<li>Generate the website<ul>
+<li><code>.\build.ps1 -Target Generate-Docs</code></li>
+</ul>
+</li>
+<li>Update <em>build.cake</em><ul>
+<li>buildVersion</li>
+</ul>
+</li>
+<li>Create a commit that include [skip ci] and push the changes to github.</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>You may need to empty your cache and hard reload to see your content changes!</p>
 <ul>
-<li>The <a href="http://cakepaket.readthedocs.io/en/develop/">develop</a> branch documentation.</li>
+<li>The content for the site can be found in<ul>
+<li>docs/images</li>
+<li>docs/manual</li>
+</ul>
+</li>
+<li>To build the site run<ul>
+<li><code>.\build.ps1 -Target Generate-Docs</code></li>
+</ul>
+</li>
+<li>Only changes pushed to the master branch will appear on the online documentation. Thus, for local developoment use<ul>
+<li><code>.\packages\tools\docfx.console\tools\docfx.exe .\docs\docfx.json --serve</code></li>
+<li>Then navigate to <code>http://localhost:8080/</code></li>
+</ul>
+</li>
 </ul>
 
             </article>

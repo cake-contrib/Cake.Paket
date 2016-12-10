@@ -1,22 +1,23 @@
 group cake.paket
     framework: >= net45
     source https://nuget.org/api/v2
-    nuget Cake.Core = 0.16.0
+    nuget Cake.Core
     nuget StyleCop.Analyzers
 
 group cake.paket.unittests
     framework: >= net45
     source https://nuget.org/api/v2
-    nuget xunit
     nuget FluentAssertions
-    nuget Cake.Core = 0.15.2
-    nuget Cake.Testing = 0.15.2
+    nuget xunit >= 2.2.0-beta2-build3300
+    nuget xunit.abstractions
+    nuget Cake.Core
+    nuget Cake.Testing
     nuget NSubstitute
 
 group tools
     framework: >= net45
     source https://nuget.org/api/v2
-    nuget Cake = 0.16.0
+    nuget Cake
     nuget OpenCover
     nuget coveralls.net
     nuget xunit.runner.console

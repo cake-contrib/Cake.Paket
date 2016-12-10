@@ -11,51 +11,50 @@ NUGET
       Cake.Core (>= 0.14)
     Cake.ReSharperReports (0.5.1)
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket (0.4.0-beta142)
+    Cake.Paket (1.0.0-build149)
 
 GROUP cake.paket
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.16)
+    Cake.Core (0.17)
     StyleCop.Analyzers (1.0)
 
 GROUP cake.paket.unittests
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.15.2)
-    Cake.Testing (0.15.2)
-      Cake.Core (>= 0.15.2)
-    FluentAssertions (4.17)
+    Cake.Core (0.17)
+    Cake.Testing (0.17)
+      Cake.Core (>= 0.17)
+      xunit.core (>= 2.2.0-beta2-build3300)
+    FluentAssertions (4.18)
     NSubstitute (1.10)
-    xunit (2.1)
-      xunit.assert (2.1)
-      xunit.core (2.1)
-    xunit.abstractions (2.0)
-    xunit.assert (2.1)
-    xunit.core (2.1)
-      xunit.extensibility.core (2.1)
-      xunit.extensibility.execution (2.1)
-    xunit.extensibility.core (2.1)
-      xunit.abstractions (2.0)
-    xunit.extensibility.execution (2.1)
-      xunit.extensibility.core (2.1)
+    xunit (2.2.0-beta4-build3444)
+      xunit.assert (2.2.0-beta4-build3444)
+      xunit.core (2.2.0-beta4-build3444)
+    xunit.abstractions (2.0.1)
+    xunit.assert (2.2.0-beta4-build3444)
+    xunit.core (2.2.0-beta4-build3444)
+      xunit.extensibility.core (2.2.0-beta4-build3444)
+      xunit.extensibility.execution (2.2.0-beta4-build3444)
+    xunit.extensibility.core (2.2.0-beta4-build3444)
+    xunit.extensibility.execution (2.2.0-beta4-build3444)
 
 GROUP modules
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Module (0.4.0-beta142)
+    Cake.Paket.Module (1.0.0-build149)
 
 GROUP tools
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake (0.16)
+    Cake (0.17)
     coveralls.net (0.7)
-    docfx.console (2.8.2)
-    JetBrains.ReSharper.CommandLineTools (2016.2.20160913.100041)
+    docfx.console (2.9.3)
+    JetBrains.ReSharper.CommandLineTools (2016.3.20161215.134936)
     OpenCover (4.6.519)
     ReSharperReports (0.3)
     xunit.runner.console (2.1)

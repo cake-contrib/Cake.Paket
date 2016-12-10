@@ -14,10 +14,10 @@
 #addin "paket:?package=Cake.DocFx"
 
 // Cake script arguments
-// .\build.ps1 -Target Default -Configuration Debug -ScriptArgs "-release='0.0.0-alpha0' -nuGetUrl 'https://www.myget.org/F/mathphysics/api/v2/package' -nuGetApiKey ''"
+// .\build.ps1 -Target Default -Configuration Debug -ScriptArgs "-buildVersion='1.0.0' -nuGetUrl='https://www.myget.org/F/mathphysics/api/v2/package' -nuGetApiKey='00000000-0000-0000-0000-000000000000'"
 var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Debug");
-var release = Argument("release", "0.0.0-alpha0");
+var configuration = Argument("configuration", "Release");
+var buildVersion = Argument("buildVersion", "1.0.0");
 var nuGetUrl = Argument("nuGetUrl","https://www.myget.org/F/mathphysics/api/v2/package");
 var nuGetApiKey = Argument("nuGetApiKey", string.Empty);
 
@@ -27,6 +27,7 @@ var cakePaket = source + "/Cake.Paket.sln";
 var cakePaketAddin = source + "/Cake.Paket.Addin/bin/" + configuration;
 var cakePaketModule = source + "/Cake.Paket.Module/bin/" + configuration;
 var cakePaketUnitTests = source + "/Cake.Paket.UnitTests/bin/" + configuration + "/*.UnitTests.dll";
+var solutionInfo = source + "/SolutionInfo.cs";
 
 // Reports and Coding standards.
 var reports = "./Reports";
@@ -50,12 +51,11 @@ var cakeNuGetDocCache = source + "/Cake.NuGet/" + docCache;
 var cakePaketAddinDocCache = source + "/Cake.Paket.Addin/" + docCache;
 var cakePaketModuleDocCache = source + "/Cake.Paket.Module/" + docCache;
 
-
 Setup(context =>
 {
     Information(Figlet("Cake.Paket"));
     Information("\t\tMIT License");
-    Information("\tCopyright (c) " + DateTime.Now.Year + " Larz White");
+    Information(string.Format("\tCopyright (c) {0} Larz White", DateTime.Now.Year));
 });
 
 Teardown(context =>
@@ -92,7 +92,6 @@ Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
     else
     {
         XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false});
-        Warning("\nNot pushing OpenCover results to Coveralls because the build is not on windows and/or the environment variable (repo token) does not exits.\n");
     }
 });
 
@@ -124,15 +123,11 @@ Task("Paket-Pack").IsDependentOn("Build").Does(() =>
     {
         if(HasEnvironmentVariable("APPVEYOR_BUILD_VERSION"))
         {
-            release = EnvironmentVariable("APPVEYOR_BUILD_VERSION");
+            buildVersion = buildVersion + "-build" + EnvironmentVariable("APPVEYOR_BUILD_VERSION");
         }
 
-        Information("The nupkg version is: " + release);
-        PaketPack(nuGet, new PaketPackSettings { Version = release });
-    }
-    else
-    {
-        Warning("Skipping PaketPack(...)");
+        Information("package version " + buildVersion);
+        PaketPack(nuGet, new PaketPackSettings { Version = buildVersion });
     }
 });
 
@@ -149,10 +144,6 @@ Task("Paket-Push").IsDependentOn("Paket-Pack").Does(() =>
         {
             PaketPush(GetFiles(nuGet + "/*.nupkg"), new PaketPushSettings { Url = nuGetUrl, ApiKey = nuGetApiKey });
         }
-    }
-    else
-    {
-        Warning("Skipping PaketPush(...)");
     }
 });
 
