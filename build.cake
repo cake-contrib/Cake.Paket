@@ -17,7 +17,7 @@
 // .\build.ps1 -Target Default -Configuration Debug -ScriptArgs "-buildVersion='1.0.0' -nuGetUrl='https://www.myget.org/F/mathphysics/api/v2/package' -nuGetApiKey='00000000-0000-0000-0000-000000000000'"
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var buildVersion = Argument("buildVersion", "1.0.0");
+var buildVersion = Argument("buildVersion", "1.1.0");
 var nuGetUrl = Argument("nuGetUrl","https://www.myget.org/F/mathphysics/api/v2/package");
 var nuGetApiKey = Argument("nuGetApiKey", string.Empty);
 
