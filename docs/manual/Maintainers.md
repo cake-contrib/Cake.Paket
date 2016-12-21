@@ -26,6 +26,7 @@ Assuming the code has been merged into master and all CI builds are fine. To cre
 * Update *build.cake*
     * buildVersion
 * Create a commit that include [skip ci] and push the changes to github.
+* Update Cake.Paket.Example to use the new module and addin.
 
 ## Documentation
 

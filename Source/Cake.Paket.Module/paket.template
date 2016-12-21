@@ -9,7 +9,11 @@ licenseUrl https://github.com/larzw/Cake.Paket/blob/master/LICENSE
 projectUrl https://github.com/larzw/Cake.Paket
 iconUrl https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/images/CakePaketLogo.png
 requireLicenseAcceptance false
-releaseNotes new release
+releaseNotes
+    * Using DocFX instead of read the docs for documentation.
+    * Cleaned up dependencies.
+    * Added Maintainer documentation.
+    * Using SolutionInfo.cs file now.
 copyright Copyright (c) 2016 Larz White
 tags Cake Script Build paket
 files
