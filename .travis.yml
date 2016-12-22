@@ -1,6 +1,9 @@
 language: csharp
 sudo: false
 
+git:
+  depth: 1000000
+
 os:
   - linux
   - osx
@@ -8,9 +11,7 @@ os:
 branches:
   only:
   - master
-  - develop
   - /^testing.*/
-  - /^travis.*/
 
 script:
-  - ./build.sh
+  - ./build.sh --target TravisCI --configuration Debug

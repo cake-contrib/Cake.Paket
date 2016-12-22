@@ -24,6 +24,8 @@ group tools
     nuget JetBrains.ReSharper.CommandLineTools
     nuget ReSharperReports
     nuget docfx.console
+    nuget GitVersion.CommandLine
+    nuget gitreleasemanager
 
 group addins
     framework: >= net45
@@ -32,6 +34,7 @@ group addins
     nuget Cake.Coveralls
     nuget Cake.ReSharperReports
     nuget Cake.DocFx
+    nuget Cake.FileHelpers
 
 group addins
     framework: >= net45

@@ -9,14 +9,9 @@ licenseUrl https://github.com/larzw/Cake.Paket/blob/master/LICENSE
 projectUrl https://github.com/larzw/Cake.Paket
 iconUrl https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/images/CakePaketLogo.png
 requireLicenseAcceptance false
-releaseNotes
-    * Using DocFX instead of read the docs for documentation.
-    * Cleaned up dependencies.
-    * Added Maintainer documentation.
-    * Using SolutionInfo.cs file now.
-copyright Copyright (c) 2016 Larz White
+copyright Copyright (c) 2017 Larz White
 tags Cake Script Build paket
 files
-	bin/Release/Cake.Paket.Addin.dll ==> lib/net45
-    bin/Release/Cake.Paket.Addin.xml ==> lib/net45
-    bin/Release/Cake.Paket.Addin.pdb ==> lib/net45
+	bin/*/Cake.Paket.Addin.dll ==> lib/net45
+    bin/*/Cake.Paket.Addin.xml ==> lib/net45
+    bin/*/Cake.Paket.Addin.pdb ==> lib/net45

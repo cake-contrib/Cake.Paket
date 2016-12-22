@@ -9,9 +9,11 @@ NUGET
     Cake.DocFx (0.1.6)
     Cake.Figlet (0.3.1)
       Cake.Core (>= 0.14)
+    Cake.FileHelpers (1.0.3.2)
+      Cake.Core (>= 0.7)
     Cake.ReSharperReports (0.5.1)
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket (1.0.0-build149)
+    Cake.Paket (1.0.1-build33)
 
 GROUP cake.paket
 FRAMEWORK: >= NET45
@@ -45,7 +47,7 @@ GROUP modules
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Module (1.0.0-build149)
+    Cake.Paket.Module (1.0.1-build33)
 
 GROUP tools
 FRAMEWORK: >= NET45
@@ -54,7 +56,9 @@ NUGET
     Cake (0.17)
     coveralls.net (0.7)
     docfx.console (2.9.3)
-    JetBrains.ReSharper.CommandLineTools (2016.3.20161215.134936)
+    gitreleasemanager (0.6)
+    GitVersion.CommandLine (3.6.5)
+    JetBrains.ReSharper.CommandLineTools (2016.3.20161223.160402)
     OpenCover (4.6.519)
     ReSharperReports (0.3)
     xunit.runner.console (2.1)
