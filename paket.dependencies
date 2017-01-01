@@ -35,13 +35,9 @@ group addins
     nuget Cake.ReSharperReports
     nuget Cake.DocFx
     nuget Cake.FileHelpers
-
-group addins
-    framework: >= net45
-    source https://www.myget.org/F/mathphysics/api/v2
     nuget Cake.Paket
 
 group modules
     framework: >= net45
-    source https://www.myget.org/F/mathphysics/api/v2
+    source https://nuget.org/api/v2
     nuget Cake.Paket.Module

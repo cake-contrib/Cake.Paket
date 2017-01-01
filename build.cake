@@ -8,11 +8,11 @@ To Create a release
     $ git checkout -b release-1.0.0
     $ .\build.ps1 -Target Pre-Release -Configuration Release -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md'"
     $ git add .
-    $ git commit -m '[skip ci] Release setup.'
+    $ git commit -m 'Release setup.'
     $ git push origin head
     * Merge into master
     $ git checkout master
-    $ git tag -s -a 'v1.0.0' -m 'versoin 1.0.0' (enter passphrase)
+    $ git tag -s -a 'v1.0.0' -m 'version 1.0.0' (enter passphrase)
     $ git push origin v1.0.0
     $ .\build.ps1 -Target Release-On-Github -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md' -gitHubUserName='username' -gitHubPassword='password'"
     $ .\build.ps1 -Target Paket-Push -ScriptArgs "-nuGetUrl='https://www.nuget.org/api/v2/package' -nuGetApiKey='00000000-0000-0000-0000-000000000000'"
