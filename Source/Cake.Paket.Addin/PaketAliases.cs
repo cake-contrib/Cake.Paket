@@ -5,6 +5,7 @@ using Cake.Core.Annotations;
 using Cake.Core.IO;
 using Cake.Paket.Addin.Pack;
 using Cake.Paket.Addin.Push;
+using Cake.Paket.Addin.Restore;
 using Cake.Paket.Addin.Tooling;
 
 namespace Cake.Paket.Addin
@@ -21,6 +22,33 @@ namespace Cake.Paket.Addin
     [CakeAliasCategory("Paket")]
     public static class PaketAliases
     {
+        /// <summary>
+        /// Runs paket restore for the given settings.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="settings">The settings.</param>
+        [CakeMethodAlias]
+        [CakeAliasCategory("Restore")]
+        [CakeNamespaceImport("Cake.Paket.Addin.Restore")]
+        public static void PaketRestore(this ICakeContext context, PaketRestoreSettings settings)
+        {
+            var resolver = GetPaketToolResolver(context);
+            var restorer = new PaketRestorer(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, resolver);
+            restorer.Restore(settings);
+        }
+
+        /// <summary>
+        /// Runs paket restore for the given settings.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        [CakeMethodAlias]
+        [CakeAliasCategory("Restore")]
+        [CakeNamespaceImport("Cake.Paket.Addin.Restore")]
+        public static void PaketRestore(this ICakeContext context)
+        {
+            PaketRestore(context, new PaketRestoreSettings());
+        }
+
         /// <summary>
         /// Creates NuGet package(s) in the output directory for the given settings.
         /// </summary>

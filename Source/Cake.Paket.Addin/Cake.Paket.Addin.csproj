@@ -56,6 +56,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Push\PaketPusher.cs" />
     <Compile Include="Push\PaketPushSettings.cs" />
+    <Compile Include="Restore\PaketRestoreSettings.cs" />
+    <Compile Include="Restore\PaketRestorer.cs" />
     <Compile Include="Tooling\IPaketToolResolver.cs" />
     <Compile Include="Tooling\PaketTool.cs" />
     <Compile Include="Tooling\PaketToolResolver.cs" />

@@ -85,7 +85,7 @@ namespace Cake.Paket.Addin.Tooling
 
         private DirectoryPath Try2GetDotPaket(out bool wasResolved)
         {
-            // Try to get if from the enviornment variable
+            // Try to get it from the enviornment variable
             var paketExeEnviornmentVariable = Environment.GetEnvironmentVariable("PAKET");
             if (!string.IsNullOrWhiteSpace(paketExeEnviornmentVariable))
             {
@@ -93,7 +93,7 @@ namespace Cake.Paket.Addin.Tooling
                 return new DirectoryPath(paketExeEnviornmentVariable);
             }
 
-            // Try to get from arguments passed into Cake.exe --paket "..."
+            // Try to get it from arguments passed into Cake.exe --paket "..."
             if (Arguments.HasArgument("paket"))
             {
                 var paketExeArgument = Arguments.GetArgument("paket");

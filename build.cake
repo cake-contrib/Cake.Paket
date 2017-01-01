@@ -4,7 +4,7 @@ For local builds
 
 To Create a release
 
- Create the BODY of the release notes (say releasenotes.md). Note, don't put this in the repository.
+    * Create the BODY of the release notes (say releasenotes.md). Note, don't put this in the repository.
     $ git checkout -b release-1.0.0
     $ .\build.ps1 -Target Pre-Release -Configuration Release -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md'"
     $ git add .

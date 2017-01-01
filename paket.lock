@@ -13,7 +13,7 @@ NUGET
       Cake.Core (>= 0.7)
     Cake.ReSharperReports (0.5.1)
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket (1.0.1-build33)
+    Cake.Paket (1.1.0-build1)
 
 GROUP cake.paket
 FRAMEWORK: >= NET45
@@ -47,7 +47,7 @@ GROUP modules
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.myget.org/F/mathphysics/api/v2
-    Cake.Paket.Module (1.0.1-build33)
+    Cake.Paket.Module (1.1.0-build1)
 
 GROUP tools
 FRAMEWORK: >= NET45
