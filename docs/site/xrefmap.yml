@@ -244,6 +244,24 @@ references:
   commentId: Overload:Cake.Paket.Addin.PaketAliases.PaketPush
   fullName: Cake.Paket.Addin.PaketAliases.PaketPush
   nameWithType: PaketAliases.PaketPush
+- uid: Cake.Paket.Addin.PaketAliases.PaketRestore(Cake.Core.ICakeContext)
+  name: PaketRestore(ICakeContext)
+  href: api/Cake.Paket.Addin.PaketAliases.html#Cake_Paket_Addin_PaketAliases_PaketRestore_Cake_Core_ICakeContext_
+  commentId: M:Cake.Paket.Addin.PaketAliases.PaketRestore(Cake.Core.ICakeContext)
+  fullName: Cake.Paket.Addin.PaketAliases.PaketRestore(Cake.Core.ICakeContext)
+  nameWithType: PaketAliases.PaketRestore(ICakeContext)
+- uid: Cake.Paket.Addin.PaketAliases.PaketRestore(Cake.Core.ICakeContext,Cake.Paket.Addin.Restore.PaketRestoreSettings)
+  name: PaketRestore(ICakeContext, PaketRestoreSettings)
+  href: api/Cake.Paket.Addin.PaketAliases.html#Cake_Paket_Addin_PaketAliases_PaketRestore_Cake_Core_ICakeContext_Cake_Paket_Addin_Restore_PaketRestoreSettings_
+  commentId: M:Cake.Paket.Addin.PaketAliases.PaketRestore(Cake.Core.ICakeContext,Cake.Paket.Addin.Restore.PaketRestoreSettings)
+  fullName: Cake.Paket.Addin.PaketAliases.PaketRestore(Cake.Core.ICakeContext, Cake.Paket.Addin.Restore.PaketRestoreSettings)
+  nameWithType: PaketAliases.PaketRestore(ICakeContext, PaketRestoreSettings)
+- uid: Cake.Paket.Addin.PaketAliases.PaketRestore*
+  name: PaketRestore
+  href: api/Cake.Paket.Addin.PaketAliases.html#Cake_Paket_Addin_PaketAliases_PaketRestore_
+  commentId: Overload:Cake.Paket.Addin.PaketAliases.PaketRestore
+  fullName: Cake.Paket.Addin.PaketAliases.PaketRestore
+  nameWithType: PaketAliases.PaketRestore
 - uid: Cake.Paket.Addin.Push
   name: Cake.Paket.Addin.Push
   href: api/Cake.Paket.Addin.Push.html
@@ -292,6 +310,114 @@ references:
   commentId: Overload:Cake.Paket.Addin.Push.PaketPushSettings.Url
   fullName: Cake.Paket.Addin.Push.PaketPushSettings.Url
   nameWithType: PaketPushSettings.Url
+- uid: Cake.Paket.Addin.Restore
+  name: Cake.Paket.Addin.Restore
+  href: api/Cake.Paket.Addin.Restore.html
+  commentId: N:Cake.Paket.Addin.Restore
+  fullName: Cake.Paket.Addin.Restore
+  nameWithType: Cake.Paket.Addin.Restore
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings
+  name: PaketRestoreSettings
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html
+  commentId: T:Cake.Paket.Addin.Restore.PaketRestoreSettings
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings
+  nameWithType: PaketRestoreSettings
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.FailOnChecks
+  name: FailOnChecks
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_FailOnChecks
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.FailOnChecks
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.FailOnChecks
+  nameWithType: PaketRestoreSettings.FailOnChecks
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.FailOnChecks*
+  name: FailOnChecks
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_FailOnChecks_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.FailOnChecks
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.FailOnChecks
+  nameWithType: PaketRestoreSettings.FailOnChecks
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.Force
+  name: Force
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_Force
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.Force
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.Force
+  nameWithType: PaketRestoreSettings.Force
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.Force*
+  name: Force
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_Force_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.Force
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.Force
+  nameWithType: PaketRestoreSettings.Force
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.Group
+  name: Group
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_Group
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.Group
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.Group
+  nameWithType: PaketRestoreSettings.Group
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.Group*
+  name: Group
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_Group_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.Group
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.Group
+  nameWithType: PaketRestoreSettings.Group
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.IgnoreChecks
+  name: IgnoreChecks
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_IgnoreChecks
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.IgnoreChecks
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.IgnoreChecks
+  nameWithType: PaketRestoreSettings.IgnoreChecks
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.IgnoreChecks*
+  name: IgnoreChecks
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_IgnoreChecks_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.IgnoreChecks
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.IgnoreChecks
+  nameWithType: PaketRestoreSettings.IgnoreChecks
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.OnlyReferenced
+  name: OnlyReferenced
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_OnlyReferenced
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.OnlyReferenced
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.OnlyReferenced
+  nameWithType: PaketRestoreSettings.OnlyReferenced
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.OnlyReferenced*
+  name: OnlyReferenced
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_OnlyReferenced_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.OnlyReferenced
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.OnlyReferenced
+  nameWithType: PaketRestoreSettings.OnlyReferenced
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.Project
+  name: Project
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_Project
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.Project
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.Project
+  nameWithType: PaketRestoreSettings.Project
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.Project*
+  name: Project
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_Project_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.Project
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.Project
+  nameWithType: PaketRestoreSettings.Project
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.ReferencesFiles
+  name: ReferencesFiles
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_ReferencesFiles
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.ReferencesFiles
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.ReferencesFiles
+  nameWithType: PaketRestoreSettings.ReferencesFiles
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.ReferencesFiles*
+  name: ReferencesFiles
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_ReferencesFiles_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.ReferencesFiles
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.ReferencesFiles
+  nameWithType: PaketRestoreSettings.ReferencesFiles
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.TouchAffectedRefs
+  name: TouchAffectedRefs
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_TouchAffectedRefs
+  commentId: P:Cake.Paket.Addin.Restore.PaketRestoreSettings.TouchAffectedRefs
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.TouchAffectedRefs
+  nameWithType: PaketRestoreSettings.TouchAffectedRefs
+- uid: Cake.Paket.Addin.Restore.PaketRestoreSettings.TouchAffectedRefs*
+  name: TouchAffectedRefs
+  href: api/Cake.Paket.Addin.Restore.PaketRestoreSettings.html#Cake_Paket_Addin_Restore_PaketRestoreSettings_TouchAffectedRefs_
+  commentId: Overload:Cake.Paket.Addin.Restore.PaketRestoreSettings.TouchAffectedRefs
+  fullName: Cake.Paket.Addin.Restore.PaketRestoreSettings.TouchAffectedRefs
+  nameWithType: PaketRestoreSettings.TouchAffectedRefs
 - uid: Cake.Paket.Module
   name: Cake.Paket.Module
   href: api/Cake.Paket.Module.html
