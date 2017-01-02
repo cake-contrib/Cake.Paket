@@ -113,9 +113,9 @@ If you want to use paket instead of nuget in the preprocessor directive e.g. `#t
 
 ## Cake.Paket (addin)
 
-If you need to use paket commands such as *restore*, *pack*, and *push* then add `#addin paket:?package=Cake.Paket` if your using the *Cake.Paket.Module*, otherwise add ` #nuget:?package=Cake.Paket`.
+If you need to use paket commands such as *restore*, *pack*, and *push* then add `#addin paket:?package=Cake.Paket` if your using the *Cake.Paket.Module*, otherwise add ` #addin nuget:?package=Cake.Paket` and `#tool nuget:?package=Paket`.
 
-Note that if you use ` #nuget:?package=Cake.Paket` you can use the cake teams default bootstrappers [build.ps1](https://github.com/cake-build/example/blob/master/build.ps1) and/or [build.sh](https://github.com/cake-build/example/blob/master/build.sh).
+Note that if you use ` #addin nuget:?package=Cake.Paket` you can use the cake teams default bootstrappers [build.ps1](https://github.com/cake-build/example/blob/master/build.ps1) and/or [build.sh](https://github.com/cake-build/example/blob/master/build.sh).
 
 # Example Project
 

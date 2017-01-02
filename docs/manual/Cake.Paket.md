@@ -2,7 +2,7 @@
 
 In order to use paket commands such as `paket.exe restore ...`, `paket.exe pack ...` and/or `paket.exe push ...` you need to include `#addin paket:?package=Cake.Paket`, where we assumed you are using the [Cake.Paket.Module](Cake.Paket.Module.md). If your not, then
 
-* Include `#addin nuget:?package=Cake.Paket`.
+* Include `#addin nuget:?package=Cake.Paket` and `#tool nuget:?package=Paket`.
 * Use the cake teams default bootstrappers [build.ps1](https://github.com/cake-build/example/blob/master/build.ps1) and/or [build.sh](https://github.com/cake-build/example/blob/master/build.sh).
 * **SKIP** the next secion **Basic Usage**.
 

@@ -69,7 +69,7 @@
               
 <p>In order to use paket commands such as <code>paket.exe restore ...</code>, <code>paket.exe pack ...</code> and/or <code>paket.exe push ...</code> you need to include <code>#addin paket:?package=Cake.Paket</code>, where we assumed you are using the <a href="Cake.Paket.Module.html">Cake.Paket.Module</a>. If your not, then</p>
 <ul>
-<li>Include <code>#addin nuget:?package=Cake.Paket</code>.</li>
+<li>Include <code>#addin nuget:?package=Cake.Paket</code> and <code>#tool nuget:?package=Paket</code>.</li>
 <li>Use the cake teams default bootstrappers <a href="https://github.com/cake-build/example/blob/master/build.ps1">build.ps1</a> and/or <a href="https://github.com/cake-build/example/blob/master/build.sh">build.sh</a>.</li>
 <li><strong>SKIP</strong> the next secion <strong>Basic Usage</strong>.</li>
 </ul>
@@ -143,7 +143,7 @@ Task(&quot;Paket-Push&quot;).IsDependentOn(&quot;Paket-Pack&quot;).Does(() =&gt;
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/larzw/Cake.Paket/blob/master/docs/manual/Cake.Paket.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/larzw/Cake.Paket/blob/develop/docs/manual/Cake.Paket.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
