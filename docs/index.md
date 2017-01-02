@@ -14,7 +14,7 @@ The master branch status can be found on [GitHub](https://github.com/larzw/Cake.
 
 Allows the use of paket preprocessor directives and commands
 
-```cake
+```csharp
 // tools
 #tool paket:?package=NUnit.ConsoleRunner&group=main
 #tool paket:?package=JetBrains.ReSharper.CommandLineTools
@@ -24,6 +24,12 @@ Allows the use of paket preprocessor directives and commands
 #addin paket:?package=Cake.Paket
 
 ...
+
+// Restores packages
+Task("Paket-Restore").Does(() =>
+{
+    PaketRestore();
+});
 
 // Creates a nuget package
 Task("Paket-Pack").Does(() =>
@@ -42,7 +48,7 @@ Task("Paket-Push").IsDependentOn("Paket-Pack").Does(() =>
 
 instead of using NuGet
 
-```cake
+```csharp
 // tools
 #tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
 #tool nuget:?package=JetBrains.ReSharper.CommandLineTools
@@ -51,6 +57,12 @@ instead of using NuGet
 #addin nuget:?package=Cake.Figlet&version=0.3.1
 
 ...
+
+// Restores packages
+Task("NuGet-Restore").Does(() =>
+{
+    NuGetRestore("solution.snl");
+});
 
 // Creates a nuget pacakge
 Task("NuGet-Pack").Does(() =>
@@ -61,7 +73,7 @@ Task("NuGet-Pack").Does(() =>
 // Push a nuget pacakge
 Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
 {
-    NuGetPush("./NuGet/foo.nupkg", new NuGetPushSettings{ ApiKey = "00000000-0000-0000-0000-000000000000" });
+    NuGetPush("./NuGet/foo.nupkg", new NuGetPushSettings{ApiKey = "00000000-0000-0000-0000-000000000000"});
 });
 
 ...
@@ -69,23 +81,31 @@ Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
 
 # Quick Start
 
+## Cake.Paket.Module
+
+If you want to use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar` then you need to use *Cake.Paket.Module*.
+
 * Get the modified [cake bootstrapper script](https://larzw.github.io/Cake.Paket/site/manual/CakeBootstrapper.html), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
-```bash
+```
     group tools
         source https://nuget.org/api/v2
         nuget Cake
 ```
 
 * Create a *modules* dependency group and add *Cake.Paket.Module* to your *paket.dependencies* file
-```bash
+```
     group modules
         source https://nuget.org/api/v2
         nuget Cake.Paket.Module
 ```
 
-* Now you can use use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar`.
+* Now you can use paket instead of nuget in the preprocessor directive.
 
-* If you need to use paket commands such as *pack* and *push* then add `#addin paket:?package=Cake.Paket` to your cake script.
+## Cake.Paket (addin)
+
+If you need to use paket commands such as *restore*, *pack*, and *push* then add `#addin paket:?package=Cake.Paket` if your using the *Cake.Paket.Module*, otherwise add ` #nuget:?package=Cake.Paket`.
+
+Note that if you use ` #nuget:?package=Cake.Paket` you can use the cake teams default bootstrappers [build.ps1](https://github.com/cake-build/example/blob/master/build.ps1) and/or [build.sh](https://github.com/cake-build/example/blob/master/build.sh).
 
 # Example Project
 

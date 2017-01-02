@@ -1,5 +1,7 @@
 # Cake Bootstrapper Script
 
+If your using *Cake.Paket.Module* you should use the bootstrappers we discuss below. If your **only** using the addin *Cake.Paket* and NOT using the module, then you can use the cake teams default bootstrappers [build.ps1](https://github.com/cake-build/example/blob/master/build.ps1) and/or [build.sh](https://github.com/cake-build/example/blob/master/build.sh).
+
 The Cake team states
 
 > "The Cake Bootstrapper that you can get directly from cakebuild.net is intended as a starting point for what can be done. It is the developer's discretion to extend the bootstrapper to solve for your own requirements."

@@ -69,43 +69,19 @@
               
 <p>This section is for maintainers of the project.</p>
 <h2 id="creating-a-release">Creating a Release</h2>
-<p>Assuming the code has been merged into master and all CI builds are fine. To create a release:</p>
 <ul>
-<li>Update the <em>paket.template</em> file for the projects <em>Cake.Paket.Module</em> and <em>Cake.Paket.Addin</em><ul>
-<li>copyright</li>
-<li>releaseNotes</li>
-</ul>
-</li>
-<li>Update the Source/SolutionInfo.cs<ul>
-<li>AssemblyVersion</li>
-<li>AssemblyFileVersion</li>
-<li>AssemblyCopyright</li>
-</ul>
-</li>
-<li>Create a signed git tag<ul>
-<li>git tag -s v1.0.0 -m &#39;version 1.0.0&#39; (then enter your passphrase)</li>
-</ul>
-</li>
-<li>Edit the github release notes and include any contributors.<ul>
-<li>Title = Cake.Paket v1.0.0</li>
-<li>Body = Release notes from <em>paket.template</em>.</li>
-</ul>
-</li>
-<li>Create the NuGet packages<ul>
-<li><code>.\build.ps1 -Target Paket-Pack -ScriptArgs &quot;-buildVersion=&#39;1.0.0&#39;&quot;</code></li>
-</ul>
-</li>
-<li>Upload the NuGet packages to nuget.org.</li>
-<li>Generate the website<ul>
-<li><code>.\build.ps1 -Target Generate-Docs</code></li>
-</ul>
-</li>
-<li>Update <em>build.cake</em><ul>
-<li>buildVersion</li>
-</ul>
-</li>
-<li>Create a commit that include [skip ci] and push the changes to github.</li>
-<li>Update Cake.Paket.Example to use the new module and addin.</li>
+<li>Create the <strong>body</strong> of the release notes (say <em>releasenotes.md</em>). Note, don&#39;t add this to the repository.</li>
+<li><code>git checkout -b release-1.0.0</code></li>
+<li><code>.\build.ps1 -Target Pre-Release -Configuration Release -ScriptArgs &quot;-releaseNotes=&#39;C:\Users\larz\Desktop\releasenotes.md&#39;&quot;</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m &#39;Release setup&#39;</code></li>
+<li><code>git push origin head</code></li>
+<li>Merge into master</li>
+<li><code>git checkout master</code></li>
+<li><code>git tag -s -a &#39;v1.0.0&#39; -m &#39;version 1.0.0&#39;</code> (enter passphrase)</li>
+<li><code>git push origin v1.0.0</code></li>
+<li><code>.\build.ps1 -Target Release-On-Github -ScriptArgs &quot;-releaseNotes=&#39;C:\Users\larz\Desktop\releasenotes.md&#39; -gitHubUserName=&#39;username&#39; -gitHubPassword=&#39;password&#39;&quot;</code></li>
+<li><code>.\build.ps1 -Target Paket-Push -ScriptArgs &quot;-nuGetUrl=&#39;https://www.nuget.org/api/v2/package&#39; -nuGetApiKey=&#39;00000000-0000-0000-0000-000000000000&#39;&quot;</code></li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <p>You may need to empty your cache and hard reload to see your content changes!</p>
@@ -134,7 +110,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/larzw/Cake.Paket/blob/release-1.2.0/docs/manual/Maintainers.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/larzw/Cake.Paket/blob/master/docs/manual/Maintainers.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -69,7 +69,7 @@
 <p>The master branch status can be found on <a href="https://github.com/larzw/Cake.Paket">GitHub</a>.</p>
 <h1 id="features">Features</h1>
 <p>Allows the use of paket preprocessor directives and commands</p>
-<pre><code class="lang-cake">// tools
+<pre><code class="lang-csharp">// tools
 #tool paket:?package=NUnit.ConsoleRunner&amp;group=main
 #tool paket:?package=JetBrains.ReSharper.CommandLineTools
 
@@ -78,6 +78,12 @@
 #addin paket:?package=Cake.Paket
 
 ...
+
+// Restores packages
+Task(&quot;Paket-Restore&quot;).Does(() =&gt;
+{
+    PaketRestore();
+});
 
 // Creates a nuget package
 Task(&quot;Paket-Pack&quot;).Does(() =&gt;
@@ -93,7 +99,7 @@ Task(&quot;Paket-Push&quot;).IsDependentOn(&quot;Paket-Pack&quot;).Does(() =&gt;
 
 ...
 </code></pre><p>instead of using NuGet</p>
-<pre><code class="lang-cake">// tools
+<pre><code class="lang-csharp">// tools
 #tool nuget:?package=NUnit.ConsoleRunner&amp;version=3.4.0
 #tool nuget:?package=JetBrains.ReSharper.CommandLineTools
 
@@ -101,6 +107,12 @@ Task(&quot;Paket-Push&quot;).IsDependentOn(&quot;Paket-Pack&quot;).Does(() =&gt;
 #addin nuget:?package=Cake.Figlet&amp;version=0.3.1
 
 ...
+
+// Restores packages
+Task(&quot;NuGet-Restore&quot;).Does(() =&gt;
+{
+    NuGetRestore(&quot;solution.snl&quot;);
+});
 
 // Creates a nuget pacakge
 Task(&quot;NuGet-Pack&quot;).Does(() =&gt;
@@ -111,27 +123,30 @@ Task(&quot;NuGet-Pack&quot;).Does(() =&gt;
 // Push a nuget pacakge
 Task(&quot;NuGet-Push&quot;).IsDependentOn(&quot;Paket-Pack&quot;).Does(() =&gt;
 {
-    NuGetPush(&quot;./NuGet/foo.nupkg&quot;, new NuGetPushSettings{ ApiKey = &quot;00000000-0000-0000-0000-000000000000&quot; });
+    NuGetPush(&quot;./NuGet/foo.nupkg&quot;, new NuGetPushSettings{ApiKey = &quot;00000000-0000-0000-0000-000000000000&quot;});
 });
 
 ...
 </code></pre><h1 id="quick-start">Quick Start</h1>
+<h2 id="cakepaketmodule">Cake.Paket.Module</h2>
+<p>If you want to use paket instead of nuget in the preprocessor directive e.g. <code>#tool paket:?package=Cake.Foo</code> and/or  <code>#addin paket:?package=Cake.Bar</code> then you need to use <em>Cake.Paket.Module</em>.</p>
 <ul>
 <li><p>Get the modified <a href="https://larzw.github.io/Cake.Paket/site/manual/CakeBootstrapper.html">cake bootstrapper script</a>, then create a <em>tools</em> dependency group and add <em>Cake</em> to your <em>paket.dependencies</em> file</p>
-<pre><code class="lang-bash">  group tools
+<pre><code>  group tools
       source https://nuget.org/api/v2
       nuget Cake
 </code></pre></li>
 <li><p>Create a <em>modules</em> dependency group and add <em>Cake.Paket.Module</em> to your <em>paket.dependencies</em> file</p>
-<pre><code class="lang-bash">  group modules
+<pre><code>  group modules
       source https://nuget.org/api/v2
       nuget Cake.Paket.Module
 </code></pre></li>
-<li><p>Now you can use use paket instead of nuget in the preprocessor directive e.g. <code>#tool paket:?package=Cake.Foo</code> and/or  <code>#addin paket:?package=Cake.Bar</code>.</p>
-</li>
-<li><p>If you need to use paket commands such as <em>pack</em> and <em>push</em> then add <code>#addin paket:?package=Cake.Paket</code> to your cake script.</p>
+<li><p>Now you can use paket instead of nuget in the preprocessor directive.</p>
 </li>
 </ul>
+<h2 id="cakepaket-addin">Cake.Paket (addin)</h2>
+<p>If you need to use paket commands such as <em>restore</em>, <em>pack</em>, and <em>push</em> then add <code>#addin paket:?package=Cake.Paket</code> if your using the <em>Cake.Paket.Module</em>, otherwise add <code>#nuget:?package=Cake.Paket</code>.</p>
+<p>Note that if you use <code>#nuget:?package=Cake.Paket</code> you can use the cake teams default bootstrappers <a href="https://github.com/cake-build/example/blob/master/build.ps1">build.ps1</a> and/or <a href="https://github.com/cake-build/example/blob/master/build.sh">build.sh</a>.</p>
 <h1 id="example-project">Example Project</h1>
 <p><a href="https://github.com/larzw/Cake.Paket.Example">Cake.Paket.Example</a> is an example project which uses Paket with Cake. Additionally, the project for the paket addin and module is another good resource, see <a href="https://github.com/larzw/Cake.Paket/blob/master/build.cake">build.cake</a>.</p>
 <h1 id="contributing">Contributing</h1>
@@ -147,7 +162,7 @@ Task(&quot;NuGet-Push&quot;).IsDependentOn(&quot;Paket-Pack&quot;).Does(() =&gt;
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/larzw/Cake.Paket/blob/release-1.2.0/docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/larzw/Cake.Paket/blob/master/docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -4,29 +4,18 @@ This section is for maintainers of the project.
 
 ## Creating a Release
 
-Assuming the code has been merged into master and all CI builds are fine. To create a release:
-
-* Update the *paket.template* file for the projects *Cake.Paket.Module* and *Cake.Paket.Addin*
-    * copyright
-    * releaseNotes
-* Update the Source/SolutionInfo.cs
-    * AssemblyVersion
-    * AssemblyFileVersion
-    * AssemblyCopyright
-* Create a signed git tag
-    * git tag -s v1.0.0 -m 'version 1.0.0' (then enter your passphrase)
-* Edit the github release notes and include any contributors.
-    * Title = Cake.Paket v1.0.0
-    * Body = Release notes from *paket.template*.
-* Create the NuGet packages
-    * `.\build.ps1 -Target Paket-Pack -ScriptArgs "-buildVersion='1.0.0'"`
-* Upload the NuGet packages to nuget.org.
-* Generate the website
-    * `.\build.ps1 -Target Generate-Docs`
-* Update *build.cake*
-    * buildVersion
-* Create a commit that include [skip ci] and push the changes to github.
-* Update Cake.Paket.Example to use the new module and addin.
+* Create the **body** of the release notes (say *releasenotes.md*). Note, don't add this to the repository.
+* `git checkout -b release-1.0.0`
+* `.\build.ps1 -Target Pre-Release -Configuration Release -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md'"`
+* `git add .`
+* `git commit -m 'Release setup'`
+* `git push origin head`
+* Merge into master
+* `git checkout master`
+* `git tag -s -a 'v1.0.0' -m 'version 1.0.0'` (enter passphrase)
+* `git push origin v1.0.0`
+* `.\build.ps1 -Target Release-On-Github -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md' -gitHubUserName='username' -gitHubPassword='password'"`
+* `.\build.ps1 -Target Paket-Push -ScriptArgs "-nuGetUrl='https://www.nuget.org/api/v2/package' -nuGetApiKey='00000000-0000-0000-0000-000000000000'"`
 
 ## Documentation
 

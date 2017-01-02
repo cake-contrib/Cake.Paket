@@ -1,23 +1,3 @@
-/*
-For local builds
- $ .\build.ps1 -Configuration Debug
-
-To Create a release
-
-    * Create the BODY of the release notes (say releasenotes.md). Note, don't put this in the repository.
-    $ git checkout -b release-1.0.0
-    $ .\build.ps1 -Target Pre-Release -Configuration Release -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md'"
-    $ git add .
-    $ git commit -m 'Release setup.'
-    $ git push origin head
-    * Merge into master
-    $ git checkout master
-    $ git tag -s -a 'v1.0.0' -m 'version 1.0.0' (enter passphrase)
-    $ git push origin v1.0.0
-    $ .\build.ps1 -Target Release-On-Github -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md' -gitHubUserName='username' -gitHubPassword='password'"
-    $ .\build.ps1 -Target Paket-Push -ScriptArgs "-nuGetUrl='https://www.nuget.org/api/v2/package' -nuGetApiKey='00000000-0000-0000-0000-000000000000'"
-*/
-
 // Tools
 #tool paket:?package=xunit.runner.console
 #tool paket:?package=OpenCover

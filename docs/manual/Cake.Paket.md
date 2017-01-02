@@ -1,6 +1,10 @@
 # Cake.Paket
 
-In order to use paket commands such as `paket.exe pack ...` and/or `paket.exe push ...` you need to include `#addin paket:?package=Cake.Paket`, where we assumed you are using the [Cake.Paket.Module](Cake.Paket.Module.md).
+In order to use paket commands such as `paket.exe restore ...`, `paket.exe pack ...` and/or `paket.exe push ...` you need to include `#addin paket:?package=Cake.Paket`, where we assumed you are using the [Cake.Paket.Module](Cake.Paket.Module.md). If your not, then
+
+* Include `#addin nuget:?package=Cake.Paket`.
+* Use the cake teams default bootstrappers [build.ps1](https://github.com/cake-build/example/blob/master/build.ps1) and/or [build.sh](https://github.com/cake-build/example/blob/master/build.sh).
+* **SKIP** the next secion **Basic Usage**.
 
 # Basic Usage
 
@@ -75,3 +79,7 @@ By default cake looks in the *.\\.paket* directory for *paket.bootstrapper.exe*.
 1. Set the ToolPath in the cake script e.g. `new PaketPackSettings{ToolPath=".\.paket"}`
 2. Add the flag *--paket* to *Cake.exe* e.g. `Cake.exe --paket=.\.paket`
 3. Set the PAKET enviornment variable before calling *Cake.exe* e.g. `ENV:PAKET=.\.paket` or `export PAKET=./.paket`
+
+## API
+
+API documentation for *Cake.Paket* can be found on [Cake's](http://cakebuild.net/) website. Alternativly, see our API documentation by clicking on the API hyperlink in the navigation bar at the top of the page.
