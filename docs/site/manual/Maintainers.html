@@ -74,7 +74,7 @@
 <li><code>git checkout -b release-1.0.0</code></li>
 <li><code>.\build.ps1 -Target Pre-Release -Configuration Release -ScriptArgs &quot;-releaseNotes=&#39;C:\Users\larz\Desktop\releasenotes.md&#39;&quot;</code></li>
 <li><code>git add .</code></li>
-<li><code>git commit -m &#39;Release setup&#39;</code></li>
+<li><code>git commit -m &#39;Release: v1.0.0&#39;</code></li>
 <li><code>git push origin head</code></li>
 <li>Merge into master</li>
 <li><code>git checkout master</code></li>
@@ -82,6 +82,7 @@
 <li><code>git push origin v1.0.0</code></li>
 <li><code>.\build.ps1 -Target Release-On-Github -ScriptArgs &quot;-releaseNotes=&#39;C:\Users\larz\Desktop\releasenotes.md&#39; -gitHubUserName=&#39;username&#39; -gitHubPassword=&#39;password&#39;&quot;</code></li>
 <li><code>.\build.ps1 -Target Paket-Push -ScriptArgs &quot;-nuGetUrl=&#39;https://www.nuget.org/api/v2/package&#39; -nuGetApiKey=&#39;00000000-0000-0000-0000-000000000000&#39;&quot;</code></li>
+<li>Update Cake.Paket.Example with the new version.</li>
 </ul>
 <h2 id="documentation">Documentation</h2>
 <p>You may need to empty your cache and hard reload to see your content changes!</p>
@@ -110,7 +111,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/larzw/Cake.Paket/blob/develop/docs/manual/Maintainers.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/larzw/Cake.Paket/blob/testing-develop/docs/manual/Maintainers.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

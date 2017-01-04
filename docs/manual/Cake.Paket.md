@@ -82,4 +82,4 @@ By default cake looks in the *.\\.paket* directory for *paket.bootstrapper.exe*.
 
 ## API
 
-API documentation for *Cake.Paket* can be found on [Cake's](http://cakebuild.net/) website. Alternativly, see our API documentation by clicking on the API hyperlink in the navigation bar at the top of the page.
+API documentation for *Cake.Paket* can be found on [Cake's](http://cakebuild.net/) website. Alternativly, see our [API](https://larzw.github.io/Cake.Paket/site/api/Cake.Paket.Addin.PaketAliases.html) documentation.

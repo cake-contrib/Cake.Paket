@@ -61,7 +61,7 @@ instead of using NuGet
 // Restores packages
 Task("NuGet-Restore").Does(() =>
 {
-    NuGetRestore("solution.snl");
+    NuGetRestore("solution.sln");
 });
 
 // Creates a nuget pacakge

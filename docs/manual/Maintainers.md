@@ -8,7 +8,7 @@ This section is for maintainers of the project.
 * `git checkout -b release-1.0.0`
 * `.\build.ps1 -Target Pre-Release -Configuration Release -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md'"`
 * `git add .`
-* `git commit -m 'Release setup'`
+* `git commit -m 'Release: v1.0.0'`
 * `git push origin head`
 * Merge into master
 * `git checkout master`
@@ -16,6 +16,7 @@ This section is for maintainers of the project.
 * `git push origin v1.0.0`
 * `.\build.ps1 -Target Release-On-Github -ScriptArgs "-releaseNotes='C:\Users\larz\Desktop\releasenotes.md' -gitHubUserName='username' -gitHubPassword='password'"`
 * `.\build.ps1 -Target Paket-Push -ScriptArgs "-nuGetUrl='https://www.nuget.org/api/v2/package' -nuGetApiKey='00000000-0000-0000-0000-000000000000'"`
+* Update Cake.Paket.Example with the new version.
 
 ## Documentation
 

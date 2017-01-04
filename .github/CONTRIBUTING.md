@@ -9,14 +9,14 @@ Assuming you have a GitHub account and have forked the repository, you'll need t
 in PowerShell run
 ```
 $ .\build.ps1 -Configuration Debug # Local builds
-$ .\build.ps1 -Configuration Debug -Target AppVeyor # AppVeyor builds
+$ .\build.ps1 -Target AppVeyor -Configuration Debug # AppVeyor builds
 ```
 
 and in bash run
 
 ```
-$ ./build.sh -configuration Debug # Local builds
-$ ./build.sh -configuration Debug -Target TravisCI # TravisCI builds
+$ ./build.sh --configuration Debug # Local builds
+$ ./build.sh --target TravisCI --configuration Debug # TravisCI builds
 ```
 
 Please see the *build.ps1* and/or *build.sh* scripts for more detail.

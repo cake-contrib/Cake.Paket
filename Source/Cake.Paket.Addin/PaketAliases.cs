@@ -11,44 +11,27 @@ using Cake.Paket.Addin.Tooling;
 namespace Cake.Paket.Addin
 {
     /// <summary>
-    /// <para> Contains functionality for working with <see href="https://fsprojects.github.io/Paket/">paket</see>.</para>
+    /// <para>Contains functionality for working with <see href="https://fsprojects.github.io/Paket/">paket</see>.</para>
     /// <para>
-    /// In order to use the commands for this addin, you will need to include the following in your build.cake file:
+    /// In order to use the commands for this addin, you will need to include the following in your
+    /// build.cake file:
     /// <code>
     /// #addin paket:?package=Cake.Paket
+    /// </code>
+    /// </para>
+    /// <para>
+    /// This assumes your using the <see
+    /// href="https://www.nuget.org/packages/Cake.Paket.Module/">Cake.Paket.Module</see>. If you'd
+    /// rather use NuGet then include:
+    /// <code>
+    /// #addin nuget:?package=Cake.Paket
+    /// #tool nuget:?package=Paket
     /// </code>
     /// </para>
     /// </summary>
     [CakeAliasCategory("Paket")]
     public static class PaketAliases
     {
-        /// <summary>
-        /// Runs paket restore for the given settings.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="settings">The settings.</param>
-        [CakeMethodAlias]
-        [CakeAliasCategory("Restore")]
-        [CakeNamespaceImport("Cake.Paket.Addin.Restore")]
-        public static void PaketRestore(this ICakeContext context, PaketRestoreSettings settings)
-        {
-            var resolver = GetPaketToolResolver(context);
-            var restorer = new PaketRestorer(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, resolver);
-            restorer.Restore(settings);
-        }
-
-        /// <summary>
-        /// Runs paket restore for the given settings.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        [CakeMethodAlias]
-        [CakeAliasCategory("Restore")]
-        [CakeNamespaceImport("Cake.Paket.Addin.Restore")]
-        public static void PaketRestore(this ICakeContext context)
-        {
-            PaketRestore(context, new PaketRestoreSettings());
-        }
-
         /// <summary>
         /// Creates NuGet package(s) in the output directory for the given settings.
         /// </summary>
@@ -110,6 +93,33 @@ namespace Cake.Paket.Addin
             {
                 packer.Push(filePath, settings);
             }
+        }
+
+        /// <summary>
+        /// Runs paket restore for the given settings.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="settings">The settings.</param>
+        [CakeMethodAlias]
+        [CakeAliasCategory("Restore")]
+        [CakeNamespaceImport("Cake.Paket.Addin.Restore")]
+        public static void PaketRestore(this ICakeContext context, PaketRestoreSettings settings)
+        {
+            var resolver = GetPaketToolResolver(context);
+            var restorer = new PaketRestorer(context.FileSystem, context.Environment, context.Tools, context.ProcessRunner, resolver);
+            restorer.Restore(settings);
+        }
+
+        /// <summary>
+        /// Runs paket restore for the given settings.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        [CakeMethodAlias]
+        [CakeAliasCategory("Restore")]
+        [CakeNamespaceImport("Cake.Paket.Addin.Restore")]
+        public static void PaketRestore(this ICakeContext context)
+        {
+            PaketRestore(context, new PaketRestoreSettings());
         }
 
         private static PaketToolResolver GetPaketToolResolver(ICakeContext context)
