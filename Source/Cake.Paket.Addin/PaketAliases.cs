@@ -111,7 +111,7 @@ namespace Cake.Paket.Addin
         }
 
         /// <summary>
-        /// Runs paket restore for the given settings.
+        /// Runs paket restore.
         /// </summary>
         /// <param name="context">The context.</param>
         [CakeMethodAlias]

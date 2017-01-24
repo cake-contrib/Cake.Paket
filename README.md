@@ -123,7 +123,8 @@ Note that if you use ` #addin nuget:?package=Cake.Paket` you can use the cake te
 
 # Documentation
 
-See the [Documentation](https://larzw.github.io/Cake.Paket/site) for additional help.
+- See the [Documentation](https://larzw.github.io/Cake.Paket/site) for additional help.
+- Cake's sites contains documentation of the addin at [Cake.Paket](http://cakebuild.net/dsl/paket/).
 
 # Contributing
 
