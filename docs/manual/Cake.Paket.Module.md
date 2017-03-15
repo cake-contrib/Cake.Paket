@@ -109,7 +109,7 @@ and our cake script can be simplified to
 
 ```csharp
 // Use paket instead of nuget in the preprocessor directive.
-// You dont't need to specify the paket group in the URI.
+// You don't need to specify the paket group in the URI.
 #tool paket:?package=NUnit.ConsoleRunner
 #tool paket:?package=JetBrains.ReSharper.CommandLineTools
 #addin paket:?package=Cake.Figlet
