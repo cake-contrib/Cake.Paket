@@ -4,7 +4,9 @@ GROUP addins
 FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.17)
+    Cake.Codecov (0.1)
+      Cake.Core (>= 0.19.1)
+    Cake.Core (0.19.5)
     Cake.Coveralls (0.2.1)
     Cake.DocFx (0.1.6)
     Cake.Figlet (0.3.1)
@@ -53,6 +55,7 @@ FRAMEWORK: >= NET45
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake (0.17)
+    Codecov (1.0)
     coveralls.net (0.7)
     docfx.console (2.9.3)
     gitreleasemanager (0.6)

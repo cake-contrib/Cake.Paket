@@ -7,6 +7,7 @@
 #tool paket:?package=docfx.console
 #tool paket:?package=GitVersion.CommandLine
 #tool paket:?package=gitreleasemanager
+#tool paket:?package=Codecov
 
 // Addins
 #addin paket:?package=Cake.ReSharperReports
@@ -15,6 +16,7 @@
 #addin paket:?package=Cake.Paket
 #addin paket:?package=Cake.DocFx
 #addin paket:?package=Cake.FileHelpers
+#addin paket:?package=Cake.Codecov
 
 // Arguments
 var target = Argument("target", "Default");
