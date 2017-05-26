@@ -26,6 +26,7 @@ group tools
     nuget docfx.console
     nuget GitVersion.CommandLine
     nuget gitreleasemanager
+	nuget Codecov
 
 group addins
     framework: >= net45
@@ -36,6 +37,7 @@ group addins
     nuget Cake.DocFx
     nuget Cake.FileHelpers
     nuget Cake.Paket
+	nuget Cake.Codecov
 
 group modules
     framework: >= net45
