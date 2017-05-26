@@ -8,6 +8,7 @@ namespace Cake.Paket.Addin.Push
 {
     /// <summary>
     /// The paket pusher.
+	/// More stuff
     /// </summary>
     internal sealed class PaketPusher : PaketTool<PaketPushSettings>
     {
