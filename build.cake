@@ -108,7 +108,7 @@ Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
 
 Task("Publish-Coverage-Report").IsDependentOn("Run-Unit-Tests").Does(() =>
 {	
-	if(IsRunningOnAppVeyor())
+	if(AppVeyor.IsRunningOnAppVeyor)
     {
 		Codecov(coverage);
     }
