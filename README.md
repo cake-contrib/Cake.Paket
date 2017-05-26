@@ -13,7 +13,7 @@ Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakeb
 |AppVeyor|Windows Build|[![AppVeyor branch](https://img.shields.io/appveyor/ci/larzw/Cake-Paket/master.svg)](https://ci.appveyor.com/project/larzw/cake-paket/branch/master)|
 |Travis CI|Linux, OS X|[![Travis branch](https://img.shields.io/travis/larzw/Cake.Paket/master.svg)](https://travis-ci.org/larzw/Cake.Paket)|
 |DocFX|Documentation|[![Documentation Status](https://img.shields.io/badge/DocFX-latest-green.svg)](https://larzw.github.io/Cake.Paket/site)|
-|Coverall|Code Coverage|[![Coveralls branch](https://img.shields.io/coveralls/larzw/Cake.Paket/master.svg)](https://coveralls.io/github/larzw/Cake.Paket?branch=master)|
+|Codecov|Code Coverage|[![Codecov branch](https://img.shields.io/codecov/c/github/larzw/Cake.Paket/master.svg)](http://codecov.io/github/larzw/Cake.Paket?branch=master)|
 |NuGet|Stable *Cake.Paket* addin package|[![NuGet](https://img.shields.io/nuget/v/Cake.Paket.svg)](https://www.nuget.org/packages/Cake.Paket/)
 |NuGet|Stable *Cake.Paket.Module* module package|[![NuGet](https://img.shields.io/nuget/v/Cake.Paket.Module.svg)](https://www.nuget.org/packages/Cake.Paket.Module/)
 |MyGet|Pre-Release *Cake.Paket* addin package|[![MyGet Pre Release](https://img.shields.io/myget/mathphysics/vpre/Cake.Paket.svg)](https://www.myget.org/feed/mathphysics/package/nuget/Cake.Paket)
