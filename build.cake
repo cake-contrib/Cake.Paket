@@ -107,10 +107,10 @@ Task("Run-Unit-Tests").IsDependentOn("Build").Does(() =>
 });
 
 Task("Publish-Coverage-Report").IsDependentOn("Run-Unit-Tests").Does(() =>
-{
-    if(HasEnvironmentVariable("COVERALLS_REPO_TOKEN"))
+{	
+	if(IsRunningOnAppVeyor())
     {
-        CoverallsNet(coverage, CoverallsNetReportType.OpenCover, new CoverallsNetSettings{RepoToken = EnvironmentVariable("COVERALLS_REPO_TOKEN")});
+		Codecov(coverage);
     }
 });
 
