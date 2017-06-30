@@ -7,7 +7,7 @@ description Paket addin for Cake.
 summary Cake addin that extends Cake with ability to use paket.
 licenseUrl https://github.com/larzw/Cake.Paket/blob/master/LICENSE
 projectUrl https://github.com/larzw/Cake.Paket
-iconUrl https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/images/CakePaketLogo.png
+iconUrl https://raw.githubusercontent.com/cake-contrib/graphics/a5cf0f881c390650144b2243ae551d5b9f836196/png/cake-contrib-medium.png
 requireLicenseAcceptance false
 copyright Copyright (c) 2017 Larz White
 tags Cake Script Build paket

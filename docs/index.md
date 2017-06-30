@@ -1,7 +1,3 @@
-<p align="center">
-  <a href="https://github.com/larzw/Cake.Paket"><img src="https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/images/CakePaketLogo.png" height="100em" /></a>
-</p>
-
 # Cake.Paket
 
 Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakebuild.net/) via a Cake addin and module.

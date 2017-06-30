@@ -1,7 +1,3 @@
-<p align="center">
-  <a href="https://github.com/larzw/Cake.Paket"><img src="https://raw.githubusercontent.com/larzw/Cake.Paket/master/docs/images/CakePaketLogo.png" height="100em" /></a>
-</p>
-
 # Cake.Paket
 
 Adds [Paket](https://fsprojects.github.io/Paket/) support to [Cake](http://cakebuild.net/) via a Cake addin and module.
@@ -133,11 +129,3 @@ All types of contributions are welcome! Please see the [Contributing](https://gi
 # Questions
 
 Feel free to open an [issue](https://github.com/larzw/Cake.Paket/issues) or **@larzw** me via [Gitter](https://gitter.im/cake-contrib/Lobby)
-
-# Icon
-
-- Copyright (c) .NET Foundation and Contributors - Cake icon
-- Copyright (c) 2015 Alexander Groß, Steffen Forkmann - Paket icon
-- Paket icon used with the consent of Paket Team
-    - [Asked for permission](https://gitter.im/fsprojects/Paket?at=5824803cdf5ae966453ce2a6)
-    - [Permission given](https://gitter.im/fsprojects/Paket?at=58248c0b31c5cbef43dca66e)
