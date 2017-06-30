@@ -1,4 +1,5 @@
-# Cake.Paket.Module
+Title: Cake.Paket.Module
+---
 
 In order to use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar`, you need to include *Cake.Paket.Module* and ensure cake can find the module.
 

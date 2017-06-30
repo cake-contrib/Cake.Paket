@@ -1,4 +1,5 @@
-# Maintainers
+Title: Maintainers
+---
 
 This section is for maintainers of the project.
 

@@ -1,11 +1,5 @@
 image: Visual Studio 2015
 
-environment:
-  MYGET_API_TOKEN:
-    secure: AkVuHBLFZISuM+BYCrFiUEroGNmUViLXBoty1WD5+UbD+oo3/n0W6ojRshtLY3sD
-
-shallow_clone: false
-
 build: off
 test: off
 deploy: off
@@ -16,4 +10,4 @@ branches:
     - /^testing.*/
 
 build_script:
-- ps: .\build.ps1 -Target AppVeyor -Configuration Debug
+- ps: .\build.ps1 -Target AppVeyor

@@ -8,7 +8,7 @@
 ##########################################################################
 
 # Define default arguments.
-SCRIPT="build.cake"
+SCRIPT="setup.cake"
 TARGET="Default"
 CONFIGURATION="Release"
 VERBOSITY="verbose"

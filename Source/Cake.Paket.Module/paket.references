@@ -1,3 +1,4 @@
 group cake.paket
 	Cake.Core
 	StyleCop.Analyzers
+    Cake.NuGet

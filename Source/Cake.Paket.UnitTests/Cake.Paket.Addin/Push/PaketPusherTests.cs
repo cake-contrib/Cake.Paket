@@ -11,27 +11,86 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
     /// </summary>
     public sealed class PaketPusherTests
     {
-        /// <summary>
-        /// Should throw if settings are null.
-        /// </summary>
         [Fact]
-        public void ShouldThrowIfSettingsAreNull()
+        public void Should_Find_Paket_Executable_If_Tool_Path_Not_Provided()
         {
             // Given
-            var fixture = new PaketPusherFixture { Settings = null };
+            var fixture = new PaketPusherFixture();
 
             // When
-            Action result = () => fixture.Run();
+            var result = fixture.Run();
 
             // Then
-            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
+            result.Path.FullPath.Should().Be("/Working/tools/paket.exe");
         }
 
-        /// <summary>
-        /// Should throw if Paket executable was not found.
-        /// </summary>
         [Fact]
-        public void ShouldThrowIfPaketExecutableWasNotFound()
+        public void Should_Set_ApiKey()
+        {
+            // Given
+            var fixture = new PaketPusherFixture { Settings = { ApiKey = "00000000-0000-0000-0000-000000000000" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" apikey ""00000000-0000-0000-0000-000000000000""");
+        }
+
+        [Fact]
+        public void Should_Set_EndPoint()
+        {
+            // Given
+            var fixture = new PaketPusherFixture { Settings = { EndPoint = "/api/v3/package" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" endpoint ""/api/v3/package""");
+        }
+
+        [Fact]
+        public void Should_Set_File()
+        {
+            // Given
+            var fixture = new PaketPusherFixture();
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg""");
+        }
+
+        [Fact]
+        public void Should_Set_Url()
+        {
+            // Given
+            var fixture = new PaketPusherFixture { Settings = { Url = "www.google.com" } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" url ""www.google.com""");
+        }
+
+        [Fact]
+        public void Should_Set_WorkingDirectory()
+        {
+            // Given
+            var fixture = new PaketPusherFixture();
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Process.WorkingDirectory.FullPath.Should().Be("/Working");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Paket_Executable_Was_Not_Found()
         {
             // Given
             var fixture = new PaketPusherFixture();
@@ -44,81 +103,8 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
             result.ShouldThrow<CakeException>().WithMessage("Could not locate paket.exe.");
         }
 
-        /// <summary>
-        /// Should use paket.exe from tool path if provided.
-        /// </summary>
-        /// <param name="toolPath">The tool path.</param>
-        /// <param name="expected">The expected result.</param>
-        [Theory]
-        [InlineData("/bin/tools/.paket/paket.exe", "/bin/tools/.paket/paket.exe")]
-        [InlineData("./.paket/paket.exe", "/Working/.paket/paket.exe")]
-        public void ShouldUsePaketExecutableFromToolPathIfProvided(string toolPath, string expected)
-        {
-            // Given
-            var fixture = new PaketPusherFixture { Settings = { ToolPath = toolPath } };
-            fixture.GivenSettingsToolPathExist();
-
-            // When
-            var result = fixture.Run();
-
-            // Then
-            result.Path.FullPath.Should().Be(expected);
-        }
-
-        /// <summary>
-        /// Should find paket.exe if tool path not provided.
-        /// </summary>
         [Fact]
-        public void ShouldFindPaketExecutableIfToolPathNotProvided()
-        {
-            // Given
-            var fixture = new PaketPusherFixture();
-
-            // When
-            var result = fixture.Run();
-
-            // Then
-            result.Path.FullPath.Should().Be("/Working/tools/paket.exe");
-        }
-
-        /// <summary>
-        /// Should set working directory.
-        /// </summary>
-        [Fact]
-        public void ShouldSetWorkingDirectory()
-        {
-            // Given
-            var fixture = new PaketPusherFixture();
-
-            // When
-            var result = fixture.Run();
-
-            // Then
-            result.Process.WorkingDirectory.FullPath.Should().Be("/Working");
-        }
-
-        /// <summary>
-        /// Should throw if process was not started.
-        /// </summary>
-        [Fact]
-        public void ShouldThrowIfProcessWasNotStarted()
-        {
-            // Given
-            var fixture = new PaketPusherFixture();
-            fixture.GivenProcessCannotStart();
-
-            // When
-            Action result = () => fixture.Run();
-
-            // Then
-            result.ShouldThrow<CakeException>().WithMessage("Paket: Process was not started.");
-        }
-
-        /// <summary>
-        /// Should throw if process has a non-zero exit code.
-        /// </summary>
-        [Fact]
-        public void ShouldThrowIfProcessHasANonZeroExitCode()
+        public void Should_Throw_If_Process_Has_A_Non_Zero_ExitCode()
         {
             // Given
             var fixture = new PaketPusherFixture();
@@ -131,68 +117,47 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
             result.ShouldThrow<CakeException>().WithMessage("Paket: Process returned an error (exit code 1).");
         }
 
-        /// <summary>
-        /// Should set file.
-        /// </summary>
         [Fact]
-        public void ShouldSetFile()
+        public void Should_Throw_If_Process_Was_Not_Started()
         {
             // Given
             var fixture = new PaketPusherFixture();
+            fixture.GivenProcessCannotStart();
 
             // When
-            var result = fixture.Run();
+            Action result = () => fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg""");
+            result.ShouldThrow<CakeException>().WithMessage("Paket: Process was not started.");
         }
 
-        /// <summary>
-        /// Should set url.
-        /// </summary>
         [Fact]
-        public void ShouldSetUrl()
+        public void Should_Throw_If_Settings_Are_Null()
         {
             // Given
-            var fixture = new PaketPusherFixture { Settings = { Url = "www.google.com" } };
+            var fixture = new PaketPusherFixture { Settings = null };
 
             // When
-            var result = fixture.Run();
+            Action result = () => fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" url ""www.google.com""");
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
         }
 
-        /// <summary>
-        /// Should set apikey.
-        /// </summary>
-        [Fact]
-        public void ShouldSetApiKey()
+        [Theory]
+        [InlineData("/bin/tools/.paket/paket.exe", "/bin/tools/.paket/paket.exe")]
+        [InlineData("./.paket/paket.exe", "/Working/.paket/paket.exe")]
+        public void Should_Use_Paket_Executable_From_Tool_Path_If_Provided(string toolPath, string expected)
         {
             // Given
-            var fixture = new PaketPusherFixture { Settings = { ApiKey = "00000000-0000-0000-0000-000000000000" } };
+            var fixture = new PaketPusherFixture { Settings = { ToolPath = toolPath } };
+            fixture.GivenSettingsToolPathExist();
 
             // When
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" apikey ""00000000-0000-0000-0000-000000000000""");
-        }
-
-        /// <summary>
-        /// Should set endpoint.
-        /// </summary>
-        [Fact]
-        public void ShouldSetEndPoint()
-        {
-            // Given
-            var fixture = new PaketPusherFixture { Settings = { EndPoint = "/api/v3/package" } };
-
-            // When
-            var result = fixture.Run();
-
-            // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" endpoint ""/api/v3/package""");
+            result.Path.FullPath.Should().Be(expected);
         }
     }
 }

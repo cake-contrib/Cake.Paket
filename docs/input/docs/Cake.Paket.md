@@ -1,4 +1,5 @@
-# Cake.Paket
+Title: Cake.Paket
+---
 
 In order to use paket commands such as `paket.exe restore ...`, `paket.exe pack ...` and/or `paket.exe push ...` you need to include `#addin paket:?package=Cake.Paket`, where we assumed you are using the [Cake.Paket.Module](Cake.Paket.Module.md). If your not, then
 

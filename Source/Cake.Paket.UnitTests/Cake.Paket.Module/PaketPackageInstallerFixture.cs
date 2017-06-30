@@ -29,14 +29,19 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
         }
 
         /// <summary>
+        /// Gets or sets the content resolver.
+        /// </summary>
+        internal INuGetContentResolver ContentResolver { get; set; }
+
+        /// <summary>
         /// Gets or sets the enviornment.
         /// </summary>
         internal ICakeEnvironment Environment { get; set; }
 
         /// <summary>
-        /// Gets or sets the content resolver.
+        /// Gets or sets the install path.
         /// </summary>
-        internal INuGetContentResolver ContentResolver { get; set; }
+        internal DirectoryPath InstallPath { get; set; }
 
         /// <summary>
         /// Gets or sets the log.
@@ -54,9 +59,16 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
         internal PackageType PackageType { get; set; }
 
         /// <summary>
-        /// Gets or sets the install path.
+        /// Determines whether this instance can install the specified resource.
         /// </summary>
-        internal DirectoryPath InstallPath { get; set; }
+        /// <returns>
+        /// <c>true</c> if this installer can install the specified resource; otherwise <c>false</c>.
+        /// </returns>
+        internal bool CanInstall()
+        {
+            var installer = CreateInstaller();
+            return installer.CanInstall(Package, PackageType);
+        }
 
         /// <summary>
         /// Create the installer.
@@ -75,16 +87,6 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
         {
             var installer = CreateInstaller();
             return installer.Install(Package, PackageType, InstallPath);
-        }
-
-        /// <summary>
-        /// Determines whether this instance can install the specified resource.
-        /// </summary>
-        /// <returns><c>true</c> if this installer can install the specified resource; otherwise <c>false</c>.</returns>
-        internal bool CanInstall()
-        {
-            var installer = CreateInstaller();
-            return installer.CanInstall(Package, PackageType);
         }
     }
 }

@@ -42,9 +42,9 @@ namespace Cake.Paket.Module
             Log = log;
         }
 
-        private ICakeEnvironment Environment { get; }
-
         private INuGetContentResolver ContentResolver { get; }
+
+        private ICakeEnvironment Environment { get; }
 
         private ICakeLog Log { get; }
 
@@ -53,17 +53,14 @@ namespace Cake.Paket.Module
         /// </summary>
         /// <param name="package">The package reference.</param>
         /// <param name="type">The package type.</param>
-        /// <returns><c>true</c> if this installer can install the specified resource; otherwise <c>false</c>.</returns>
+        /// <returns>
+        /// <c>true</c> if this installer can install the specified resource; otherwise <c>false</c>.
+        /// </returns>
         public bool CanInstall(PackageReference package, PackageType type)
         {
             if (package == null)
             {
                 throw new ArgumentNullException(nameof(package));
-            }
-
-            if (package.Scheme.Equals("nuget", StringComparison.OrdinalIgnoreCase))
-            {
-                throw new CakeException("nuget is not supported. Perhaps you need to include the schema?");
             }
 
             return package.Scheme.Equals("paket", StringComparison.OrdinalIgnoreCase);
@@ -108,6 +105,11 @@ namespace Cake.Paket.Module
             return result;
         }
 
+        private static DirectoryPath GetFromDefaultPath(DirectoryPath path, PackageReference package)
+        {
+            return path.Combine(package.Package);
+        }
+
         private static DirectoryPath GetFromGroup(DirectoryPath path, PackageReference package)
         {
             const string mainGroup = "main";
@@ -144,11 +146,6 @@ namespace Cake.Paket.Module
             }
 
             return null;
-        }
-
-        private static DirectoryPath GetFromDefaultPath(DirectoryPath path, PackageReference package)
-        {
-            return path.Combine(package.Package);
         }
 
         private DirectoryPath GetPackagePath(DirectoryPath path, PackageReference package)

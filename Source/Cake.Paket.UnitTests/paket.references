@@ -1,5 +1,5 @@
 group cake.paket
-    StyleCop.Analyzers
+    Cake.NuGet
 
 group cake.paket.unittests
 	xunit

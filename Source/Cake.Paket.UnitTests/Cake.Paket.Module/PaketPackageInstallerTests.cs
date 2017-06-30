@@ -10,75 +10,8 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
     /// </summary>
     public sealed class PaketPackageInstallerTests
     {
-        /// <summary>
-        /// Should throw if environment is null.
-        /// </summary>
         [Fact]
-        public void ShouldThrowIfEnvironmentIsNull()
-        {
-            // Given
-            var fixture = new PaketPackageInstallerFixture { Environment = null };
-
-            // When
-            Action result = () => fixture.CreateInstaller();
-
-            // Then
-            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("environment");
-        }
-
-        /// <summary>
-        /// Should throw if content resolver is null.
-        /// </summary>
-        [Fact]
-        public void ShouldThrowIfContentResolverIsNull()
-        {
-            // Given
-            var fixture = new PaketPackageInstallerFixture { ContentResolver = null };
-
-            // When
-            Action result = () => fixture.CreateInstaller();
-
-            // Then
-            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("contentResolver");
-        }
-
-        /// <summary>
-        /// Should throw if log is null.
-        /// </summary>
-        [Fact]
-        public void ShouldThrowIfLogIsNull()
-        {
-            // Given
-            var fixture = new PaketPackageInstallerFixture { Log = null };
-
-            // When
-            Action result = () => fixture.CreateInstaller();
-
-            // Then
-            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("log");
-        }
-
-        /// <summary>
-        /// Should throw if Uri is null for CanInstall.
-        /// </summary>
-        [Fact]
-        public void ShouldThrowIfUriIsNullForCanInstall()
-        {
-            // Given
-            var fixture = new PaketPackageInstallerFixture { Package = null };
-
-            // When
-            Action result = () => fixture.CanInstall();
-
-            // Then
-            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("package");
-        }
-
-        /// <summary>
-        /// Should be able to install if schema is correct.
-        /// </summary>
-        [Fact]
-        public void ShouldBeAbleToInstallIfSchemeIsCorrect()
+        public void Should_Be_Able_To_Install_If_Scheme_Is_Correct()
         {
             // Given
             var fixture = new PaketPackageInstallerFixture { Package = new PackageReference("paket:?package=Cake.Core") };
@@ -90,11 +23,8 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.Should().BeTrue();
         }
 
-        /// <summary>
-        /// Should not be able to install if schema is incorrect.
-        /// </summary>
         [Fact]
-        public void ShouldNotBeAbleToInstallIfSchemeIsIncorrect()
+        public void Should_Not_Be_Able_To_Install_If_Scheme_Is_Incorrect()
         {
             // Given
             var fixture = new PaketPackageInstallerFixture { Package = new PackageReference("homebrew:?package=Cake.Core") };
@@ -106,27 +36,34 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
             result.Should().BeFalse();
         }
 
-        /// <summary>
-        /// Should throw is url is null for Install.
-        /// </summary>
         [Fact]
-        public void ShouldThrowIfUriIsNullForInstall()
+        public void Should_Throw_If_ContentResolver_Is_Null()
         {
             // Given
-            var fixture = new PaketPackageInstallerFixture { Package = null };
+            var fixture = new PaketPackageInstallerFixture { ContentResolver = null };
 
             // When
-            Action result = () => fixture.Install();
+            Action result = () => fixture.CreateInstaller();
 
             // Then
-            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("package");
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("contentResolver");
         }
 
-        /// <summary>
-        /// Should throw if install path is null.
-        /// </summary>
         [Fact]
-        public void ShouldThrowIfInstallPathIsNull()
+        public void Should_Throw_If_Environment_Is_Null()
+        {
+            // Given
+            var fixture = new PaketPackageInstallerFixture { Environment = null };
+
+            // When
+            Action result = () => fixture.CreateInstaller();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("environment");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Install_Path_Is_Null()
         {
             // Given
             var fixture = new PaketPackageInstallerFixture { InstallPath = null };
@@ -136,6 +73,45 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Module
 
             // Then
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("path");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Log_Is_Null()
+        {
+            // Given
+            var fixture = new PaketPackageInstallerFixture { Log = null };
+
+            // When
+            Action result = () => fixture.CreateInstaller();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("log");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Uri_Is_Null_For_CanInstall()
+        {
+            // Given
+            var fixture = new PaketPackageInstallerFixture { Package = null };
+
+            // When
+            Action result = () => fixture.CanInstall();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("package");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Uri_Is_Null_For_Install()
+        {
+            // Given
+            var fixture = new PaketPackageInstallerFixture { Package = null };
+
+            // When
+            Action result = () => fixture.Install();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("package");
         }
     }
 }
