@@ -3,6 +3,7 @@ id Cake.Paket
 title Cake.Paket
 authors Larz White
 owners Larz White
+releaseNotes See Github release.
 description Paket addin for Cake.
 summary Cake addin that extends Cake with ability to use paket.
 licenseUrl https://github.com/larzw/Cake.Paket/blob/master/LICENSE
