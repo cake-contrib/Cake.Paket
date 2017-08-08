@@ -84,7 +84,7 @@ Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
 
 If you want to use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar` then you need to use *Cake.Paket.Module*.
 
-* Get the modified [cake bootstrapper script](https://larzw.github.io/Cake.Paket/site/manual/CakeBootstrapper.html), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
+* Get the modified [cake bootstrapper script](https://github.com/larzw/Cake.Paket/wiki/Cake-Bootstrapper-Script), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
 ```
     group tools
         source https://nuget.org/api/v2
