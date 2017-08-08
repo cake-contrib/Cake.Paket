@@ -108,11 +108,11 @@ Note that if you use ` #addin nuget:?package=Cake.Paket` you can use the cake te
 
 # Example Project
 
-[Cake.Paket.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake. Additionally, the project for the paket addin and module is another good resource, see [build.cake](https://github.com/larzw/Cake.Paket/blob/master/build.cake).
+[Cake.Paket.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake. Additionally, the project for the paket addin and module is another good resource, see [build.cake](https://github.com/larzw/Cake.Paket/blob/master/setup.cake).
 
 # Documentation
 
-- See the [Documentation](https://larzw.github.io/Cake.Paket/docs) for additional help.
+- See the [Documentation](https://github.com/larzw/Cake.Paket/wiki) for additional help.
 - Cake's sites contains documentation of the addin at [Cake.Paket](http://cakebuild.net/dsl/paket/).
 
 # Contributing
