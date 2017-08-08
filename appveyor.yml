@@ -4,10 +4,5 @@ build: off
 test: off
 deploy: off
 
-branches:
-  only:
-    - master
-    - /^testing.*/
-
 build_script:
-- ps: .\build.ps1 -Target AppVeyor
+- ps: .\build.ps1

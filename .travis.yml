@@ -1,17 +1,9 @@
 language: csharp
 sudo: false
 
-git:
-  depth: 1000000
-
 os:
   - linux
   - osx
 
-branches:
-  only:
-  - master
-  - /^testing.*/
-
 script:
-  - ./build.sh --target TravisCI --configuration Debug
+  - ./build.sh

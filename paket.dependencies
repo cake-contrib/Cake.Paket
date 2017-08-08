@@ -1,44 +1,43 @@
 group cake.paket
-    framework: >= net45
+    framework: net45
     source https://nuget.org/api/v2
-    nuget Cake.Core = 0.20
-    nuget StyleCop.Analyzers = 1.0
-    nuget Cake.NuGet = 0.20.0
+    nuget StyleCop.Analyzers ~> 1.0.0
+
+group cake.paket.addin
+    framework: net45
+    source https://nuget.org/api/v2
+    nuget Cake.Core ~> 0.17.0
+
+group cake.paket.Module
+    framework: net45
+    source https://nuget.org/api/v2
+    nuget Cake.NuGet ~> 0.20.0
 
 group cake.paket.unittests
-    framework: >= net45
+    framework: net45
     source https://nuget.org/api/v2
-    nuget FluentAssertions = 4.18
-    nuget xunit = 2.2.0-beta4-build3444
-    nuget xunit.abstractions = 2.0.1
-    nuget Cake.Core = 0.20
-    nuget Cake.Testing = 0.20
-    nuget NSubstitute = 1.10
+    nuget FluentAssertions
+    nuget NSubstitute
+    nuget xunit
+    nuget Cake.Testing ~> 0.21.1
+    nuget Cake.Nuget ~> 0.21.1
 
 group tools
-    framework: >= net45
+    framework: net45
     source https://nuget.org/api/v2
-    nuget Cake = 0.20
-    nuget OpenCover = 4.6.519
-    nuget xunit.runner.console = 2.1
-    nuget JetBrains.ReSharper.CommandLineTools = 2016.3.20161223.160402
-    nuget ReSharperReports = 0.3
-    nuget GitVersion.CommandLine = 3.6.5
-    nuget gitreleasemanager = 0.6
-	nuget Codecov = 1.0
-    nuget Wyam
+    nuget Cake ~> 0.21.1
+    nuget OpenCover
+    nuget xunit.runner.console
+	nuget Codecov
 
 group addins
-    framework: >= net45
+    framework: net45
     source https://nuget.org/api/v2
     nuget Cake.Figlet
-    nuget Cake.ReSharperReports
-    nuget Cake.FileHelpers
     nuget Cake.Paket
 	nuget Cake.Codecov
-    nuget Cake.Wyam
 
 group modules
-    framework: >= net45
+    framework: net45
     source https://nuget.org/api/v2
-    nuget Cake.Paket.Module = 1.2
+    nuget Cake.Paket.Module

@@ -1,64 +1,67 @@
 
 
 GROUP addins
-RESTRICTION: >= net45
+RESTRICTION: == net45
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake.Codecov (0.2.1)
       Cake.Core (>= 0.17)
-    Cake.Core (0.20)
+    Cake.Core (0.21.1)
     Cake.Figlet (0.4)
       Cake.Core (>= 0.17)
-    Cake.FileHelpers (1.0.4)
-    Cake.Paket (1.2.2)
-    Cake.ReSharperReports (0.6)
-    Cake.Wyam (0.18.4)
+    Cake.Paket (1.2.3)
 
 GROUP cake.paket
-RESTRICTION: >= net45
+RESTRICTION: == net45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.20)
+    StyleCop.Analyzers (1.0.2)
+
+GROUP cake.paket.addin
+RESTRICTION: == net45
+NUGET
+  remote: https://www.nuget.org/api/v2
+    Cake.Core (0.17)
+
+GROUP cake.paket.Module
+RESTRICTION: == net45
+NUGET
+  remote: https://www.nuget.org/api/v2
+    Cake.Core (0.21.1)
     Cake.NuGet (0.20)
       Cake.Core (>= 0.20)
       NuGet.Core (>= 2.14)
     Microsoft.Web.Xdt (2.1.1)
     NuGet.Core (2.14)
       Microsoft.Web.Xdt (>= 2.1)
-    StyleCop.Analyzers (1.0)
 
 GROUP cake.paket.unittests
-RESTRICTION: >= net45
+RESTRICTION: == net45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.20)
-    Cake.Testing (0.20)
-      Cake.Core (>= 0.20)
-    FluentAssertions (4.18)
+    Cake.Core (0.21.1)
+    Cake.NuGet (0.21.1)
+      Cake.Core (>= 0.21.1)
+      NuGet.Core (>= 2.14)
+    Cake.Testing (0.21.1)
+      Cake.Core (>= 0.21.1)
+    FluentAssertions (4.19.3)
     Microsoft.NETCore.Platforms (1.1)
-    Microsoft.Win32.Primitives (4.3) - restriction: && (>= net45) (>= netstandard1.3)
+    Microsoft.Web.Xdt (2.1.1)
     NETStandard.Library (1.6.1)
       Microsoft.NETCore.Platforms (>= 1.1)
-      Microsoft.Win32.Primitives (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.AppContext (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
       System.Collections (>= 4.3)
       System.Collections.Concurrent (>= 4.3)
-      System.Console (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
       System.Diagnostics.Debug (>= 4.3)
       System.Diagnostics.Tools (>= 4.3)
       System.Diagnostics.Tracing (>= 4.3)
       System.Globalization (>= 4.3)
-      System.Globalization.Calendars (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
       System.IO (>= 4.3)
       System.IO.Compression (>= 4.3)
-      System.IO.Compression.ZipFile (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.IO.FileSystem (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.IO.FileSystem.Primitives (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
       System.Linq (>= 4.3)
       System.Linq.Expressions (>= 4.3)
       System.Net.Http (>= 4.3)
       System.Net.Primitives (>= 4.3)
-      System.Net.Sockets (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
       System.ObjectModel (>= 4.3)
       System.Reflection (>= 4.3)
       System.Reflection.Extensions (>= 4.3)
@@ -66,44 +69,31 @@ NUGET
       System.Resources.ResourceManager (>= 4.3)
       System.Runtime (>= 4.3)
       System.Runtime.Extensions (>= 4.3)
-      System.Runtime.Handles (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
       System.Runtime.InteropServices (>= 4.3)
       System.Runtime.InteropServices.RuntimeInformation (>= 4.3)
       System.Runtime.Numerics (>= 4.3)
-      System.Security.Cryptography.Algorithms (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.Security.Cryptography.Encoding (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.Security.Cryptography.Primitives (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.Security.Cryptography.X509Certificates (>= 4.3) - restriction: && (>= net45) (>= netstandard1.3)
       System.Text.Encoding (>= 4.3)
       System.Text.Encoding.Extensions (>= 4.3)
       System.Text.RegularExpressions (>= 4.3)
       System.Threading (>= 4.3)
       System.Threading.Tasks (>= 4.3)
-      System.Threading.Timer (>= 4.3) - restriction: && (>= net45) (>= netstandard1.2)
       System.Xml.ReaderWriter (>= 4.3)
       System.Xml.XDocument (>= 4.3)
-    NSubstitute (1.10)
-    System.AppContext (4.3) - restriction: && (>= net45) (>= netstandard1.3)
+    NSubstitute (2.0.3)
+    NuGet.Core (2.14)
+      Microsoft.Web.Xdt (>= 2.1)
     System.Collections (4.3)
     System.Collections.Concurrent (4.3)
-    System.Console (4.3) - restriction: && (>= net45) (>= netstandard1.3)
     System.Diagnostics.Debug (4.3)
     System.Diagnostics.Tools (4.3)
     System.Diagnostics.Tracing (4.3)
     System.Globalization (4.3)
-    System.Globalization.Calendars (4.3) - restriction: && (>= net45) (>= netstandard1.3)
     System.IO (4.3)
     System.IO.Compression (4.3)
-    System.IO.Compression.ZipFile (4.3) - restriction: && (>= net45) (>= netstandard1.3)
-    System.IO.FileSystem (4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.IO.FileSystem.Primitives (>= 4.3) - restriction: || (&& (>= net45) (>= netstandard1.3)) (>= net46)
-    System.IO.FileSystem.Primitives (4.3) - restriction: || (&& (>= net45) (>= netstandard1.3)) (>= net46)
     System.Linq (4.3)
     System.Linq.Expressions (4.3)
     System.Net.Http (4.3.2)
-      System.Security.Cryptography.X509Certificates (>= 4.3) - restriction: || (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.6)) (>= net46)
     System.Net.Primitives (4.3)
-    System.Net.Sockets (4.3) - restriction: && (>= net45) (>= netstandard1.3)
     System.ObjectModel (4.3)
     System.Reflection (4.3)
     System.Reflection.Extensions (4.3)
@@ -111,61 +101,43 @@ NUGET
     System.Resources.ResourceManager (4.3)
     System.Runtime (4.3)
     System.Runtime.Extensions (4.3)
-    System.Runtime.Handles (4.3) - restriction: && (>= net45) (>= netstandard1.3)
     System.Runtime.InteropServices (4.3)
-      System.Runtime (>= 4.3) - restriction: || (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netcore1.1)) (>= net462)
     System.Runtime.InteropServices.RuntimeInformation (4.3)
     System.Runtime.Numerics (4.3)
-    System.Security.Cryptography.Algorithms (4.3) - restriction: && (>= net45) (>= netstandard1.3)
-      System.IO (>= 4.3) - restriction: || (&& (>= net45) (< net46) (>= netstandard1.3) (< netstandard1.4)) (&& (>= net45) (< net46) (>= netstandard1.4)) (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.6)) (>= net463)
-      System.Runtime (>= 4.3) - restriction: || (&& (>= net45) (< net46) (>= netstandard1.3) (< netstandard1.4)) (&& (>= net45) (< net46) (>= netstandard1.4)) (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.6)) (>= net463)
-      System.Security.Cryptography.Encoding (>= 4.3) - restriction: || (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.6)) (>= net463)
-      System.Security.Cryptography.Primitives (>= 4.3) - restriction: || (&& (>= net45) (< net46) (>= netstandard1.3) (< netstandard1.4)) (&& (>= net45) (< net46) (>= netstandard1.4)) (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.6)) (&& (>= net46) (< netstandard1.4)) (>= net461)
-    System.Security.Cryptography.Encoding (4.3) - restriction: || (&& (>= net45) (>= netstandard1.3)) (&& (>= net45) (>= netstandard1.6)) (>= net463)
-    System.Security.Cryptography.Primitives (4.3) - restriction: || (&& (>= net45) (< net46) (>= netstandard1.4)) (&& (>= net45) (>= netstandard1.3)) (&& (>= net45) (>= netstandard1.6)) (&& (>= net46) (< netstandard1.4)) (>= net461)
-    System.Security.Cryptography.X509Certificates (4.3) - restriction: || (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.3)) (&& (>= net45) (>= netstandard1.6)) (>= net46)
-      System.Security.Cryptography.Algorithms (>= 4.3) - restriction: || (&& (>= net45) (< net46) (>= netstandard1.3) (< netstandard1.4)) (&& (>= net45) (< net46) (>= netstandard1.4)) (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.6)) (&& (>= net46) (< netstandard1.4)) (>= net461)
-      System.Security.Cryptography.Encoding (>= 4.3) - restriction: || (&& (>= net45) (< net46) (>= netstandard1.3) (< netstandard1.4)) (&& (>= net45) (< net46) (>= netstandard1.4)) (&& (>= net45) (>= dnxcore50)) (&& (>= net45) (>= netstandard1.6)) (&& (>= net46) (< netstandard1.4)) (>= net461)
     System.Text.Encoding (4.3)
     System.Text.Encoding.Extensions (4.3)
     System.Text.RegularExpressions (4.3)
     System.Threading (4.3)
     System.Threading.Tasks (4.3)
-    System.Threading.Timer (4.3) - restriction: && (>= net45) (>= netstandard1.2)
     System.Xml.ReaderWriter (4.3)
     System.Xml.XDocument (4.3)
-    xunit (2.2.0-beta4-build3444)
-      xunit.assert (2.2.0-beta4-build3444)
-      xunit.core (2.2.0-beta4-build3444)
+    xunit (2.2)
+      xunit.assert (2.2)
+      xunit.core (2.2)
     xunit.abstractions (2.0.1)
-    xunit.assert (2.2.0-beta4-build3444)
+    xunit.assert (2.2)
       NETStandard.Library (>= 1.6)
-    xunit.core (2.2.0-beta4-build3444)
-      xunit.extensibility.core (2.2.0-beta4-build3444)
-      xunit.extensibility.execution (2.2.0-beta4-build3444)
-    xunit.extensibility.core (2.2.0-beta4-build3444)
+    xunit.core (2.2)
+      xunit.extensibility.core (2.2)
+      xunit.extensibility.execution (2.2)
+    xunit.extensibility.core (2.2)
       NETStandard.Library (>= 1.6)
       xunit.abstractions (>= 2.0.1)
-    xunit.extensibility.execution (2.2.0-beta4-build3444)
+    xunit.extensibility.execution (2.2)
       NETStandard.Library (>= 1.6)
-      xunit.extensibility.core (2.2.0-beta4-build3444)
+      xunit.extensibility.core (2.2)
 
 GROUP modules
-RESTRICTION: >= net45
+RESTRICTION: == net45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Paket.Module (1.2)
+    Cake.Paket.Module (1.2.3)
 
 GROUP tools
-RESTRICTION: >= net45
+RESTRICTION: == net45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake (0.20)
-    Codecov (1.0)
-    gitreleasemanager (0.6)
-    GitVersion.CommandLine (3.6.5)
-    JetBrains.ReSharper.CommandLineTools (2016.3.20161223.160402)
+    Cake (0.21.1)
+    Codecov (1.0.2)
     OpenCover (4.6.519)
-    ReSharperReports (0.3)
-    Wyam (0.18.4)
-    xunit.runner.console (2.1)
+    xunit.runner.console (2.2)

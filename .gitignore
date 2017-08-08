@@ -72,12 +72,5 @@ TestResult.xml
 # Paket
 **/.paket/paket.exe
 
-# Build reports
-Reports/
-
-# Nuget package folder
-NuGet/
-
-# Wyam
-**/packages.xml
-docs/output
+# Build
+coverage.xml

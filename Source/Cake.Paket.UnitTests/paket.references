@@ -1,10 +1,6 @@
-group cake.paket
-    Cake.NuGet
-
 group cake.paket.unittests
-	xunit
-    xunit.abstractions
 	FluentAssertions
-	Cake.Core
+	NSubstitute
+	xunit
 	Cake.Testing
-    NSubstitute
+	Cake.NuGet
