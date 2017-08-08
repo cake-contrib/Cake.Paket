@@ -1,5 +1,0 @@
-#recipe Docs
-
-Settings[DocsKeys.Title] = "Cake.Paket";
-Settings[DocsKeys.AssemblyFiles] = @"../../Source/**/{Cake.Paket.Addin.dll,Cake.Paket.Module.dll}";
-Settings[DocsKeys.IncludeGlobalNamespace] = false;
