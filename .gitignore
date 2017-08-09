@@ -74,3 +74,4 @@ TestResult.xml
 
 # Build
 coverage.xml
+nuspec/**

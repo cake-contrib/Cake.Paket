@@ -139,5 +139,7 @@ NUGET
   remote: https://www.nuget.org/api/v2
     Cake (0.21.1)
     Codecov (1.0.2)
+    gitreleasemanager (0.6)
+    GitVersion.CommandLine (3.6.5)
     OpenCover (4.6.519)
     xunit.runner.console (2.2)

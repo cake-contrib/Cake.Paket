@@ -1,6 +1,8 @@
 #tool paket:?package=xunit.runner.console
 #tool paket:?package=OpenCover
 #tool paket:?package=Codecov
+#tool paket:?package=GitVersion.CommandLine
+#tool paket:?package=gitreleasemanager
 #addin paket:?package=Cake.Figlet
 #addin paket:?package=Cake.Paket
 #addin paket:?package=Cake.Codecov
@@ -8,7 +10,7 @@
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
 
-Setup(context =>
+Task("Clean").Does(() =>
 {
     Information(Figlet("Cake.Paket"));
 
@@ -22,8 +24,9 @@ Setup(context =>
     CleanDirectories(new[] {"./nuspec", cakePaketAddin, cakePaketModule});
 });
 
-Task("Build").Does(() =>
+Task("Build").IsDependentOn("Clean").Does(() =>
 {
+	PaketRestore();
 	var cakePaket = "./Source/Cake.Paket.sln";
     if(IsRunningOnWindows())
     {
@@ -46,5 +49,35 @@ Task("Publish-Coverage-Report").IsDependentOn("Run-Unit-Tests").WithCriteria(App
     Codecov("./coverage.xml");
 });
 
+Task("Update-SolutionInfo").Does(() =>
+{
+	var solutionInfo = "./Source/SolutionInfo.cs";
+	GitVersion(new GitVersionSettings { UpdateAssemblyInfo = true, UpdateAssemblyInfoFilePath = solutionInfo});
+});
+
+Task("Run-GitReleaseManager").Does(() =>
+{
+	var version = GitVersion();
+	var githubUsername = EnvironmentVariable("githubUsername");
+	var githubPassword = EnvironmentVariable("githubPassword");
+	GitReleaseManagerCreate("githubUsername", githubPassword, "larzw", "Cake.Paket", new GitReleaseManagerCreateSettings {Milestone = version.MajorMinorPatch});
+	GitReleaseManagerClose("githubUsername", githubPassword, "larzw", "Cake.Paket", version.MajorMinorPatch);
+});
+
+Task("Paket-Pack").Does(() =>
+{
+	var version = GitVersion();
+	EnsureDirectoryExists("./nuspec");
+	PaketPack("./nuspec", new PaketPackSettings { Version = version.MajorMinorPatch });	
+});
+
+Task("Paket-Push").Does(() =>
+{
+	var apiKey = EnvironmentVariable("apiKey");
+	PaketPush(GetFiles("./nuspec/*.nupkg"), new PaketPushSettings { Url = "https://www.nuget.org/api/v2/package", ApiKey = apiKey });
+});
+
 Task("Default").IsDependentOn("Publish-Coverage-Report");
+Task("Pre-Release").IsDependentOn("Update-SolutionInfo").IsDependentOn("Build");
+Task("Release").IsDependentOn("Run-GitReleaseManager").IsDependentOn("Paket-Pack").IsDependentOn("Paket-Push");
 RunTarget(target);

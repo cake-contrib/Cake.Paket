@@ -29,6 +29,8 @@ group tools
     nuget OpenCover
     nuget xunit.runner.console
 	nuget Codecov
+    nuget GitVersion.CommandLine
+    nuget gitreleasemanager
 
 group addins
     framework: net45
