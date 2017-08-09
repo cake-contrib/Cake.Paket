@@ -60,8 +60,8 @@ Task("Run-GitReleaseManager").Does(() =>
 	var version = GitVersion();
 	var githubUsername = EnvironmentVariable("githubUsername");
 	var githubPassword = EnvironmentVariable("githubPassword");
-	GitReleaseManagerCreate("githubUsername", githubPassword, "larzw", "Cake.Paket", new GitReleaseManagerCreateSettings {Milestone = version.MajorMinorPatch});
-	GitReleaseManagerClose("githubUsername", githubPassword, "larzw", "Cake.Paket", version.MajorMinorPatch);
+	GitReleaseManagerCreate(githubUsername, githubPassword, "larzw", "Cake.Paket", new GitReleaseManagerCreateSettings {Milestone = version.MajorMinorPatch});
+	GitReleaseManagerClose(githubUsername, githubPassword, "larzw", "Cake.Paket", version.MajorMinorPatch);
 });
 
 Task("Paket-Pack").Does(() =>
