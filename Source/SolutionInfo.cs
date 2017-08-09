@@ -13,4 +13,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 
-[assembly: AssemblyInformationalVersion("1.2.5-beta.1+3.Branch.release-1.2.5.Sha.16506db1d8b0ff674a0eba0270a9b70a70c99009")]
+[assembly: AssemblyInformationalVersion("1.2.5+Branch.release-1.2.5.Sha.5cf084e692f9fa3feaa95c1958e5321acb5fb66a")]
