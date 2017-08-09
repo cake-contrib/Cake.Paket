@@ -11,7 +11,7 @@ $Env:apiKey = $apiKey;
 
 $version = .\packages\tools\GitVersion.CommandLine\tools\GitVersion.exe /showvariable MajorMinorPatch;
 .\build.ps1 -Target Pre-Release;
-git commit -am "Preparing for release $version.";
+git commit -am "[skip ci] Preparing for release $version.";
 $releaseBranch = git rev-parse --abbrev-ref HEAD;
 git checkout master;
 git merge $releaseBranch;
