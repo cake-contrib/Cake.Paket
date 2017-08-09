@@ -6,6 +6,7 @@
 #addin paket:?package=Cake.Figlet
 #addin paket:?package=Cake.Paket
 #addin paket:?package=Cake.Codecov
+#addin paket:?package=Cake.Powershell
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
@@ -55,29 +56,48 @@ Task("Update-SolutionInfo").Does(() =>
 	GitVersion(new GitVersionSettings { UpdateAssemblyInfo = true, UpdateAssemblyInfoFilePath = solutionInfo});
 });
 
-Task("Run-GitReleaseManager").Does(() =>
+Task("Commit").Does(() =>
 {
 	var version = GitVersion();
-	var githubUsername = EnvironmentVariable("githubUsername");
+	var script = String.Format(@"
+		git commit -am '[skip ci] Preparing for release {0}.';
+		$releaseBranch = git rev-parse --abbrev-ref HEAD;
+		git checkout master;
+		git merge $releaseBranch;
+		git push;
+	", version.MajorMinorPatch);
+
+	StartPowershellScript(script);
+});
+
+Task("Run-GitReleaseManager").WithCriteria(ShouldRunRelease()).Does(() =>
+{
+	var version = GitVersion();
+	var githubUsername = "larzw";
 	var githubPassword = EnvironmentVariable("githubPassword");
 	GitReleaseManagerCreate(githubUsername, githubPassword, "larzw", "Cake.Paket", new GitReleaseManagerCreateSettings {Milestone = version.MajorMinorPatch});
 	GitReleaseManagerClose(githubUsername, githubPassword, "larzw", "Cake.Paket", version.MajorMinorPatch);
+	GitReleaseManagerPublish(githubUsername, githubPassword, "larzw", "Cake.Paket", version.MajorMinorPatch);
 });
 
-Task("Paket-Pack").Does(() =>
+Task("Paket-Pack").WithCriteria(ShouldRunRelease()).Does(() =>
 {
 	var version = GitVersion();
 	EnsureDirectoryExists("./nuspec");
 	PaketPack("./nuspec", new PaketPackSettings { Version = version.MajorMinorPatch });	
 });
 
-Task("Paket-Push").Does(() =>
+Task("Paket-Push").WithCriteria(ShouldRunRelease()).Does(() =>
 {
 	var apiKey = EnvironmentVariable("apiKey");
 	PaketPush(GetFiles("./nuspec/*.nupkg"), new PaketPushSettings { Url = "https://www.nuget.org/api/v2/package", ApiKey = apiKey });
 });
 
-Task("Default").IsDependentOn("Publish-Coverage-Report");
-Task("Pre-Release").IsDependentOn("Update-SolutionInfo").IsDependentOn("Build");
-Task("Release").IsDependentOn("Run-GitReleaseManager").IsDependentOn("Paket-Pack").IsDependentOn("Paket-Push");
+Task("Default").IsDependentOn("Publish-Coverage-Report").IsDependentOn("Run-GitReleaseManager").IsDependentOn("Paket-Pack").IsDependentOn("Paket-Push");
+Task("Pre-Release").IsDependentOn("Update-SolutionInfo").IsDependentOn("Commit");
 RunTarget(target);
+
+private bool ShouldRunRelease()
+{
+	return AppVeyor.IsRunningOnAppVeyor && AppVeyor.Environment.Repository.Tag.IsTag && configuration.Equals("Release");
+}

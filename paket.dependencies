@@ -38,6 +38,7 @@ group addins
     nuget Cake.Figlet
     nuget Cake.Paket
 	nuget Cake.Codecov
+    nuget Cake.Powershell
 
 group modules
     framework: net45

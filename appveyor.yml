@@ -1,5 +1,11 @@
 image: Visual Studio 2015
 
+environment:
+  githubPassword:
+    secure: MHHWHbrUJ6oCQxr4vGcCxw==
+  apiKey:
+    secure: eNvtACmm7fZzUzz7uK8M5QPske8EKA+nXQpcpFhJ8Xpx7TMHv8uywz0LjSgDEwA1
+    
 build: off
 test: off
 deploy: off
