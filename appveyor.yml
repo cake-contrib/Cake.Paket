@@ -8,7 +8,6 @@ environment:
     
 build: off
 test: off
-deploy: off
 
 build_script:
 - ps: .\build.ps1
