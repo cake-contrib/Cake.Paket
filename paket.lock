@@ -9,11 +9,7 @@ NUGET
     Cake.Core (0.21.1)
     Cake.Figlet (0.4)
       Cake.Core (>= 0.17)
-    Cake.Paket (1.2.3)
-    Cake.Powershell (0.3.4)
-      Cake.Core (>= 0.11)
-      Microsoft.PowerShell.5.ReferenceAssemblies (>= 1.0)
-    Microsoft.PowerShell.5.ReferenceAssemblies (1.0)
+    Cake.Paket (1.2.5)
 
 GROUP cake.paket
 RESTRICTION: == net45
@@ -135,7 +131,7 @@ GROUP modules
 RESTRICTION: == net45
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Paket.Module (1.2.3)
+    Cake.Paket.Module (1.2.5)
 
 GROUP tools
 RESTRICTION: == net45

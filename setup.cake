@@ -6,7 +6,6 @@
 #addin paket:?package=Cake.Figlet
 #addin paket:?package=Cake.Paket
 #addin paket:?package=Cake.Codecov
-#addin paket:?package=Cake.Powershell
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
@@ -56,20 +55,6 @@ Task("Update-SolutionInfo").Does(() =>
 	GitVersion(new GitVersionSettings { UpdateAssemblyInfo = true, UpdateAssemblyInfoFilePath = solutionInfo});
 });
 
-Task("Commit").Does(() =>
-{
-	var version = GitVersion();
-	var script = String.Format(@"
-		git commit -am '[skip ci] Preparing for release {0}.';
-		$releaseBranch = git rev-parse --abbrev-ref HEAD;
-		git checkout master;
-		git merge $releaseBranch;
-		git push;
-	", version.MajorMinorPatch);
-
-	StartPowershellScript(script);
-});
-
 Task("Run-GitReleaseManager").WithCriteria(ShouldRunRelease()).Does(() =>
 {
 	var version = GitVersion();
@@ -94,7 +79,7 @@ Task("Paket-Push").WithCriteria(ShouldRunRelease()).Does(() =>
 });
 
 Task("Default").IsDependentOn("Publish-Coverage-Report").IsDependentOn("Run-GitReleaseManager").IsDependentOn("Paket-Pack").IsDependentOn("Paket-Push");
-Task("Pre-Release").IsDependentOn("Update-SolutionInfo").IsDependentOn("Commit");
+Task("Pre-Release").IsDependentOn("Update-SolutionInfo");
 RunTarget(target);
 
 private bool ShouldRunRelease()
