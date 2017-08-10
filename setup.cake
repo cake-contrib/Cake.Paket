@@ -84,5 +84,5 @@ RunTarget(target);
 
 private bool ShouldRunRelease()
 {
-	return AppVeyor.IsRunningOnAppVeyor && AppVeyor.Environment.Repository.Tag.IsTag && configuration.Equals("Release");
+	return AppVeyor.IsRunningOnAppVeyor && AppVeyor.Environment.Repository.Tag.IsTag;
 }
