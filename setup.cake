@@ -58,23 +58,23 @@ Task("Update-SolutionInfo").Does(() =>
 Task("Run-GitReleaseManager").WithCriteria(ShouldRunRelease()).Does(() =>
 {
 	var version = GitVersion();
-	var githubUsername = "larzw";
-	var githubPassword = EnvironmentVariable("githubPassword");
-	GitReleaseManagerCreate(githubUsername, githubPassword, "larzw", "Cake.Paket", new GitReleaseManagerCreateSettings {Milestone = version.MajorMinorPatch});
-	GitReleaseManagerClose(githubUsername, githubPassword, "larzw", "Cake.Paket", version.MajorMinorPatch);
-	GitReleaseManagerPublish(githubUsername, githubPassword, "larzw", "Cake.Paket", version.MajorMinorPatch);
+	var githubUsername = EnvironmentVariable("GITHUB_USERNAME");
+	var githubPassword = EnvironmentVariable("GITHUB_PASSWORD");
+	GitReleaseManagerCreate(githubUsername, githubPassword, githubUsername, "Cake.Paket", new GitReleaseManagerCreateSettings {Milestone = version.MajorMinorPatch});
+	GitReleaseManagerClose(githubUsername, githubPassword, githubUsername, "Cake.Paket", version.MajorMinorPatch);
+	GitReleaseManagerPublish(githubUsername, githubPassword, githubUsername, "Cake.Paket", version.MajorMinorPatch);
 });
 
 Task("Paket-Pack").WithCriteria(ShouldRunRelease()).Does(() =>
 {
 	var version = GitVersion();
 	EnsureDirectoryExists("./nuspec");
-	PaketPack("./nuspec", new PaketPackSettings { Version = version.MajorMinorPatch });	
+	PaketPack("./nuspec", new PaketPackSettings { Version = version.MajorMinorPatch });
 });
 
 Task("Paket-Push").WithCriteria(ShouldRunRelease()).Does(() =>
 {
-	var apiKey = EnvironmentVariable("apiKey");
+	var apiKey = EnvironmentVariable("NUGET_API_KEY");
 	PaketPush(GetFiles("./nuspec/*.nupkg"), new PaketPushSettings { Url = "https://www.nuget.org/api/v2/package", ApiKey = apiKey });
 });
 
