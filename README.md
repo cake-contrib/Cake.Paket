@@ -1,8 +1,8 @@
 # Cake.Paket
 
-[![AppVeyor branch](https://img.shields.io/appveyor/ci/cakecontrib/cake-paket/master.svg)](https://ci.appveyor.com/project/larzw/cake-paket/branch/master)
-[![Travis branch](https://img.shields.io/travis/cake-contrib/Cake.Paket/master.svg)](https://travis-ci.org/larzw/Cake.Paket)
-[![Codecov branch](https://img.shields.io/codecov/c/github/larzw/Cake.Paket/master.svg)](http://codecov.io/github/larzw/Cake.Paket?branch=master)
+[![AppVeyor branch](https://img.shields.io/appveyor/ci/cakecontrib/cake-paket/master.svg)](https://ci.appveyor.com/project/cakecontrib/cake-paket/branch/master)
+[![Travis branch](https://img.shields.io/travis/cake-contrib/Cake.Paket/master.svg)](https://travis-ci.org/cake-contrib/Cake.Paket)
+[![Codecov branch](https://img.shields.io/codecov/c/github/cake-contrib/Cake.Paket/master.svg)](https://codecov.io/gh/cake-contrib/Cake.Paket)
 [![NuGet](https://img.shields.io/nuget/v/Cake.Paket.svg)](https://www.nuget.org/packages/Cake.Paket/)
 [![NuGet](https://img.shields.io/nuget/v/Cake.Paket.Module.svg)](https://www.nuget.org/packages/Cake.Paket.Module/)
 [![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg?maxAge=2592000)](https://gitter.im/cake-contrib/Lobby)
