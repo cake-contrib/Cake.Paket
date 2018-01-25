@@ -84,7 +84,7 @@ Task("NuGet-Push").IsDependentOn("Paket-Pack").Does(() =>
 
 If you want to use paket instead of nuget in the preprocessor directive e.g. `#tool paket:?package=Cake.Foo` and/or  `#addin paket:?package=Cake.Bar` then you need to use *Cake.Paket.Module*.
 
-* Get the modified [cake bootstrapper script](https://github.com/larzw/Cake.Paket/wiki/Cake-Bootstrapper-Script), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
+* Get the modified [cake bootstrapper script](https://github.com/cake-contrib/Cake.Paket/wiki/Cake-Bootstrapper-Script), then create a *tools* dependency group and add *Cake* to your *paket.dependencies* file
 ```
     group tools
         source https://nuget.org/api/v2
@@ -108,11 +108,11 @@ Note that if you use ` #addin nuget:?package=Cake.Paket` you can use the cake te
 
 # Example Project
 
-[Cake.Paket.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake. Additionally, the project for the paket addin and module is another good resource, see [setup.cake](https://github.com/larzw/Cake.Paket/blob/master/setup.cake).
+[Cake.Paket.Example](https://github.com/larzw/Cake.Paket.Example) is an example project which uses Paket with Cake. Additionally, the project for the paket addin and module is another good resource, see [setup.cake](https://github.com/cake-contrib/Cake.Paket/blob/master/setup.cake).
 
 # Documentation
 
-- See the [Documentation](https://github.com/larzw/Cake.Paket/wiki) for additional help.
+- See the [Documentation](https://github.com/cake-contrib/Cake.Paket/wiki) for additional help.
 - Cake's sites contains documentation of the addin at [Cake.Paket](http://cakebuild.net/dsl/paket/).
 
 # Contributing
@@ -121,4 +121,4 @@ All types of contributions are welcome!
 
 # Questions
 
-Feel free to open an [issue](https://github.com/larzw/Cake.Paket/issues) or **@larzw** me via [Gitter](https://gitter.im/cake-contrib/Lobby)
+Feel free to open an [issue](https://github.com/cake-contrib/Cake.Paket/issues) or **@larzw** me via [Gitter](https://gitter.im/cake-contrib/Lobby)
