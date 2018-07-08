@@ -6,7 +6,7 @@ group cake.paket
 group cake.paket.addin
     framework: net46
     source https://nuget.org/api/v2
-    nuget Cake.Core ~> 0.22.0
+    nuget Cake.Core ~> 0.26.0
 
 group cake.paket.Module
     framework: net46
