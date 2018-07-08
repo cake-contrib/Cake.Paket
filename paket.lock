@@ -21,19 +21,56 @@ GROUP cake.paket.addin
 RESTRICTION: == net46
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.26.1)
+    Cake.Core (0.28.1)
 
 GROUP cake.paket.Module
 RESTRICTION: == net46
 NUGET
   remote: https://www.nuget.org/api/v2
     Cake.Core (0.29)
-    Cake.NuGet (0.20)
-      Cake.Core (>= 0.20)
-      NuGet.Core (>= 2.14)
+    Cake.NuGet (0.28.1)
+      Cake.Core (>= 0.28.1)
+      Newtonsoft.Json (>= 11.0.2)
+      NuGet.Frameworks (>= 4.6)
+      NuGet.PackageManagement (>= 4.6)
+      NuGet.ProjectModel (>= 4.6)
+      NuGet.Versioning (>= 4.6)
     Microsoft.Web.Xdt (2.1.2)
-    NuGet.Core (2.14)
-      Microsoft.Web.Xdt (>= 2.1)
+    Newtonsoft.Json (11.0.2)
+    NuGet.Commands (4.7)
+      NuGet.Credentials (>= 4.7)
+      NuGet.ProjectModel (>= 4.7)
+    NuGet.Common (4.7)
+      NuGet.Frameworks (>= 4.7)
+    NuGet.Configuration (4.7)
+      NuGet.Common (>= 4.7)
+    NuGet.Credentials (4.7)
+      NuGet.Protocol (>= 4.7)
+    NuGet.DependencyResolver.Core (4.7)
+      NuGet.LibraryModel (>= 4.7)
+      NuGet.Protocol (>= 4.7)
+    NuGet.Frameworks (4.7)
+    NuGet.LibraryModel (4.7)
+      NuGet.Common (>= 4.7)
+      NuGet.Versioning (>= 4.7)
+    NuGet.PackageManagement (4.7)
+      Microsoft.Web.Xdt (>= 2.1.2)
+      NuGet.Commands (>= 4.7)
+      NuGet.Resolver (>= 4.7)
+    NuGet.Packaging (4.7)
+      Newtonsoft.Json (>= 9.0.1)
+      NuGet.Packaging.Core (>= 4.7)
+    NuGet.Packaging.Core (4.7)
+      NuGet.Common (>= 4.7)
+      NuGet.Versioning (>= 4.7)
+    NuGet.ProjectModel (4.7)
+      NuGet.DependencyResolver.Core (>= 4.7)
+    NuGet.Protocol (4.7)
+      NuGet.Configuration (>= 4.7)
+      NuGet.Packaging (>= 4.7)
+    NuGet.Resolver (4.7)
+      NuGet.Protocol (>= 4.7)
+    NuGet.Versioning (4.7)
 
 GROUP cake.paket.unittests
 RESTRICTION: == net46
