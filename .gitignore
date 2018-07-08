@@ -71,6 +71,7 @@ TestResult.xml
 
 # Paket
 **/.paket/paket.exe
+paket-files/
 
 # Build
 coverage.xml
