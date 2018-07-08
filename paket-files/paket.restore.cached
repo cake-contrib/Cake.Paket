@@ -21,7 +21,7 @@ GROUP cake.paket.addin
 RESTRICTION: == net46
 NUGET
   remote: https://www.nuget.org/api/v2
-    Cake.Core (0.22.2)
+    Cake.Core (0.26)
 
 GROUP cake.paket.Module
 RESTRICTION: == net46
