@@ -7,10 +7,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyProduct("Cake.Paket")]
-[assembly: AssemblyVersion("3.0.0.0")]
-[assembly: AssemblyFileVersion("3.0.0.0")]
+[assembly: AssemblyVersion("4.0.0.0")]
+[assembly: AssemblyFileVersion("4.0.0.0")]
 [assembly: AssemblyCopyright("Copyright (c) 2016 - 2017 Larz White")]
 [assembly: ComVisible(false)]
 
 
-[assembly: AssemblyInformationalVersion("3.0.0-beta.1+0.Branch.release-3.0.0.Sha.fc742f56d4f7f72d92a96193f0e788ce64acb95d")]
+[assembly: AssemblyInformationalVersion("4.0.0-beta.1+0.Branch.release-4.0.0.Sha.af6a492599ebed2e0c08d0927ebed3a0150386e5")]
