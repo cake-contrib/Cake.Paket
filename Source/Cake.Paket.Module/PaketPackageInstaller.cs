@@ -94,7 +94,7 @@ namespace Cake.Paket.Module
 
             if (type == PackageType.Addin)
             {
-                var framework = Environment.Runtime.TargetFramework;
+                var framework = Environment.Runtime.BuiltFramework;
                 Log.Warning($"Could not find any assemblies compatible with {framework.FullName}. Perhaps you need an include parameter?");
             }
             else if (type == PackageType.Tool)

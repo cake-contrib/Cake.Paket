@@ -16,7 +16,7 @@ group cake.paket.Module
 group cake.paket.unittests
     framework: net46
     source https://nuget.org/api/v2
-    nuget FluentAssertions
+    nuget FluentAssertions ~> 4.19.3
     nuget NSubstitute
     nuget xunit
     nuget Cake.Testing ~> 0.22
