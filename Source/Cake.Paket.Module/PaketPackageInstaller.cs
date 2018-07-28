@@ -22,24 +22,9 @@ namespace Cake.Paket.Module
         /// <param name="log">The log.</param>
         public PaketPackageInstaller(ICakeEnvironment environment, INuGetContentResolver contentResolver, ICakeLog log)
         {
-            if (environment == null)
-            {
-                throw new ArgumentNullException(nameof(environment));
-            }
-
-            if (contentResolver == null)
-            {
-                throw new ArgumentNullException(nameof(contentResolver));
-            }
-
-            if (log == null)
-            {
-                throw new ArgumentNullException(nameof(log));
-            }
-
-            Environment = environment;
-            ContentResolver = contentResolver;
-            Log = log;
+            Environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            ContentResolver = contentResolver ?? throw new ArgumentNullException(nameof(contentResolver));
+            Log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         private INuGetContentResolver ContentResolver { get; }
@@ -117,10 +102,9 @@ namespace Cake.Paket.Module
             const string packages = "packages";
 
             var parameters = package.Parameters;
-
-            if (parameters.ContainsKey(key))
+            if (parameters.TryGetValue(key, out var parameter))
             {
-                var group = parameters[key].Single();
+                var group = parameter.Single();
                 var folders = path.Segments;
                 var newFolders = new List<string>();
                 foreach (var f in folders)
