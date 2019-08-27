@@ -13,6 +13,6 @@ requireLicenseAcceptance false
 copyright Copyright (c) 2017 Larz White
 tags Cake Script Build paket
 files
-	bin/*/Cake.Paket.Addin.dll ==> lib/net45
-    bin/*/Cake.Paket.Addin.xml ==> lib/net45
-    bin/*/Cake.Paket.Addin.pdb ==> lib/net45
+	bin/Release/netstandard2.0/Cake.Paket.Addin.dll ==> lib/netstandard2.0
+    bin/Release/netstandard2.0/Cake.Paket.Addin.xml ==> lib/netstandard2.0
+    bin/Release/netstandard2.0/Cake.Paket.Addin.pdb ==> lib/netstandard2.0
