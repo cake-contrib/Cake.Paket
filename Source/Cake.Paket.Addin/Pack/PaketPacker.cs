@@ -53,7 +53,7 @@ namespace Cake.Paket.Addin.Pack
             builder.Append("pack");
 
             // output
-            builder.Append("output");
+            // output is the default argument
             var outputDirectory = output.MakeAbsolute(Environment).FullPath;
             if (!string.IsNullOrWhiteSpace(outputDirectory))
             {
@@ -63,86 +63,86 @@ namespace Cake.Paket.Addin.Pack
             // buildconfig
             if (!string.IsNullOrWhiteSpace(settings.BuildConfig))
             {
-                builder.Append("buildconfig");
+                builder.Append("--build-config");
                 builder.AppendQuoted(settings.BuildConfig);
             }
 
             // buildplatform
             if (!string.IsNullOrWhiteSpace(settings.BuildPlatform))
             {
-                builder.Append("buildplatform");
+                builder.Append("--build-platform");
                 builder.AppendQuoted(settings.BuildPlatform);
             }
 
             // templatefile
             if (!string.IsNullOrWhiteSpace(settings.TemplateFile))
             {
-                builder.Append("templatefile");
+                builder.Append("--template");
                 builder.AppendQuoted(settings.TemplateFile);
             }
 
             // version
             if (!string.IsNullOrWhiteSpace(settings.Version))
             {
-                builder.Append("version");
+                builder.Append("--version");
                 builder.AppendQuoted(settings.Version);
             }
 
             // exclude
             if (!string.IsNullOrWhiteSpace(settings.Exclude))
             {
-                builder.Append("exclude");
+                builder.Append("--exclude");
                 builder.AppendQuoted(settings.Exclude);
             }
 
             // specific-version
             if (!string.IsNullOrWhiteSpace(settings.SpecificVersion))
             {
-                builder.Append("specific-version");
+                builder.Append("--specific-version");
                 builder.AppendQuoted(settings.SpecificVersion);
             }
 
             // ReleaseNotes
             if (!string.IsNullOrWhiteSpace(settings.ReleaseNotes))
             {
-                builder.Append("releaseNotes");
+                builder.Append("--release-Notes");
                 builder.AppendQuoted(settings.ReleaseNotes);
             }
 
             // lock-dependencies
             if (settings.LockDependencies)
             {
-                builder.Append("lock-dependencies");
+                builder.Append("--lock-dependencies");
             }
 
             // minimum-from-lock-file
             if (settings.MinimumFromLockFile)
             {
-                builder.Append("minimum-from-lock-file");
+                builder.Append("--minimum-from-lock-file");
             }
 
             // pin-project-references
             if (settings.PinProjectReferences)
             {
-                builder.Append("pin-project-references");
+                builder.Append("--pin-project-references");
             }
 
             // symbols
             if (settings.Symbols)
             {
-                builder.Append("symbols");
+                builder.Append("--symbols");
             }
 
             // include-referenced-projects
             if (settings.IncludeReferencedProjects)
             {
-                builder.Append("include-referenced-projects");
+                builder.Append("--include-referenced-projects");
             }
 
             // project-url
             if (!string.IsNullOrWhiteSpace(settings.ProjectUrl))
             {
-                builder.Append("project-url");
+                builder.Append("--project-url");
                 builder.AppendQuoted(settings.ProjectUrl);
             }
 
