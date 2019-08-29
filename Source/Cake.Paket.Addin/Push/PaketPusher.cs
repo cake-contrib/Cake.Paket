@@ -54,10 +54,10 @@ namespace Cake.Paket.Addin.Push
 
             // file
             builder.Append("file");
-            var outputDirectory = filePath.MakeAbsolute(Environment).FullPath;
-            if (!string.IsNullOrWhiteSpace(outputDirectory))
+            var targetPackage = filePath.MakeAbsolute(Environment).FullPath;
+            if (!string.IsNullOrWhiteSpace(targetPackage))
             {
-                builder.AppendQuoted(filePath.MakeAbsolute(Environment).FullPath);
+                builder.AppendQuoted(targetPackage);
             }
 
             // url
