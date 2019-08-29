@@ -53,7 +53,7 @@ namespace Cake.Paket.Addin.Push
             builder.Append("push");
 
             // file
-            builder.Append("file");
+            // file is the default argument
             var targetPackage = filePath.MakeAbsolute(Environment).FullPath;
             if (!string.IsNullOrWhiteSpace(targetPackage))
             {
@@ -63,21 +63,21 @@ namespace Cake.Paket.Addin.Push
             // url
             if (!string.IsNullOrWhiteSpace(settings.Url))
             {
-                builder.Append("url");
+                builder.Append("--url");
                 builder.AppendQuoted(settings.Url);
             }
 
             // apikey
             if (!string.IsNullOrWhiteSpace(settings.ApiKey))
             {
-                builder.Append("apikey");
+                builder.Append("--api-key");
                 builder.AppendQuoted(settings.ApiKey);
             }
 
             // endpoint
             if (!string.IsNullOrWhiteSpace(settings.EndPoint))
             {
-                builder.Append("endpoint");
+                builder.Append("--endpoint");
                 builder.AppendQuoted(settings.EndPoint);
             }
 
