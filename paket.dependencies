@@ -1,45 +1,45 @@
 group cake.paket
-    framework: net46
+    framework: netstandard20
     source https://nuget.org/api/v2
-    nuget StyleCop.Analyzers ~> 1.0.0
+    nuget StyleCop.Analyzers ~> 1.1.118
 
 group cake.paket.addin
-    framework: net46
+    framework: netstandard20
     source https://nuget.org/api/v2
-    nuget Cake.Core ~> 0.28.1
+    nuget Cake.Core ~> 0.34
 
 group cake.paket.Module
-    framework: net46
+    framework: netstandard20
     source https://nuget.org/api/v2
-    nuget Cake.NuGet ~> 0.28.1
+    nuget Cake.NuGet ~> 0.34
 
 group cake.paket.unittests
-    framework: net46
+    framework: netcoreapp20
     source https://nuget.org/api/v2
     nuget FluentAssertions ~> 4.19.3
     nuget NSubstitute
     nuget xunit
-    nuget Cake.Testing ~> 0.22
-    nuget Cake.Nuget ~> 0.22
+    nuget Cake.Testing ~> 0.34
+    nuget Cake.Nuget ~> 0.34
 
 group tools
-    framework: net45
+    framework: netstandard20
     source https://nuget.org/api/v2
-    nuget Cake ~> 0.21.1
+    nuget Cake ~> 0.34
     nuget OpenCover
     nuget xunit.runner.console
-	nuget Codecov
+    nuget Codecov
     nuget GitVersion.CommandLine
     nuget gitreleasemanager
 
 group addins
-    framework: net45
+    framework: netstandard20
     source https://nuget.org/api/v2
-    nuget Cake.Figlet 0.4
+    nuget Cake.Figlet 1.3.1
     nuget Cake.Paket
-	nuget Cake.Codecov 0.2.1
+    nuget Cake.Codecov 0.7.0
 
 group modules
-    framework: net45
+    framework: netstandard20
     source https://nuget.org/api/v2
     nuget Cake.Paket.Module
