@@ -46,7 +46,8 @@ Task("Run-Unit-Tests").IsDependentOn("Build").WithCriteria(IsRunningOnWindows())
         new FilePath("./coverage.xml"),
         new OpenCoverSettings()
         {
-            OldStyle = true
+            OldStyle = true,
+            ReturnTargetCodeOffset = 0
         }
             .WithFilter("+[Cake.Paket.Addin]*")
             .WithFilter("+[Cake.Paket.Module]*")
