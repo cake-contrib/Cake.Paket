@@ -2,7 +2,7 @@
 #tool paket:?package=OpenCover&version=4.7.922
 #tool paket:?package=Codecov&version=1.7.1
 #tool paket:?package=GitVersion.CommandLine&version=5.0
-#tool paket:?package=gitreleasemanager&version=0.8
+#tool paket:?package=GitReleaseManager&version=0.8
 #addin paket:?package=Cake.Figlet&version=1.3
 #addin paket:?package=Cake.Paket&version=4.0
 #addin paket:?package=Cake.Codecov&version=0.6
