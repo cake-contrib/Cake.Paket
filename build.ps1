@@ -120,8 +120,8 @@ if (!(Test-Path $PAKET_EXE)) {
 Write-Verbose -Message "Found paket.exe in PATH at $PAKET_EXE"
 
 # Install the dependencies
-Write-Verbose -Message "Running paket.exe restore"
-Invoke-Expression "$PAKET_EXE restore"
+Write-Verbose -Message "Running dotnet.exe restore"
+Invoke-Expression "dotnet.exe restore Source"
 
 # tools
 if (Test-Path $Tools) {

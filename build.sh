@@ -80,8 +80,11 @@ if [ ! -f "$PAKET_EXE" ]; then
     fi
 fi
 
+echo "Found paket.exe in PATH at '$PAKET_EXE'."
+
 # Restore the dependencies.
-mono "$PAKET_EXE" restore
+echo "Running dotnet.exe restore Source"
+dotnet.exe restore Source
 
 # tools
 if [ -d "$TOOLS" ]; then
