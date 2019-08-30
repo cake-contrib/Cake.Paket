@@ -105,7 +105,7 @@ namespace Cake.Paket.Addin.Pack
             // ReleaseNotes
             if (!string.IsNullOrWhiteSpace(settings.ReleaseNotes))
             {
-                builder.Append("--release-Notes");
+                builder.Append("--release-notes");
                 builder.AppendQuoted(settings.ReleaseNotes);
             }
 

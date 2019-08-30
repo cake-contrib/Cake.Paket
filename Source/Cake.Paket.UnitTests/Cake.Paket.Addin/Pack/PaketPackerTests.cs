@@ -21,7 +21,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" include-referenced-projects");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --include-referenced-projects");
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" lock-dependencies");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --lock-dependencies");
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" minimum-from-lock-file");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --minimum-from-lock-file");
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" pin-project-references");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --pin-project-references");
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" symbols");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --symbols");
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" buildconfig ""config""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --build-config ""config""");
         }
 
         [Fact]
@@ -112,7 +112,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" buildplatform ""net45""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --build-platform ""net45""");
         }
 
         [Fact]
@@ -125,7 +125,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" exclude ""Cake.Foo""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --exclude ""Cake.Foo""");
         }
 
         [Fact]
@@ -138,7 +138,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" project-url ""www.google.com""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --project-url ""www.google.com""");
         }
 
         [Fact]
@@ -151,7 +151,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" releaseNotes ""Initial Release""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --release-notes ""Initial Release""");
         }
 
         [Fact]
@@ -164,7 +164,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" specific-version ""Cake.Foo 0.0.0""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --specific-version ""Cake.Foo 0.0.0""");
         }
 
         [Fact]
@@ -177,7 +177,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" templatefile ""/Working/Template""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --template ""/Working/Template""");
         }
 
         [Fact]
@@ -190,7 +190,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet"" version ""1.0.0""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --version ""1.0.0""");
         }
 
         [Fact]
@@ -216,7 +216,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack output ""/Working/NuGet""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet""");
         }
 
         [Fact]
