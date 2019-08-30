@@ -83,8 +83,8 @@ fi
 echo "Found paket.exe in PATH at '$PAKET_EXE'."
 
 # Restore the dependencies.
-echo "Running dotnet.exe restore Source"
-dotnet.exe restore Source
+echo "Running msbuild -t:Restore Source"
+msbuild -t:Restore -p:Configuration=$CONFIGURATION Source
 
 # tools
 if [ -d "$TOOLS" ]; then
