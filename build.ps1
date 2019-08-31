@@ -61,6 +61,7 @@ Param(
     [string]$Tools = ".\packages\tools",
     [string]$Addins = ".\packages\addins",
     [string]$Modules = ".\packages\modules",
+    [switch]$MsBuild,
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
     [string[]]$ScriptArgs
 )
@@ -117,11 +118,15 @@ if (!(Test-Path $PAKET_EXE)) {
         Throw "Could not find paket.exe at $PAKET_EXE"
     }
 }
-Write-Verbose -Message "Found paket.exe in PATH at $PAKET_EXE"
 
 # Install the dependencies
-Write-Verbose -Message "Running dotnet.exe restore"
-Invoke-Expression "dotnet.exe restore Source"
+if ($MsBuild) {
+    Write-Verbose -Message "Running msbuild -t:Restore Source"
+    Invoke-Expression "msbuild -t:Restore -p:Configuration=$CONFIGURATION Source"
+} else {
+    Write-Verbose -Message "Running dotnet restore Source"
+    Invoke-Expression "dotnet restore Source"
+}
 
 # tools
 if (Test-Path $Tools) {
@@ -160,5 +165,5 @@ Write-Verbose -Message "Found Cake.exe in PATH at $CAKE_EXE"
 
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
+Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" -msbuild=`"$MsBuild`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
 exit $LASTEXITCODE

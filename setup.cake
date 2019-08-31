@@ -9,6 +9,7 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
+var msbuild = Argument("msbuild", false);
 
 Task("Clean").Does(() =>
 {
@@ -29,12 +30,25 @@ Task("Build").IsDependentOn("Clean").Does(() =>
 	PaketRestore();
 	var cakePaket = "./Source/Cake.Paket.sln";
 
-    var settings = new DotNetCoreBuildSettings
+    if (msbuild)
     {
-        Configuration = configuration
-    };
-
-    DotNetCoreBuild(cakePaket, settings);
+        var settings = new DotNetCoreMSBuildSettings
+        {
+            NoLogo = true,
+            MaxCpuCount = -1,
+            ArgumentCustomization = args => args.Append("/restore")
+        }
+            .SetConfiguration(configuration);
+        DotNetCoreMSBuild(cakePaket, settings);
+    }
+    else
+    {
+        var settings = new DotNetCoreBuildSettings
+        {
+            Configuration = configuration
+        };
+        DotNetCoreBuild(cakePaket, settings);
+    }
 });
 
 Task("Run-Unit-Tests").IsDependentOn("Build").WithCriteria(IsRunningOnWindows()).Does(() =>
