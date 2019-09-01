@@ -19,6 +19,7 @@ CAKE="./packages/tools/Cake"
 TOOLS="./packages/tools"
 ADDINS="./packages/addins"
 MODULES="./packages/modules"
+MSBUILD=false
 SCRIPT_ARGUMENTS=()
 
 # Parse arguments.
@@ -35,6 +36,7 @@ for i in "$@"; do
         --tools) TOOLS="$2"; shift ;;
         --addins) ADDINS="$2"; shift ;;
         --modules) MODULES="$2"; shift ;;
+        --msbuild) MSBUILD=true ;;
         --) shift; SCRIPT_ARGUMENTS+=("$@"); break ;;
         *) SCRIPT_ARGUMENTS+=("$1") ;;
     esac
@@ -80,8 +82,18 @@ if [ ! -f "$PAKET_EXE" ]; then
     fi
 fi
 
+# Find if .NET CLI is available
+command -v dotnet >/dev/null 2>&1 || { MSBUILD=true; }
+
 # Restore the dependencies.
-mono "$PAKET_EXE" restore
+if $MSBUILD; then
+    echo "Running msbuild -t:Restore Source"
+    msbuild -t:Restore -p:Configuration=$CONFIGURATION Source
+else
+    echo "Running dotnet restore Source"
+    dotnet restore Source
+fi
+
 
 # tools
 if [ -d "$TOOLS" ]; then
@@ -119,5 +131,5 @@ fi
 if $SHOW_VERSION; then
     exec mono "$CAKE_EXE" -version
 else
-    exec mono "$CAKE_EXE" $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET $DRYRUN "${SCRIPT_ARGUMENTS[@]}"
+    exec mono "$CAKE_EXE" $SCRIPT -verbosity=$VERBOSITY -configuration=$CONFIGURATION -target=$TARGET -msbuild=$MSBUILD $DRYRUN "${SCRIPT_ARGUMENTS[@]}"
 fi

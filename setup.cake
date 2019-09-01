@@ -1,14 +1,15 @@
-#tool paket:?package=xunit.runner.console
-#tool paket:?package=OpenCover
-#tool paket:?package=Codecov
-#tool paket:?package=GitVersion.CommandLine
-#tool paket:?package=gitreleasemanager
-#addin paket:?package=Cake.Figlet
-#addin paket:?package=Cake.Paket
-#addin paket:?package=Cake.Codecov
+#tool paket:?package=xunit.runner.console&version=2.4.1
+#tool paket:?package=OpenCover&version=4.7.922
+#tool paket:?package=Codecov&version=1.7.1
+#tool paket:?package=GitVersion.CommandLine&version=5.0
+#tool paket:?package=GitReleaseManager&version=0.8
+#addin paket:?package=Cake.Figlet&version=1.3
+#addin paket:?package=Cake.Paket&version=4.0
+#addin paket:?package=Cake.Codecov&version=0.6
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
+var msbuild = Argument("msbuild", false);
 
 Task("Clean").Does(() =>
 {
@@ -28,20 +29,43 @@ Task("Build").IsDependentOn("Clean").Does(() =>
 {
 	PaketRestore();
 	var cakePaket = "./Source/Cake.Paket.sln";
-    if(IsRunningOnWindows())
+
+    if (msbuild)
     {
-        MSBuild(cakePaket, settings => settings.SetConfiguration(configuration));
+        var settings = new DotNetCoreMSBuildSettings
+        {
+            NoLogo = true,
+            MaxCpuCount = -1,
+            ArgumentCustomization = args => args.Append("/restore")
+        }
+            .SetConfiguration(configuration);
+        DotNetCoreMSBuild(cakePaket, settings);
     }
     else
     {
-      XBuild(cakePaket, settings => settings.SetConfiguration(configuration));
+        var settings = new DotNetCoreBuildSettings
+        {
+            Configuration = configuration
+        };
+        DotNetCoreBuild(cakePaket, settings);
     }
 });
 
 Task("Run-Unit-Tests").IsDependentOn("Build").WithCriteria(IsRunningOnWindows()).Does(() =>
 {
-	var cakePaketUnitTests = string.Format("./Source/Cake.Paket.UnitTests/bin/{0}/*.UnitTests.dll", configuration);
-    OpenCover(tool => tool.XUnit2(cakePaketUnitTests, new XUnit2Settings {ShadowCopy = false}), new FilePath("./coverage.xml"), new OpenCoverSettings().WithFilter("+[Cake.Paket.Addin]*").WithFilter("+[Cake.Paket.Module]*").WithFilter("-[Cake.Paket.UnitTests]*"));
+    OpenCover(
+        tool => tool.DotNetCoreTest(
+            "./Source/Cake.Paket.UnitTests/Cake.Paket.UnitTests.csproj",
+            new DotNetCoreTestSettings() { Configuration = "Debug" }),
+        new FilePath("./coverage.xml"),
+        new OpenCoverSettings()
+        {
+            OldStyle = true,
+            ReturnTargetCodeOffset = 0
+        }
+            .WithFilter("+[Cake.Paket.Addin]*")
+            .WithFilter("+[Cake.Paket.Module]*")
+            .WithFilter("-[Cake.Paket.UnitTests]*"));
 });
 
 Task("Publish-Coverage-Report").IsDependentOn("Run-Unit-Tests").WithCriteria(AppVeyor.IsRunningOnAppVeyor).Does(() =>

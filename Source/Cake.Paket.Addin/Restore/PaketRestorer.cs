@@ -76,7 +76,7 @@ namespace Cake.Paket.Addin.Restore
             // group
             if (!string.IsNullOrWhiteSpace(settings.Group))
             {
-                builder.Append("group");
+                builder.Append("--group");
                 builder.AppendQuoted(settings.Group);
             }
 

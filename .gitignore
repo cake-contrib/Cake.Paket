@@ -46,6 +46,10 @@ x64/
 *.vssscc
 .builds
 
+# Editors
+.idea
+.vscode
+
 # Visual Studio profiler
 *.psess
 *.vsp
@@ -76,3 +80,7 @@ paket-files/
 # Build
 coverage.xml
 nuspec/**
+
+# Auto-generated XML documentation
+Source/Cake.Paket.Addin/Cake.Paket.Addin.xml
+Source/Cake.Paket.Module/Cake.Paket.Module.xml

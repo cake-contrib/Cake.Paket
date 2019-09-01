@@ -34,7 +34,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" apikey ""00000000-0000-0000-0000-000000000000""");
+            result.Args.Should().Be(@"push ""/Working/NuGet/foo.nupkg"" --api-key ""00000000-0000-0000-0000-000000000000""");
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" endpoint ""/api/v3/package""");
+            result.Args.Should().Be(@"push ""/Working/NuGet/foo.nupkg"" --endpoint ""/api/v3/package""");
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg""");
+            result.Args.Should().Be(@"push ""/Working/NuGet/foo.nupkg""");
         }
 
         [Fact]
@@ -73,7 +73,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"push file ""/Working/NuGet/foo.nupkg"" url ""www.google.com""");
+            result.Args.Should().Be(@"push ""/Working/NuGet/foo.nupkg"" --url ""www.google.com""");
         }
 
         [Fact]

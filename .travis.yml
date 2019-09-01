@@ -1,6 +1,8 @@
 language: csharp
 sudo: false
 
+dotnet: 2.2.401
+
 os:
   - linux
 
