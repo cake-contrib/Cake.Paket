@@ -262,10 +262,23 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         }
 
         [Fact]
+        public void Should_Throw_If_Output_Is_Null()
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Output = null };
+
+            // When
+            Action result = () => fixture.Run();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("output");
+        }
+
+        [Fact]
         public void Should_Throw_If_Settings_Are_Null()
         {
             // Given
-            var fixture = new PaketPackerFixture() { Settings = null };
+            var fixture = new PaketPackerFixture { Settings = null };
 
             // When
             Action result = () => fixture.Run();

@@ -132,6 +132,19 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
         }
 
         [Fact]
+        public void Should_Throw_If_FilePath_Is_Null()
+        {
+            // Given
+            var fixture = new PaketPusherFixture { FilePath = null };
+
+            // When
+            Action result = () => fixture.Run();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("filePath");
+        }
+
+        [Fact]
         public void Should_Throw_If_Settings_Are_Null()
         {
             // Given

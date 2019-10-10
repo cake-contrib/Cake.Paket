@@ -1,4 +1,5 @@
 ﻿using Cake.Core;
+using Cake.Core.IO;
 using Cake.Paket.Addin.Push;
 using Cake.Paket.Addin.Tooling;
 using Cake.Testing;
@@ -18,11 +19,12 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
         internal PaketPusherFixture()
             : base("paket.exe")
         {
-            FakeFile = FileSystem.CreateFile("NuGet/foo.nupkg");
+            FakeFile fakeFile = FileSystem.CreateFile("NuGet/foo.nupkg");
+            FilePath = fakeFile.Path;
             FakeArguments = Substitute.For<ICakeArguments>();
         }
 
-        private FakeFile FakeFile { get; }
+        internal FilePath FilePath { get; set; }
 
         private ICakeArguments FakeArguments { get; }
 
@@ -33,7 +35,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
         {
             var resolver = new PaketToolResolver(FileSystem, Environment, Tools, ProcessRunner, FakeArguments, new FakeLog());
             var pusher = new PaketPusher(FileSystem, Environment, Tools, ProcessRunner, resolver);
-            pusher.Push(FakeFile.Path, Settings);
+            pusher.Push(FilePath, Settings);
         }
     }
 }

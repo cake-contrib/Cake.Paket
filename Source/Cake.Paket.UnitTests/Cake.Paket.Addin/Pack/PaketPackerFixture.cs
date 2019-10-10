@@ -1,4 +1,5 @@
 ﻿using Cake.Core;
+using Cake.Core.IO;
 using Cake.Paket.Addin.Pack;
 using Cake.Paket.Addin.Tooling;
 using Cake.Testing;
@@ -18,11 +19,12 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         internal PaketPackerFixture()
             : base("paket.exe")
         {
-            FakeDirectory = FileSystem.CreateDirectory("NuGet");
+            FakeDirectory fakeDirectory = FileSystem.CreateDirectory("NuGet");
+            Output = fakeDirectory.Path;
             FakeArguments = Substitute.For<ICakeArguments>();
         }
 
-        private FakeDirectory FakeDirectory { get; }
+        internal DirectoryPath Output { get; set; }
 
         private ICakeArguments FakeArguments { get; }
 
@@ -33,7 +35,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         {
             var resolver = new PaketToolResolver(FileSystem, Environment, Tools, ProcessRunner, FakeArguments, new FakeLog());
             var packer = new PaketPacker(FileSystem, Environment, Tools, ProcessRunner, resolver);
-            packer.Pack(FakeDirectory.Path, Settings);
+            packer.Pack(Output, Settings);
         }
     }
 }
