@@ -54,11 +54,7 @@ namespace Cake.Paket.Addin.Pack
 
             // output
             // output is the default argument
-            var outputDirectory = output.MakeAbsolute(Environment).FullPath;
-            if (!string.IsNullOrWhiteSpace(outputDirectory))
-            {
-                builder.AppendQuoted(output.MakeAbsolute(Environment).FullPath);
-            }
+            builder.AppendQuoted(output.MakeAbsolute(Environment).FullPath);
 
             // buildconfig
             if (!string.IsNullOrWhiteSpace(settings.BuildConfig))

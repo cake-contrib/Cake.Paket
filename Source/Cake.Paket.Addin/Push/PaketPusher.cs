@@ -54,11 +54,7 @@ namespace Cake.Paket.Addin.Push
 
             // file
             // file is the default argument
-            var targetPackage = filePath.MakeAbsolute(Environment).FullPath;
-            if (!string.IsNullOrWhiteSpace(targetPackage))
-            {
-                builder.AppendQuoted(targetPackage);
-            }
+            builder.AppendQuoted(filePath.MakeAbsolute(Environment).FullPath);
 
             // url
             if (!string.IsNullOrWhiteSpace(settings.Url))
