@@ -1,5 +1,6 @@
 ﻿using System;
 using Cake.Core;
+using Cake.Paket.Addin.Pack;
 using Cake.Testing;
 using FluentAssertions;
 using Xunit;
@@ -191,6 +192,38 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 
             // Then
             result.Args.Should().Be(@"pack ""/Working/NuGet"" --version ""1.0.0""");
+        }
+
+        [Theory]
+        [InlineData(PaketInterprojectReferences.Min, "min")]
+        [InlineData(PaketInterprojectReferences.Fix, "fix")]
+        [InlineData(PaketInterprojectReferences.KeepMajor, "keep-major")]
+        [InlineData(PaketInterprojectReferences.KeepMinor, "keep-minor")]
+        [InlineData(PaketInterprojectReferences.KeepPatch, "keep-patch")]
+        public void Should_Set_InterprojectReferences(PaketInterprojectReferences referenceConstraint, string expected)
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { InterprojectReferences = referenceConstraint } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be($@"pack ""/Working/NuGet"" --interproject-references {expected}");
+        }
+
+        [Fact]
+        public void Should_Throw_If_InterprojectReferences_Was_Out_Of_Range()
+        {
+            // Given
+            var fixture = new PaketPackerFixture
+                { Settings = { InterprojectReferences = (PaketInterprojectReferences)int.MaxValue } };
+
+            // When
+            Action result = () => fixture.Run();
+
+            // Then
+            result.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [Fact]

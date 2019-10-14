@@ -142,7 +142,33 @@ namespace Cake.Paket.Addin.Pack
                 builder.AppendQuoted(settings.ProjectUrl);
             }
 
+            if (settings.InterprojectReferences != null)
+            {
+                builder.Append("--interproject-references");
+                builder.Append(
+                    GetInterprojectReferencesName((PaketInterprojectReferences)settings.InterprojectReferences));
+            }
+
             return builder;
+        }
+
+        private string GetInterprojectReferencesName(PaketInterprojectReferences references)
+        {
+            switch (references)
+            {
+                case PaketInterprojectReferences.Min:
+                    return "min";
+                case PaketInterprojectReferences.Fix:
+                    return "fix";
+                case PaketInterprojectReferences.KeepMajor:
+                    return "keep-major";
+                case PaketInterprojectReferences.KeepMinor:
+                    return "keep-minor";
+                case PaketInterprojectReferences.KeepPatch:
+                    return "keep-patch";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(references), references, null);
+            }
         }
     }
 }

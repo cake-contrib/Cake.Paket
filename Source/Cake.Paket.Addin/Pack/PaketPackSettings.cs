@@ -29,6 +29,11 @@ namespace Cake.Paket.Addin.Pack
         public bool IncludeReferencedProjects { get; set; }
 
         /// <summary>
+        /// Gets or sets the constraints for referenced project versions.
+        /// </summary>
+        public PaketInterprojectReferences? InterprojectReferences { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether to enable lock-dependencies.
         /// </summary>
         public bool LockDependencies { get; set; }
