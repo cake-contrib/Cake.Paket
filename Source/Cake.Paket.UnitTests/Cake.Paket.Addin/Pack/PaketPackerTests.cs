@@ -120,13 +120,31 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         public void Should_Set_Exclude()
         {
             // Given
-            var fixture = new PaketPackerFixture { Settings = { Exclude = "Cake.Foo" } };
+            var settings = new PaketPackSettings();
+            settings.Exclusions.Add("Cake.Foo");
+            settings.Exclusions.Add("Cake.Bar");
+            var fixture = new PaketPackerFixture { Settings = settings };
 
             // When
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack ""/Working/NuGet"" --exclude ""Cake.Foo""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --exclude ""Cake.Foo"" --exclude ""Cake.Bar""");
+        }
+
+        [Fact]
+        public void Should_Set_Exclude_With_Builder()
+        {
+            // Given
+            var settings = new PaketPackSettings();
+            settings.Exclude("Cake.Foo").Exclude("Cake.Bar");
+            var fixture = new PaketPackerFixture { Settings = settings };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --exclude ""Cake.Foo"" --exclude ""Cake.Bar""");
         }
 
         [Fact]
@@ -315,6 +333,19 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 
             // When
             Action result = () => fixture.Run();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Settings_For_Exclusion_Are_Null()
+        {
+            // Given
+            PaketPackSettings settings = null;
+
+            // When
+            Action result = () => settings.Exclude("id");
 
             // Then
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");

@@ -85,10 +85,10 @@ namespace Cake.Paket.Addin.Pack
             }
 
             // exclude
-            if (!string.IsNullOrWhiteSpace(settings.Exclude))
+            foreach (string exclusion in settings.Exclusions)
             {
                 builder.Append("--exclude");
-                builder.AppendQuoted(settings.Exclude);
+                builder.AppendQuoted(exclusion);
             }
 
             // specific-version
