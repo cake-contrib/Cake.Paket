@@ -6,7 +6,7 @@ using Xunit;
 namespace Cake.Paket.UnitTests.Cake.Paket.Module
 {
     /// <summary>
-    /// PaketPackageInstaller unit tests
+    /// PaketPackageInstaller unit tests.
     /// </summary>
     public sealed class PaketPackageInstallerTests
     {

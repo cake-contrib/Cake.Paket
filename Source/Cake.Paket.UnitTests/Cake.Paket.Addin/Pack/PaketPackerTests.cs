@@ -8,7 +8,7 @@ using Xunit;
 namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 {
     /// <summary>
-    /// PaketPacker unit tests
+    /// PaketPacker unit tests.
     /// </summary>
     public sealed class PaketPackerTests
     {

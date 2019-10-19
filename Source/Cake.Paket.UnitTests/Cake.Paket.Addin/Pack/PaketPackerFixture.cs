@@ -29,7 +29,7 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         private ICakeArguments FakeArguments { get; }
 
         /// <summary>
-        /// Runs PaketPacker tool
+        /// Runs PaketPacker tool.
         /// </summary>
         protected override void RunTool()
         {
