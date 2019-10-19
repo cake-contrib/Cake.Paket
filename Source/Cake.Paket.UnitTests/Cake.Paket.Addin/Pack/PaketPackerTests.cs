@@ -177,13 +177,17 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         public void Should_Set_SpecificVersion()
         {
             // Given
-            var fixture = new PaketPackerFixture { Settings = { SpecificVersion = "Cake.Foo 0.0.0" } };
+            var settings = new PaketPackSettings();
+            settings
+                .SpecificVersion("Cake.Foo", "0.0.1")
+                .SpecificVersion("Cake.Bar", "0.0.2");
+            var fixture = new PaketPackerFixture { Settings = settings };
 
             // When
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack ""/Working/NuGet"" --specific-version ""Cake.Foo 0.0.0""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --specific-version ""Cake.Foo"" ""0.0.1"" --specific-version ""Cake.Bar"" ""0.0.2""");
         }
 
         [Fact]
@@ -346,6 +350,19 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 
             // When
             Action result = () => settings.Exclude("id");
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Settings_For_SpecificVersion_Are_Null()
+        {
+            // Given
+            PaketPackSettings settings = null;
+
+            // When
+            Action result = () => settings.SpecificVersion("id", "0.0.1");
 
             // Then
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");

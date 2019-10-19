@@ -92,10 +92,11 @@ namespace Cake.Paket.Addin.Pack
             }
 
             // specific-version
-            if (!string.IsNullOrWhiteSpace(settings.SpecificVersion))
+            foreach (PaketSpecificVersion version in settings.SpecificVersions)
             {
                 builder.Append("--specific-version");
-                builder.AppendQuoted(settings.SpecificVersion);
+                builder.AppendQuoted(version.PackageId);
+                builder.AppendQuoted(version.Version);
             }
 
             // ReleaseNotes
