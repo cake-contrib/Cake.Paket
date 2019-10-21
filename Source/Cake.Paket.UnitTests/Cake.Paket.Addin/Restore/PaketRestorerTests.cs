@@ -104,6 +104,21 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Restore
         }
 
         [Fact]
+        public void Should_Set_ReferencesFiles()
+        {
+            // Given
+            var settings = new PaketRestoreSettings();
+            settings.WithReferencesFile("path1/paket.references").WithReferencesFile("path2/paket.references");
+            var fixture = new PaketRestorerFixture { Settings = settings };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"restore --references-file ""path1/paket.references"" --references-file ""path2/paket.references""");
+        }
+
+        [Fact]
         public void Should_Throw_If_Settings_Are_Null()
         {
             // Given
@@ -111,6 +126,19 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Restore
 
             // When
             Action result = () => fixture.Run();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Settings_For_ReferencesFile_Are_Null()
+        {
+            // Given
+            PaketRestoreSettings settings = null;
+
+            // When
+            Action result = () => settings.WithReferencesFile("path/paket.template");
 
             // Then
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
