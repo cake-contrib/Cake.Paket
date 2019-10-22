@@ -1,4 +1,5 @@
-﻿using Cake.Core.Tooling;
+﻿using System.Collections.Generic;
+using Cake.Core.Tooling;
 
 namespace Cake.Paket.Addin.Restore
 {
@@ -41,9 +42,9 @@ namespace Cake.Paket.Addin.Restore
         public string Project { get; set; }
 
         /// <summary>
-        /// Gets or sets value to restore all packages from the given paket.references files.
+        /// Gets the list of paket.references files paths to restore packages from.
         /// </summary>
-        public string ReferencesFiles { get; set; }
+        public List<string> ReferencesFiles { get; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value indicating whether to touch project files referencing packages which

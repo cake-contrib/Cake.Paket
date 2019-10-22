@@ -84,3 +84,4 @@ nuspec/**
 # Auto-generated XML documentation
 Source/Cake.Paket.Addin/Cake.Paket.Addin.xml
 Source/Cake.Paket.Module/Cake.Paket.Module.xml
+Source/Cake.Paket.UnitTests/Cake.Paket.UnitTests.xml

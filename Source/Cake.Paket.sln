@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Paket.Module", "Cake.Paket.Module\Cake.Paket.Module.csproj", "{697766FE-5C62-454A-AC87-E52A041B9DB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.Paket.Module", "Cake.Paket.Module\Cake.Paket.Module.csproj", "{697766FE-5C62-454A-AC87-E52A041B9DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Paket.Addin", "Cake.Paket.Addin\Cake.Paket.Addin.csproj", "{C2116574-387C-4EAD-A288-569CC34EE6C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.Paket.Addin", "Cake.Paket.Addin\Cake.Paket.Addin.csproj", "{C2116574-387C-4EAD-A288-569CC34EE6C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cake.Paket.UnitTests", "Cake.Paket.UnitTests\Cake.Paket.UnitTests.csproj", "{2390A26D-7600-4CBA-864D-E32948F26A40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cake.Paket.UnitTests", "Cake.Paket.UnitTests\Cake.Paket.UnitTests.csproj", "{2390A26D-7600-4CBA-864D-E32948F26A40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".solution", ".solution", "{12BB683E-3999-4DD4-B5AF-2F59EE48FE83}"
+	ProjectSection(SolutionItems) = preProject
+		Cake.Paket.ruleset = Cake.Paket.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +35,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15E7CE04-D312-4633-999E-6FCA2B9C6087}
 	EndGlobalSection
 EndGlobal

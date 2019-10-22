@@ -7,7 +7,7 @@ using Xunit;
 namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Push
 {
     /// <summary>
-    /// PaketPusher unit tests
+    /// PaketPusher unit tests.
     /// </summary>
     public sealed class PaketPusherTests
     {

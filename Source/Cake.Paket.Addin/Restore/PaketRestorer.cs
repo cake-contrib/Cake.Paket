@@ -88,10 +88,10 @@ namespace Cake.Paket.Addin.Restore
             }
 
             // references-files
-            if (!string.IsNullOrWhiteSpace(settings.ReferencesFiles))
+            foreach (string path in settings.ReferencesFiles)
             {
-                builder.Append("--references-files");
-                builder.AppendQuoted(settings.ReferencesFiles);
+                builder.Append("--references-file");
+                builder.AppendQuoted(path);
             }
 
             return builder;

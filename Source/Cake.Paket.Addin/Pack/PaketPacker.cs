@@ -54,11 +54,7 @@ namespace Cake.Paket.Addin.Pack
 
             // output
             // output is the default argument
-            var outputDirectory = output.MakeAbsolute(Environment).FullPath;
-            if (!string.IsNullOrWhiteSpace(outputDirectory))
-            {
-                builder.AppendQuoted(output.MakeAbsolute(Environment).FullPath);
-            }
+            builder.AppendQuoted(output.MakeAbsolute(Environment).FullPath);
 
             // buildconfig
             if (!string.IsNullOrWhiteSpace(settings.BuildConfig))
@@ -89,17 +85,18 @@ namespace Cake.Paket.Addin.Pack
             }
 
             // exclude
-            if (!string.IsNullOrWhiteSpace(settings.Exclude))
+            foreach (string exclusion in settings.Exclusions)
             {
                 builder.Append("--exclude");
-                builder.AppendQuoted(settings.Exclude);
+                builder.AppendQuoted(exclusion);
             }
 
             // specific-version
-            if (!string.IsNullOrWhiteSpace(settings.SpecificVersion))
+            foreach (PaketSpecificVersion version in settings.SpecificVersions)
             {
                 builder.Append("--specific-version");
-                builder.AppendQuoted(settings.SpecificVersion);
+                builder.AppendQuoted(version.PackageId);
+                builder.AppendQuoted(version.Version);
             }
 
             // ReleaseNotes
@@ -146,7 +143,33 @@ namespace Cake.Paket.Addin.Pack
                 builder.AppendQuoted(settings.ProjectUrl);
             }
 
+            if (settings.InterprojectReferences != null)
+            {
+                builder.Append("--interproject-references");
+                builder.Append(
+                    GetInterprojectReferencesName((PaketInterprojectReferences)settings.InterprojectReferences));
+            }
+
             return builder;
+        }
+
+        private string GetInterprojectReferencesName(PaketInterprojectReferences references)
+        {
+            switch (references)
+            {
+                case PaketInterprojectReferences.Min:
+                    return "min";
+                case PaketInterprojectReferences.Fix:
+                    return "fix";
+                case PaketInterprojectReferences.KeepMajor:
+                    return "keep-major";
+                case PaketInterprojectReferences.KeepMinor:
+                    return "keep-minor";
+                case PaketInterprojectReferences.KeepPatch:
+                    return "keep-patch";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(references), references, null);
+            }
         }
     }
 }

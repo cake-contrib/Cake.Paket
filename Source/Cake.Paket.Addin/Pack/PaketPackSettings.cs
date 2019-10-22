@@ -1,4 +1,5 @@
-﻿using Cake.Core.Tooling;
+﻿using System.Collections.Generic;
+using Cake.Core.Tooling;
 
 namespace Cake.Paket.Addin.Pack
 {
@@ -19,14 +20,19 @@ namespace Cake.Paket.Addin.Pack
         public string BuildPlatform { get; set; }
 
         /// <summary>
-        /// Gets or sets the exclude.
+        /// Gets the exclusions list.
         /// </summary>
-        public string Exclude { get; set; }
+        public List<string> Exclusions { get; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable include-referenced-projects.
         /// </summary>
         public bool IncludeReferencedProjects { get; set; }
+
+        /// <summary>
+        /// Gets or sets the constraints for referenced project versions.
+        /// </summary>
+        public PaketInterprojectReferences? InterprojectReferences { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable lock-dependencies.
@@ -54,9 +60,9 @@ namespace Cake.Paket.Addin.Pack
         public string ReleaseNotes { get; set; }
 
         /// <summary>
-        /// Gets or sets the specific-version.
+        /// Gets the specific-version list.
         /// </summary>
-        public string SpecificVersion { get; set; }
+        public List<PaketSpecificVersion> SpecificVersions { get; } = new List<PaketSpecificVersion>();
 
         /// <summary>
         /// Gets or sets a value indicating whether to enable symbols.

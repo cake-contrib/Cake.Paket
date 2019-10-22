@@ -1,5 +1,6 @@
 ﻿using System;
 using Cake.Core;
+using Cake.Paket.Addin.Pack;
 using Cake.Testing;
 using FluentAssertions;
 using Xunit;
@@ -7,7 +8,7 @@ using Xunit;
 namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 {
     /// <summary>
-    /// PaketPacker unit tests
+    /// PaketPacker unit tests.
     /// </summary>
     public sealed class PaketPackerTests
     {
@@ -119,13 +120,31 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         public void Should_Set_Exclude()
         {
             // Given
-            var fixture = new PaketPackerFixture { Settings = { Exclude = "Cake.Foo" } };
+            var settings = new PaketPackSettings();
+            settings.Exclusions.Add("Cake.Foo");
+            settings.Exclusions.Add("Cake.Bar");
+            var fixture = new PaketPackerFixture { Settings = settings };
 
             // When
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack ""/Working/NuGet"" --exclude ""Cake.Foo""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --exclude ""Cake.Foo"" --exclude ""Cake.Bar""");
+        }
+
+        [Fact]
+        public void Should_Set_Exclude_With_Builder()
+        {
+            // Given
+            var settings = new PaketPackSettings();
+            settings.Exclude("Cake.Foo").Exclude("Cake.Bar");
+            var fixture = new PaketPackerFixture { Settings = settings };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --exclude ""Cake.Foo"" --exclude ""Cake.Bar""");
         }
 
         [Fact]
@@ -158,13 +177,17 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
         public void Should_Set_SpecificVersion()
         {
             // Given
-            var fixture = new PaketPackerFixture { Settings = { SpecificVersion = "Cake.Foo 0.0.0" } };
+            var settings = new PaketPackSettings();
+            settings
+                .SpecificVersion("Cake.Foo", "0.0.1")
+                .SpecificVersion("Cake.Bar", "0.0.2");
+            var fixture = new PaketPackerFixture { Settings = settings };
 
             // When
             var result = fixture.Run();
 
             // Then
-            result.Args.Should().Be(@"pack ""/Working/NuGet"" --specific-version ""Cake.Foo 0.0.0""");
+            result.Args.Should().Be(@"pack ""/Working/NuGet"" --specific-version ""Cake.Foo"" ""0.0.1"" --specific-version ""Cake.Bar"" ""0.0.2""");
         }
 
         [Fact]
@@ -191,6 +214,38 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 
             // Then
             result.Args.Should().Be(@"pack ""/Working/NuGet"" --version ""1.0.0""");
+        }
+
+        [Theory]
+        [InlineData(PaketInterprojectReferences.Min, "min")]
+        [InlineData(PaketInterprojectReferences.Fix, "fix")]
+        [InlineData(PaketInterprojectReferences.KeepMajor, "keep-major")]
+        [InlineData(PaketInterprojectReferences.KeepMinor, "keep-minor")]
+        [InlineData(PaketInterprojectReferences.KeepPatch, "keep-patch")]
+        public void Should_Set_InterprojectReferences(PaketInterprojectReferences referenceConstraint, string expected)
+        {
+            // Given
+            var fixture = new PaketPackerFixture { Settings = { InterprojectReferences = referenceConstraint } };
+
+            // When
+            var result = fixture.Run();
+
+            // Then
+            result.Args.Should().Be($@"pack ""/Working/NuGet"" --interproject-references {expected}");
+        }
+
+        [Fact]
+        public void Should_Throw_If_InterprojectReferences_Was_Out_Of_Range()
+        {
+            // Given
+            var fixture = new PaketPackerFixture
+                { Settings = { InterprojectReferences = (PaketInterprojectReferences)int.MaxValue } };
+
+            // When
+            Action result = () => fixture.Run();
+
+            // Then
+            result.ShouldThrow<ArgumentOutOfRangeException>();
         }
 
         [Fact]
@@ -282,6 +337,32 @@ namespace Cake.Paket.UnitTests.Cake.Paket.Addin.Pack
 
             // When
             Action result = () => fixture.Run();
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Settings_For_Exclusion_Are_Null()
+        {
+            // Given
+            PaketPackSettings settings = null;
+
+            // When
+            Action result = () => settings.Exclude("id");
+
+            // Then
+            result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
+        }
+
+        [Fact]
+        public void Should_Throw_If_Settings_For_SpecificVersion_Are_Null()
+        {
+            // Given
+            PaketPackSettings settings = null;
+
+            // When
+            Action result = () => settings.SpecificVersion("id", "0.0.1");
 
             // Then
             result.ShouldThrow<ArgumentNullException>().And.ParamName.Should().Be("settings");
