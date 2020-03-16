@@ -25,12 +25,7 @@ namespace Cake.Paket.Addin.Tooling
         protected PaketTool(IFileSystem fileSystem, ICakeEnvironment environment, IProcessRunner processRunner, IToolLocator tools, IPaketToolResolver resolver)
             : base(fileSystem, environment, processRunner, tools)
         {
-            if (resolver == null)
-            {
-                throw new ArgumentNullException(nameof(resolver));
-            }
-
-            Resolver = resolver;
+            Resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
         }
 
         private IPaketToolResolver Resolver { get; }

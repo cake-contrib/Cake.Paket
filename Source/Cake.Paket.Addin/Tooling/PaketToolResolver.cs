@@ -24,42 +24,12 @@ namespace Cake.Paket.Addin.Tooling
         /// <param name="log">The log.</param>
         internal PaketToolResolver(IFileSystem fileSystem, ICakeEnvironment environment, IToolLocator tools, IProcessRunner processRunner, ICakeArguments arguments, ICakeLog log)
         {
-            if (fileSystem == null)
-            {
-                throw new ArgumentNullException(nameof(fileSystem));
-            }
-
-            if (environment == null)
-            {
-                throw new ArgumentNullException(nameof(environment));
-            }
-
-            if (tools == null)
-            {
-                throw new ArgumentNullException(nameof(tools));
-            }
-
-            if (processRunner == null)
-            {
-                throw new ArgumentNullException(nameof(processRunner));
-            }
-
-            if (arguments == null)
-            {
-                throw new ArgumentNullException(nameof(arguments));
-            }
-
-            if (log == null)
-            {
-                throw new ArgumentNullException(nameof(log));
-            }
-
-            FileSystem = fileSystem;
-            Environment = environment;
-            Tools = tools;
-            ProcessRunner = processRunner;
-            Arguments = arguments;
-            Log = log;
+            FileSystem = fileSystem ?? throw new ArgumentNullException(nameof(fileSystem));
+            Environment = environment ?? throw new ArgumentNullException(nameof(environment));
+            Tools = tools ?? throw new ArgumentNullException(nameof(tools));
+            ProcessRunner = processRunner ?? throw new ArgumentNullException(nameof(processRunner));
+            Arguments = arguments ?? throw new ArgumentNullException(nameof(arguments));
+            Log = log ?? throw new ArgumentNullException(nameof(log));
         }
 
         private IFileSystem FileSystem { get; }
@@ -117,8 +87,7 @@ namespace Cake.Paket.Addin.Tooling
 
         private FilePath Try2GetExeInDotPaket(string exe, out bool wasResolved)
         {
-            bool gotDotPaket;
-            var dotPaket = Try2GetDotPaket(out gotDotPaket);
+            var dotPaket = Try2GetDotPaket(out var gotDotPaket);
             if (gotDotPaket)
             {
                 var e = FileSystem.GetFile(dotPaket.CombineWithFilePath(new FilePath(exe)));
@@ -135,8 +104,7 @@ namespace Cake.Paket.Addin.Tooling
 
         private FilePath Try2ResolvePath2PaketExe(out bool wasResolved)
         {
-            bool gotIt;
-            var paketExe = Try2GetExeInDotPaket("paket.exe", out gotIt);
+            var paketExe = Try2GetExeInDotPaket("paket.exe", out var gotIt);
             if (gotIt)
             {
                 wasResolved = true;
@@ -169,8 +137,7 @@ namespace Cake.Paket.Addin.Tooling
                 }
             }
 
-            bool gotIt;
-            var paketBootStrapperExe = Try2GetExeInDotPaket("paket.bootstrapper.exe", out gotIt);
+            var paketBootStrapperExe = Try2GetExeInDotPaket("paket.bootstrapper.exe", out var gotIt);
             if (gotIt)
             {
                 wasResolved = true;
@@ -200,14 +167,12 @@ namespace Cake.Paket.Addin.Tooling
 
         private FilePath Try2ResolvePath2PaketExeByRunningPaketBootStrapperExeFirst(out bool wasResolved)
         {
-            bool paketBootStrapperExeWasResolved;
-            var paketBootStrapperExe = Try2ResolvePath2PaketBootStrapperExe(out paketBootStrapperExeWasResolved);
+            var paketBootStrapperExe = Try2ResolvePath2PaketBootStrapperExe(out var paketBootStrapperExeWasResolved);
             if (paketBootStrapperExeWasResolved)
             {
                 if (RunPaketBootStrapperExe(paketBootStrapperExe))
                 {
-                    bool paketExeWasResolved;
-                    var paketExe = Try2ResolvePath2PaketExe(out paketExeWasResolved);
+                    var paketExe = Try2ResolvePath2PaketExe(out var paketExeWasResolved);
                     if (paketExeWasResolved)
                     {
                         wasResolved = true;
@@ -222,9 +187,7 @@ namespace Cake.Paket.Addin.Tooling
 
         private FilePath ResolvePath2PaketExe()
         {
-            bool paketExeWasResolved;
-
-            var paketExe = Try2ResolvePath2PaketExe(out paketExeWasResolved);
+            var paketExe = Try2ResolvePath2PaketExe(out var paketExeWasResolved);
             if (paketExeWasResolved)
             {
                 return paketExe;
