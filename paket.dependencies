@@ -6,12 +6,12 @@ group cake.paket
 group cake.paket.addin
     framework: netstandard20
     source https://nuget.org/api/v2
-    nuget Cake.Core ~> 0.34
+    nuget Cake.Core ~> 1.1
 
 group cake.paket.Module
     framework: netstandard20
     source https://nuget.org/api/v2
-    nuget Cake.NuGet ~> 0.34
+    nuget Cake.NuGet ~> 1.1
 
 group cake.paket.unittests
     framework: netcoreapp20
@@ -19,8 +19,8 @@ group cake.paket.unittests
     nuget FluentAssertions ~> 4.19.3
     nuget NSubstitute
     nuget xunit
-    nuget Cake.Testing ~> 0.34
-    nuget Cake.Nuget ~> 0.34
+    nuget Cake.Testing ~> 1.1
+    nuget Cake.Nuget ~> 1.1
 
 group tools
     framework: netstandard20
